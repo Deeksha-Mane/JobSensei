@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - JobSensei</title>
+    <link rel="stylesheet" href="/css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>JobSensei</h2>
+      <a href="/pages/dashboard.html" class="active">Dashboard</a>
+      <a href="/pages/profile.html">My Profile</a>
+      <a href="/pages/jobboard.html">Jobs For You</a>
+      <a href="/pages/careerguide.html">AI Career Guide</a>
+      <a href="/pages/learningresources.html">Learn and Grow</a>
+      <a href="/pages/resumebuilder.html">Resume Builder</a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="header">
+        <h2 id="greeting">Welcome, loading...</h2>
+        <button class="logout-btn" id="logoutBtn" onclick="logout()">
+          Logout
+        </button>
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Jobs Applied</h3>
+          <p>12</p>
+        </div>
+        <div class="card">
+          <h3>Saved Jobs</h3>
+          <p>5</p>
+        </div>
+        <div class="card">
+          <h3>Recommendations</h3>
+          <p>8 new matches</p>
+        </div>
+        <div class="card">
+          <h3>Upcoming Interviews</h3>
+          <p>2 scheduled</p>
+        </div>
+      </div>
+    </main>
+
+    <script type="module" src="/js/dashboard.js"></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(to right, #e6f0ff, #ffffff);
+  color: #1a1a1a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0b5ed7;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.navbar-button {
+  font-size: 0.5rem;
+  background-color: rgb(0, 57, 149);
+  color: black;
+  padding: 0.5rem 1rem;
+  border: 2px solid white;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+/* Login Section */
+.login-section {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.login-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #0b5ed7;
+}
+
+/* Form Styles */
+form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.3s;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #0b5ed7;
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  background-color: #0b5ed7;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0949b0;
+}
+
+/* Sign up link */
+.login-section p {
+  text-align: center;
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.login-section a {
+  color: #0b5ed7;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-section a:hover {
+  text-decoration: underline;
+}

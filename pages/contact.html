@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | JobSensei</title>
+    <link rel="stylesheet" href="/css/contact.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-...your-integrity-code..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="#home" class="navbar-brand">JobSensei</a>
+      <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
+      <div class="navbar-links">
+        <a href="/pages/index.html">Home</a>
+        <a href="/pages/dashboard.html">Dashboard</a>
+        <a href="/pages/about.html">About Us</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <div class="contact-container">
+      <h1>Contact Us</h1>
+      <p class="subtitle">
+        Have questions, feedback, or just want to say hello? We'd love to hear
+        from you!
+      </p>
+
+      <div class="contact-content">
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Your Name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="your@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              rows="5"
+              placeholder="Write your message..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p><strong>Email:</strong> manediksha264@gmail.com</p>
+          <p><strong>Phone:</strong> +91 98765 43210</p>
+          <p>
+            <strong>Address:</strong> KIT's College of Engineering,Kolhapur,
+            Maharashtra, India
+          </p>
+
+          <div class="social-links">
+            <h3>Follow Us</h3>
+            <a href="#">Instagram</a> | <a href="#">LinkedIn</a> |
+            <a href="#">Twitter</a>
+          </div>
+
+          <!--Google Map Embed -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3793.409936553345!2d74.2732782!3d16.6937254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc12310f9b56b0f%3A0x4fa70f50d4da34f7!2sSanjay%20Ghodawat%20University!5e0!3m2!1sen!2sin!4v1681716976364!5m2!1sen!2sin"
+            width="100%"
+            height="200"
+            style="border: 0; border-radius: 10px; margin-top: 20px"
+            allowfullscreen=""
+            loading="lazy"
+          >
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <!--Footer-->
+<footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h2>JobSensei</h2>
+        <p>Your smart career navigator for Tier-2/3 cities.</p>
+        <p>Empowering students with skill-based job recommendations and tailored learning paths using AI.</p>
+      </div>
+
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="/pages/index.html">Home</a></li>
+          <li><a href="/pages/about.html">About Us</a></li>
+          <li><a href="/pages/contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p><i class="fas fa-envelope"></i> support@jobsensei.dev</p>
+        <p><i class="fas fa-phone"></i> +91-9876543210</p>
+        <div class="footer-icons">
+          <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="mailto:support@jobsensei.dev"
+            ><i class="fas fa-envelope"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 JobSensei. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("XcNXM231Xt2G_qSLy"); // Replace with your actual Public Key
+      })();
+    
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+          e.preventDefault();
+    
+          emailjs.sendForm("service_tfuco4i", "template_m9cz0xk", this)
+            .then(() => {
+              alert("Message sent successfully!");
+              this.reset();
+            }, (error) => {
+              alert("Failed to send message: " + JSON.stringify(error));
+            });
+        });
+      });
+    </script>
+    
+  </body>
+</html>
