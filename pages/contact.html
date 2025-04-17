@@ -134,25 +134,26 @@
     </div>
 
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script>
-      (function () {
-        emailjs.init("XcNXM231Xt2G_qSLy"); // Replace with your actual Public Key
-      })();
-    
-      document.addEventListener("DOMContentLoaded", function () {
-        document.getElementById("contactForm").addEventListener("submit", function (e) {
-          e.preventDefault();
-    
-          emailjs.sendForm("service_tfuco4i", "template_m9cz0xk", this)
-            .then(() => {
-              alert("Message sent successfully!");
-              this.reset();
-            }, (error) => {
-              alert("Failed to send message: " + JSON.stringify(error));
-            });
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init("XcNXM231Xt2G_qSLy"); // Replace with your actual Public Key
+
+    const contactForm = document.getElementById("contactForm");
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      emailjs.sendForm("service_tfuco4i", "template_i2qowpi", contactForm)
+        .then(() => {
+          alert("Message sent successfully!");
+          contactForm.reset();
+        })
+        .catch((error) => {
+          alert("Failed to send message: " + JSON.stringify(error));
         });
-      });
-    </script>
+    });
+  });
+</script>
     
   </body>
 </html>
