@@ -27,7 +27,6 @@
         <a href="#home" class="navbar-brand">JobSensei</a>
         <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
         <div class="navbar-links">
-          <a href="#home">Home</a>
           <div class="dropdown">
             <a href="#" class="dropdown-toggle">Career Guide</a>
             <div class="dropdown-menu">
@@ -46,7 +45,7 @@
           </div>
           <a href="/pages/about.html">About Us</a>
           <a href="/pages/contact.html">Contact</a>
-          <a href="/pages/login.html" class="navbar-button">Login / Sign Up</a>
+          <a href="/pages/login.html" class="navbar-button">Login</a>
         </div>
       </nav>
     </header>
@@ -80,6 +79,83 @@
       </div>
     </section>
 
+    <!--Featured Jobs Section-->
+    <section class="featured-jobs-section">
+      <h2>Featured Jobs</h2>
+      <div class="carousel-container">
+        <button class="carousel-btn left" onclick="moveCarousel(-1)">
+          &#10094;
+        </button>
+
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Job Cards -->
+          <div class="job-card">
+            <h3>Frontend Developer</h3>
+            <p><strong>Company:</strong> CodeCraft</p>
+            <p><strong>Location:</strong> Mumbai, India</p>
+            <p><strong>Type:</strong> Full-Time</p>
+            <button onclick="window.location.href='/pages/login.html'">
+              View Details
+            </button>
+          </div>
+
+          <div class="job-card">
+            <h3>Backend Engineer</h3>
+            <p><strong>Company:</strong> TechNest</p>
+            <p><strong>Location:</strong> Bengaluru, India</p>
+            <p><strong>Type:</strong> Full-Time</p>
+            <button onclick="window.location.href='/pages/login.html'">
+              View Details
+            </button>
+          </div>
+
+          <div class="job-card">
+            <h3>UI/UX Designer</h3>
+            <p><strong>Company:</strong> DesignLab</p>
+            <p><strong>Location:</strong> Pune, India</p>
+            <p><strong>Type:</strong> Internship</p>
+            <button onclick="window.location.href='/pages/login.html'">
+              View Details
+            </button>
+          </div>
+
+          <div class="job-card">
+            <h3>Data Analyst</h3>
+            <p><strong>Company:</strong> DataWiz</p>
+            <p><strong>Location:</strong> Remote</p>
+            <p><strong>Type:</strong> Contract</p>
+            <button onclick="window.location.href='/pages/login.html'">
+              View Details
+            </button>
+          </div>
+
+          <div class="job-card">
+            <h3>Product Manager</h3>
+            <p><strong>Company:</strong> Stratify</p>
+            <p><strong>Location:</strong> Hyderabad, India</p>
+            <p><strong>Type:</strong> Full-Time</p>
+            <button onclick="window.location.href='/pages/login.html'">
+              View Details
+            </button>
+          </div>
+
+          <div class="job-card">
+            <h3>DevOps Engineer</h3>
+            <p><strong>Company:</strong> CloudX</p>
+            <p><strong>Location:</strong> Chennai, India</p>
+            <p><strong>Type:</strong> Part-Time</p>
+            <button onclick="window.location.href='/pages/login.html'">
+              View Details
+            </button>
+          </div>
+        </div>
+
+        <button class="carousel-btn right" onclick="moveCarousel(1)">
+          &#10095;
+        </button>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="cta">
       <h3>Ready to level up?</h3>
@@ -93,7 +169,10 @@
         <div class="footer-brand">
           <h2>JobSensei</h2>
           <p>Your smart career navigator for Tier-2/3 cities.</p>
-          <p>Empowering students with skill-based job recommendations and tailored learning paths using AI.</p>
+          <p>
+            Empowering students with skill-based job recommendations and
+            tailored learning paths using AI.
+          </p>
         </div>
 
         <div class="footer-links">
@@ -163,6 +242,28 @@
       // Scroll to top
       function scrollToTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    </script>
+
+    <script>
+      const track = document.getElementById("carouselTrack");
+      const cards = document.querySelectorAll(".job-card");
+      const cardWidth = cards[0].offsetWidth + 20; // card + margin
+      let position = 0;
+      let visibleCards = 3;
+
+      function moveCarousel(direction) {
+        const totalCards = cards.length;
+        position += direction;
+
+        if (position < 0) {
+          position = totalCards - visibleCards;
+        } else if (position > totalCards - visibleCards) {
+          position = 0;
+        }
+
+        const offset = -position * cardWidth;
+        track.style.transform = `translateX(${offset}px)`;
       }
     </script>
   </body>
