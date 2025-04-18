@@ -1,0 +1,72 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #4a90e2;
+}
+
+.subtitle {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.resume-preview {
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.resume-preview h2 {
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.resume-preview h3 {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.resume-preview p {
+  margin: 4px 0;
+}
+
+.project-entry {
+  margin-bottom: 10px;
+}
+
+.download-btn {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 25px;
+  font-size: 16px;
+  color: white;
+  background: #4a90e2;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #3a7bd5;
+}

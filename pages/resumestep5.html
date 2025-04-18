@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Step 5: Projects | Resume Builder</title>
+  <link rel="stylesheet" href="/css/resumestep5.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Step 5: Add Your Projects</h1>
+    <form id="projectForm">
+      <div class="project-input">
+        <label>Project Title</label>
+        <input type="text" name="title" placeholder="e.g. Portfolio Website" required />
+      </div>
+
+      <div class="project-input">
+        <label>Description</label>
+        <textarea name="description" rows="3" placeholder="Briefly describe your project..." required></textarea>
+      </div>
+
+      <div class="project-input">
+        <label>Technologies Used</label>
+        <input type="text" name="technologies" placeholder="e.g. HTML, CSS, JavaScript" required />
+      </div>
+
+      <button type="submit" class="btn-add">Add Project</button>
+    </form>
+
+    <div id="projectList"></div>
+
+    <div class="navigation-buttons">
+      <a href="/pages/resumestep4.html" class="nav-btn">← Back</a>
+      <a href="/pages/resumepreview.html" class="nav-btn">Next →</a>
+    </div>
+  </div>
+
+  <script src="/js/resumestep5.js"></script>
+</body>
+</html>
+ 
