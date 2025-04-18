@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resume Preview | JobSensei</title>
+  <link rel="stylesheet" href="/css/resumepreview.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    <h1>🎉 Your Resume is Ready!</h1>
+    <p class="subtitle">Here’s a preview of your resume. Download it as a stylish PDF now.</p>
+
+    <div id="resumePreview" class="resume-preview">
+      <h2 id="previewName">Your Name</h2>
+      <p><strong>Email:</strong> <span id="previewEmail"></span></p>
+      <p><strong>Phone:</strong> <span id="previewPhone"></span></p>
+      <p><strong>Address:</strong> <span id="previewAddress"></span></p>
+
+      <h3>Education</h3>
+      <p id="previewEducation"></p>
+
+      <h3>Experience</h3>
+      <p id="previewExperience"></p>
+
+      <h3>Skills</h3>
+      <p id="previewSkills"></p>
+
+      <h3>Projects</h3>
+      <div id="previewProjects"></div>
+    </div>
+
+    <button class="download-btn" onclick="downloadPDF()">📥 Download as PDF</button>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="/js/resumepreview.js"></script>
+</body>
+</html>

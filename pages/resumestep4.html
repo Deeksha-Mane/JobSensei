@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Step 4: Skills | Resume Builder</title>
+  <link rel="stylesheet" href="../css/resumestep4.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h1>Step 4: Skills</h1>
+      <form id="skills-form">
+        <div class="form-group">
+          <label for="skillInput">Enter a Skill</label>
+          <input type="text" id="skillInput" placeholder="e.g. JavaScript, Python" />
+          <button type="button" class="btn-add-skill" onclick="addSkill()">Add Skill</button>
+        </div>
+        <div id="skills-list" class="skills-list">
+          <!-- Added skills will appear here -->
+        </div>
+        <div class="button-group">
+          <button type="submit" class="btn-next">Next</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="/js/resumestep4.js"></script>
+</body>
+</html>
