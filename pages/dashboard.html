@@ -22,12 +22,15 @@
     <!-- Main Content -->
     <main class="main-content">
       <div class="header">
+        <!-- Greeting message placeholder (display user's name here) -->
         <h2 id="greeting">Welcome, loading...</h2>
+        <!-- Logout button -->
         <button class="logout-btn" id="logoutBtn" onclick="logout()">
           Logout
         </button>
       </div>
 
+      <!-- Dashboard Cards -->
       <div class="card-grid">
         <div class="card">
           <h3>Jobs Applied</h3>
@@ -37,9 +40,11 @@
           <h3>Saved Jobs</h3>
           <p>5</p>
         </div>
+        <!-- YouTube Recommendations Section -->
         <div class="card" id="recommendations-card">
           <h3>YouTube Recommendations</h3>
-          <div id="recommendation-wrapper"></div> <!-- This is the new wrapper -->
+          <!-- Wrapper for dynamically generated YouTube recommendations -->
+          <div id="recommendation-wrapper"></div>
         </div>
         
         <div class="card">
@@ -49,16 +54,21 @@
       </div>
     </main>
 
+    <!-- Skills Management Section -->
     <div class="card">
       <h3>My Skills</h3>
+      <!-- List of current skills -->
       <div id="skills-list" class="skills-list"></div>
     
+      <!-- Input field for adding new skills -->
       <input type="text" id="new-skill" placeholder="Add a new skill..." />
+      <!-- Button for adding new skills -->
       <button id="add-skill-btn">Add Skill</button>
+      <!-- Button for saving skills -->
       <button id="save-skills-btn">Save Skills</button>
     </div>
-    
 
+    <!-- Link to dashboard.js script -->
     <script type="module" src="/js/dashboard.js"></script>
   </body>
 </html>
