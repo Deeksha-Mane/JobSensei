@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Navigator</title>
+    <link rel="stylesheet" href="/css/form.css">
+  </head>
+  <body>
+        <h1>Career Recommendation Questionnaire</h1>
+        <form id="careerForm">
+          <!-- Self-Assessment & Interests -->
+          <div class="form-group">
+            <label for="q1"
+              >1. What subjects or activities do you enjoy the most in your free
+              time?</label
+            >
+            <textarea id="q1" name="q1" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="q2"
+              >2. What kind of work environment do you prefer?</label
+            >
+            <select id="q2" name="q2">
+              <option value="">Select an option</option>
+              <option value="office">Office</option>
+              <option value="remote">Remote</option>
+              <option value="outdoors">Outdoors</option>
+              <option value="lab">Lab</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="q3"
+              >3. Do you prefer working independently or as part of a
+              team?</label
+            >
+            <select id="q3" name="q3">
+              <option value="">Select an option</option>
+              <option value="independent">Independently</option>
+              <option value="team">As part of a team</option>
+              <option value="both">Both</option>
+            </select>
+          </div>
+
+          <!-- Skills & Strengths -->
+          <div class="form-group">
+            <label for="q4"
+              >4. What are your top three skills or talents?</label
+            >
+            <textarea
+              id="q4"
+              name="q4"
+              rows="3"
+              placeholder="Skill 1, Skill 2, Skill 3"
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="q5"
+              >5. Are there any tasks or projects you've done in the past that
+              you found particularly rewarding?</label
+            >
+            <textarea id="q5" name="q5" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="q6"
+              >6. Do you prefer creative, analytical, technical, or
+              people-oriented work?</label
+            >
+            <select id="q6" name="q6">
+              <option value="">Select an option</option>
+              <option value="creative">Creative</option>
+              <option value="analytical">Analytical</option>
+              <option value="technical">Technical</option>
+              <option value="people">People-oriented</option>
+            </select>
+          </div>
+
+          <!-- Career Preferences -->
+          <div class="form-group">
+            <label for="q7"
+              >7. What industries or fields interest you the most?</label
+            >
+            <textarea id="q7" name="q7" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="q8"
+              >8. Would you prefer a high-paying job, a flexible schedule, or a
+              role with high social impact?</label
+            >
+            <select id="q8" name="q8">
+              <option value="">Select an option</option>
+              <option value="high_paying">High-paying</option>
+              <option value="flexible">Flexible schedule</option>
+              <option value="social_impact">High social impact</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="q9"
+              >9. Are you open to jobs that require frequent travel or
+              relocation?</label
+            >
+            <select id="q9" name="q9">
+              <option value="">Select an option</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+              <option value="maybe">Maybe</option>
+            </select>
+          </div>
+
+          <!-- Education & Growth -->
+          <div class="form-group">
+            <label for="q10"
+              >10. What level of education are you willing to pursue for your
+              career?</label
+            >
+            <select id="q10" name="q10">
+              <option value="">Select an option</option>
+              <option value="certificate">Certificate</option>
+              <option value="bachelors">Bachelor's</option>
+              <option value="masters">Master's</option>
+              <option value="phd">PhD</option>
+              <option value="none">None</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="q11"
+              >11. Do you prefer a job with continuous learning opportunities or
+              a stable, routine role?</label
+            >
+            <select id="q11" name="q11">
+              <option value="">Select an option</option>
+              <option value="learning">Continuous learning</option>
+              <option value="stable">Stable routine</option>
+            </select>
+          </div>
+
+          <!-- Work-Life Balance & Values -->
+          <div class="form-group">
+            <label for="q12"
+              >12. How important is work-life balance to you?</label
+            >
+            <select id="q12" name="q12">
+              <option value="">Select an option</option>
+              <option value="very">Very important</option>
+              <option value="somewhat">Somewhat important</option>
+              <option value="not">Not important</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="q13"
+              >13. Are you motivated by job stability, career growth, or
+              personal passion?</label
+            >
+            <select id="q13" name="q13">
+              <option value="">Select an option</option>
+              <option value="stability">Job stability</option>
+              <option value="growth">Career growth</option>
+              <option value="passion">Personal passion</option>
+            </select>
+          </div>
+
+          <!-- Future Goals -->
+          <div class="form-group">
+            <label for="q14"
+              >14. Where do you see yourself professionally in 5 years?</label
+            >
+            <textarea id="q14" name="q14" rows="3"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="q15"
+              >15. Would you rather work for a large corporation, a startup, or
+              be self-employed?</label
+            >
+            <select id="q15" name="q15">
+              <option value="">Select an option</option>
+              <option value="corporate">Large corporation</option>
+              <option value="startup">Startup</option>
+              <option value="self">Self-employed</option>
+            </select>
+          </div>
+
+          <!-- Challenges & Adaptability -->
+          <div class="form-group">
+            <label for="q16"
+              >16. Are you comfortable with high-pressure jobs, or do you prefer
+              a low-stress environment?</label
+            >
+            <select id="q16" name="q16">
+              <option value="">Select an option</option>
+              <option value="high_pressure">High-pressure</option>
+              <option value="low_stress">Low-stress</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="q17"
+              >17. What's one career you've always been curious about but
+              haven't explored yet?</label
+            >
+            <input type="text" id="q17" name="q17" />
+          </div>
+
+          <button type="submit">Submit Answers</button>
+        </form>
+
+        <div id="result"></div>
+
+        <script>
+          document
+            .getElementById("careerForm")
+            .addEventListener("submit", function (e) {
+              e.preventDefault();
+              alert(
+                "Thank you for your answers! Your career recommendations will be processed."
+              );
+              // Here you would typically send the form data to a server
+            });
+        </script>
+
+        <!-- Firebase SDK imports -->
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js";
+  
+   // Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyBX15nrkN6mqZW09HOtneFVj6O0krWuw4I",
+  authDomain: "jobsensei-84540.firebaseapp.com",
+  projectId: "jobsensei-84540",
+  storageBucket: "jobsensei-84540.appspot.com",
+  messagingSenderId: "293854344933",
+  appId: "1:293854344933:web:227ce709e4dfdf7bc2460c",
+  measurementId: "G-VHGEZ3Y68H",
+};
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const functions = getFunctions(app);
+    
+    // Event listener for form submission
+    document.getElementById("careerForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      
+      // Show loading message
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = "<p>Processing your information...</p>";
+      
+      // Get form data
+      const form = e.target;
+      const formData = new FormData(form);
+      const data = {};
+      formData.forEach((val, key) => data[key] = val);
+      
+      try {
+        // Call the Cloud Function
+        const getRecommendation = httpsCallable(functions, "getCareerRecommendation");
+        const response = await getRecommendation(data);
+        
+        // Display the result
+        resultDiv.innerHTML = `<h3>Your Career Recommendation:</h3><p>${response.data.recommendation}</p>`;
+      } catch (error) {
+        resultDiv.innerHTML = `<p style="color: red">Error: ${error.message}</p>`;
+        console.error("Error calling function:", error);
+      }
+    });
+  </script>
+      </body>
+    </html>
+  </body>
+</html>
