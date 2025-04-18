@@ -1,6 +1,13 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // Your Firebase config
 const firebaseConfig = {
@@ -9,7 +16,7 @@ const firebaseConfig = {
   projectId: "jobsensei-84540",
   storageBucket: "jobsensei-84540.appspot.com",
   messagingSenderId: "293854344933",
-  appId: "1:293854344933:web:227ce709e4dfdf7bc2460c"
+  appId: "1:293854344933:web:227ce709e4dfdf7bc2460c",
 };
 
 // Init Firebase
@@ -25,10 +32,17 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
   const location = document.getElementById("location").value.trim(); // 🆕 Added line
-  const skills = document.getElementById("skills").value.split(",").map(s => s.trim());
+  const skills = document
+    .getElementById("skills")
+    .value.split(",")
+    .map((s) => s.trim());
 
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
     const user = userCredential.user;
 
     // Save user data in Firestore
@@ -38,7 +52,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
       email: email,
       location: location, // 🆕 Added field
       skills: skills,
-      createdAt: new Date()
+      createdAt: new Date(),
     });
 
     alert("Account created successfully!");

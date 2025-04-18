@@ -1,7 +1,16 @@
 // Import Firebase core and services
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
-import { getFirestore, collection, addDoc, getDocs } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -11,7 +20,7 @@ const firebaseConfig = {
   storageBucket: "jobsensei-84540.appspot.com", // corrected .app to .com
   messagingSenderId: "293854344933",
   appId: "1:293854344933:web:227ce709e4dfdf7bc2460c",
-  measurementId: "G-VHGEZ3Y68H"
+  measurementId: "G-VHGEZ3Y68H",
 };
 
 // Initialize Firebase
@@ -58,7 +67,7 @@ async function addUser(name, email, skills) {
       name: name,
       email: email,
       skills: skills,
-      timestamp: new Date()
+      timestamp: new Date(),
     });
     console.log("Document written with ID:", docRef.id);
   } catch (e) {
