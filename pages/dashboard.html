@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -37,16 +37,27 @@
           <h3>Saved Jobs</h3>
           <p>5</p>
         </div>
-        <div class="card">
-          <h3>Recommendations</h3>
-          <p>8 new matches</p>
+        <div class="card" id="recommendations-card">
+          <h3>YouTube Recommendations</h3>
+          <div id="recommendation-wrapper"></div> <!-- This is the new wrapper -->
         </div>
+        
         <div class="card">
           <h3>Upcoming Interviews</h3>
           <p>2 scheduled</p>
         </div>
       </div>
     </main>
+
+    <div class="card">
+      <h3>My Skills</h3>
+      <div id="skills-list" class="skills-list"></div>
+    
+      <input type="text" id="new-skill" placeholder="Add a new skill..." />
+      <button id="add-skill-btn">Add Skill</button>
+      <button id="save-skills-btn">Save Skills</button>
+    </div>
+    
 
     <script type="module" src="/js/dashboard.js"></script>
   </body>
