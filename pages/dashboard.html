@@ -30,26 +30,35 @@
       </div>
 
       <!-- Dashboard Cards -->
-      <div class="card-grid">
+      <div class="dashboard-grid">
         <div class="card">
           <h3>Jobs Applied</h3>
-          <p>12</p>
+          <p class="stat">12</p>
+          <p>Application Progress</p>
+          <div class="progress-bar">
+            <div class="progress" style="width: 60%;"></div>
+          </div>
         </div>
+      
         <div class="card">
           <h3>Saved Jobs</h3>
-          <p>5</p>
+          <p class="stat">5</p>
+          <button id="savejob">View</button>
         </div>
-        <!-- YouTube Recommendations Section -->
+      
         <div class="card" id="recommendations-card">
           <h3>YouTube Recommendations</h3>
-          <!-- Wrapper for dynamically generated YouTube recommendations -->
-          <div id="recommendation-wrapper"></div>
+          <p>No YouTube results found. Try adding more common skills.</p>
+          <button class="btn-primary">Explore popular tech topics</button>
         </div>
+      </div>
+      
         
-        <div class="card">
-          <h3>Upcoming Interviews</h3>
-          <p>2 scheduled</p>
-        </div>
+          <!-- Interviews -->
+          <div class="card">
+            <h3>Upcoming Interviews</h3>
+            <p class="skills-loading">Loading your interviews...</p>
+          </div>
       </div>
     </main>
 

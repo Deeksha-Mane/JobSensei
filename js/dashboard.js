@@ -137,6 +137,11 @@ function renderRecommendations(type, items) {
   const itemWrapper = document.createElement("div");
   itemWrapper.classList.add("item-wrapper");
 
+  let topItemIndex = 0;
+
+  // Optional: Sort by title length (as a basic "weight") or choose first one
+  // Later: Replace with actual metrics if fetched
+  // Here, we just pick the first as a placeholder for best
   items.forEach((item, index) => {
     const id = item.id.videoId || item.id.playlistId;
     const kind = item.id.kind;
@@ -144,10 +149,13 @@ function renderRecommendations(type, items) {
       ? `https://www.youtube.com/playlist?list=${id}`
       : `https://www.youtube.com/watch?v=${id}`;
 
-    const thumbnail = item.snippet.thumbnails?.medium?.url || "https://via.placeholder.com/100x70?text=No+Image";
+    const thumbnail =
+      item.snippet.thumbnails?.medium?.url ||
+      "https://via.placeholder.com/100x70?text=No+Image";
 
     const el = document.createElement("div");
     el.classList.add("recommendation-item");
+    if (index === topItemIndex) el.classList.add("best-pick");
     if (index >= 2) el.classList.add("hidden-item");
 
     el.innerHTML = `
@@ -179,6 +187,7 @@ function renderRecommendations(type, items) {
 
   container.appendChild(section);
 }
+
 
 function renderSkillChips(skills) {
   const skillsList = document.getElementById("skills-list");
