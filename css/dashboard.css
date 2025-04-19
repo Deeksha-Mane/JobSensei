@@ -81,37 +81,72 @@ body {
 }
 
 /* Dashboard Cards */
-.card-grid {
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .card {
-  background-color: white;
+  background-color: #ffffff;
+  border-radius: 16px;
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .card h3 {
   font-size: 1.2rem;
-  color: #0b5ed7;
-  margin-bottom: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #111827;
 }
 
-.card p {
-  color: #555;
+.card p,
+.card button {
   font-size: 0.95rem;
 }
+#savejob{
+  background-color: #00a6fb;
+  border: none;
+  border-radius: 5px;
+  width: 70px;
+  height: 30px;
+  margin-top: 10px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+}
+
+.big-number {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+progress {
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #e6ecf1;
+  border-radius: 5px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #0070df;
+  border-radius: 5px;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -149,7 +184,9 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+#recommendations-card{
+  width: 800px;
+}
 .recommendation-item {
   display: flex;
   align-items: center;
@@ -159,6 +196,7 @@ body {
   padding: 0.5rem;
   background-color: #f8faff;
   transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 .recommendation-item:hover {
@@ -199,6 +237,19 @@ body {
 
 .toggle-button:hover {
   background-color: #0056b3;
+}
+/* Highlighted Top Recommendation */
+.recommendation-item.best-pick {
+  border: 2px solid #00b894;
+  background-color: #e0fff4;
+  box-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
+}
+
+.recommendation-item.best-pick::before {
+  content: "⭐ Top Pick";
+  color: #00b894;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 /* Skills Management Section Styling */
