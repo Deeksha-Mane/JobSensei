@@ -12,7 +12,7 @@ body {
   .form-group {
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; 
     border-radius: 5px;
   }
   label {
@@ -40,4 +40,27 @@ body {
   }
   button:hover {
     background-color: #2980b9;
+  }
+
+  #result {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #ecf0f1;
+    border-radius: 5px;
+    border-left: 5px solid #3498db;
+  }
+  
+  #result h3 {
+    color: #2c3e50;
+    margin-top: 0;
+  }
+  
+  #result p {
+    line-height: 1.8;
+  }
+  
+  .loading {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
   }

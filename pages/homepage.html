@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobSensei</title>
+    <link rel="icon" href="/assets/images/Jobsensei.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/homepage.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-...your-integrity-code..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Include Firebase SDK -->
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"
+    ></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <a href="#home" class="navbar-brand">JobSensei</a>
+        <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
+        <div class="navbar-links">
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Career Guide</a>
+            <div class="dropdown-menu">
+              <a href="#jobs">Job Recommendations</a>
+              <a href="#courses">Skills & Courses</a>
+              <a href="#career-guidance">Career Guidance</a>
+              <a href="#job-alerts">Job Alerts</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Profile</a>
+            <div class="dropdown-menu">
+              <a href="/pages/profile.html">Update Profile</a>
+              <a href="#mentorship">Mentorship</a>
+            </div>
+          </div>
+          <a href="/pages/about.html">About Us</a>
+          <a href="/pages/contact.html">Contact</a>
+          <button class="logout-btn" id="logoutBtn" onclick="logOut()">
+            Logout
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="left">
+        <h2>Smart Career Navigator for Tier-2/3 Cities</h2>
+        <p>
+          Empowering students with skill-based job recommendations and tailored
+          learning paths using AI.
+        </p>
+        <a href="/pages/dashboard.html" class="btn">My Dashboard</a>
+      </div>
+
+      <div class="right">
+        <div class="box">
+          <div class="title">
+            <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+            <h3>AI-powered Skill Analysis</h3>
+          </div>
+          <h5>
+            Our AI analyses your skills and matches you with relevant job
+            opportunities in your region.
+          </h5>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <h3>How It Works</h3>
+      <div class="steps">
+        <div>
+          <h4>1. Sign Up</h4>
+          <p>Create an account and tell us about your skills.</p>
+        </div>
+        <div>
+          <h4>2. Analyze</h4>
+          <p>Our AI matches you with jobs and courses suited for you.</p>
+        </div>
+        <div>
+          <h4>3. Grow</h4>
+          <p>Upskill, apply, and build your dream career.</p>
+        </div>
+      </div>
+    </section>
+
+    <!--Footer-->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-brand">
+          <h2>JobSensei</h2>
+          <p>Your smart career navigator for Tier-2/3 cities.</p>
+          <p>
+            Empowering students with skill-based job recommendations and
+            tailored learning paths using AI.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/pages/homepage.html">Home</a></li>
+            <li><a href="/pages/about.html">About Us</a></li>
+            <li><a href="/pages/contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact</h4>
+          <p><i class="fas fa-envelope"></i> support@jobsensei.dev</p>
+          <p><i class="fas fa-phone"></i> +91-9876543210</p>
+          <div class="footer-icons">
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:support@jobsensei.dev"
+              ><i class="fas fa-envelope"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 JobSensei. All rights reserved.</p>
+      </div>
+
+      <!-- Scroll to top -->
+      <button onclick="scrollToTop()" class="scroll-top-btn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </footer>
+
+    <!-- Firebase SDKs (modular approach) -->
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"
+    ></script>
+
+    <script>
+      window.onscroll = function () {
+        const btn = document.querySelector(".scroll-top-btn");
+        if (
+          document.body.scrollTop > 300 ||
+          document.documentElement.scrollTop > 300
+        ) {
+          btn.style.display = "block";
+        } else {
+          btn.style.display = "none";
+        }
+      };
+
+      // Scroll to top
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      const track = document.getElementById("carouselTrack");
+      const cards = document.querySelectorAll(".job-card");
+      const cardWidth = cards[0].offsetWidth + 20; // card + margin
+      let position = 0;
+      let visibleCards = 3;
+
+      function moveCarousel(direction) {
+        const totalCards = cards.length;
+        position += direction;
+
+        if (position < 0) {
+          position = totalCards - visibleCards;
+        } else if (position > totalCards - visibleCards) {
+          position = 0;
+        }
+
+        const offset = -position * cardWidth;
+        track.style.transform = `translateX(${offset}px)`;
+      }
+    </script>
+
+    //logout
+    <script>
+      function logOut() {
+        console.log("✅ User logged out successfully!");
+        alert("Logged out!");
+        window.location.href = "login.html"; // Replace with your login page URL
+      }
+    </script>
+
+    <!-- Your homepage.js script -->
+    <script type="module" src="/js/homepage.js"></script>
+  </body>
+</html>

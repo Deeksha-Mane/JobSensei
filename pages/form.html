@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head> 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Career Navigator</title>
@@ -227,54 +227,54 @@
             });
         </script>
 
-        <!-- Firebase SDK imports -->
-<script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js";
-  
-   // Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyBX15nrkN6mqZW09HOtneFVj6O0krWuw4I",
-  authDomain: "jobsensei-84540.firebaseapp.com",
-  projectId: "jobsensei-84540",
-  storageBucket: "jobsensei-84540.appspot.com",
-  messagingSenderId: "293854344933",
-  appId: "1:293854344933:web:227ce709e4dfdf7bc2460c",
-  measurementId: "G-VHGEZ3Y68H",
-};
-  
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const functions = getFunctions(app);
+         <!-- Firebase SDK imports -->
+    <script type="module">
+      // Import Firebase SDKs
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+      import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-functions.js";
     
-    // Event listener for form submission
-    document.getElementById("careerForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
+      // Firebase config
+      const firebaseConfig = {
+        apiKey: "AIzaSyBX15nrkN6mqZW09HOtneFVj6O0krWuw4I",
+        authDomain: "jobsensei-84540.firebaseapp.com",
+        projectId: "jobsensei-84540",
+        storageBucket: "jobsensei-84540.appspot.com",
+        messagingSenderId: "293854344933",
+        appId: "1:293854344933:web:227ce709e4dfdf7bc2460c",
+        measurementId: "G-VHGEZ3Y68H",
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const functions = getFunctions(app);
       
-      // Show loading message
-      const resultDiv = document.getElementById("result");
-      resultDiv.innerHTML = "<p>Processing your information...</p>";
-      
-      // Get form data
-      const form = e.target;
-      const formData = new FormData(form);
-      const data = {};
-      formData.forEach((val, key) => data[key] = val);
-      
-      try {
-        // Call the Cloud Function
-        const getRecommendation = httpsCallable(functions, "getCareerRecommendation");
-        const response = await getRecommendation(data);
+      // Event listener for form submission
+      document.getElementById("careerForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
         
-        // Display the result
-        resultDiv.innerHTML = `<h3>Your Career Recommendation:</h3><p>${response.data.recommendation}</p>`;
-      } catch (error) {
-        resultDiv.innerHTML = `<p style="color: red">Error: ${error.message}</p>`;
-        console.error("Error calling function:", error);
-      }
-    });
-  </script>
+        // Show loading message
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "<p>Processing your information...</p>";
+        
+        // Get form data
+        const form = e.target;
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((val, key) => data[key] = val);
+        
+        try {
+          // Call the Cloud Function
+          const getRecommendation = httpsCallable(functions, "getCareerRecommendation");
+          const response = await getRecommendation(data);
+          
+          // Display the result
+          resultDiv.innerHTML = `<h3>Your Career Recommendation:</h3><p>${response.data.recommendation}</p>`;
+        } catch (error) {
+          resultDiv.innerHTML = `<p style="color: red">Error: ${error.message}</p>`;
+          console.error("Error calling function:", error);
+        }
+      });
+    </script>
       </body>
     </html>
   </body>
