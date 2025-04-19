@@ -29,6 +29,8 @@
         <a href="/pages/dashboard.html">Dashboard</a>
         <a href="/pages/about.html">About Us</a>
         <a href="/pages/contact.html">Contact</a>
+        <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">🌐 Change Language</a>
+        <div id="google_translate_element" style="display: none;"></div>
       </div>
     </nav>
 
@@ -95,7 +97,91 @@
     <div class="footer-bottom">
       <p>&copy; 2025 JobSensei. All rights reserved.</p>
     </div> -->
-
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,ta,te,ml,bn,kn,mr,gu,pa',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
+    <script>
+    document.getElementById("translate-toggle").addEventListener("click", () => {
+      const translateBox = document.getElementById("google_translate_element");
+      const isHidden = translateBox.style.display === "none" || !translateBox.style.display;
+      translateBox.style.display = isHidden ? "block" : "none";
+    });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    
+        
+        <!-- Firebase SDKs (modular approach) -->
+        <script
+          type="module"
+          src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"
+        ></script>
+        <script
+          type="module"
+          src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
+        ></script>
+        <script
+          type="module"
+          src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"
+        ></script>
+    
+        <!-- Your app.js script -->
+        <script type="module" src="/js/app.js"></script>
+    
+        <script>
+          // Show/hide button
+          window.onscroll = function () {
+            const btn = document.querySelector(".scroll-top-btn");
+            if (
+              document.body.scrollTop > 300 ||
+              document.documentElement.scrollTop > 300
+            ) {
+              btn.style.display = "block";
+            } else {
+              btn.style.display = "none";
+            }
+          };
+    
+          // Scroll to top
+          function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }
+        </script>
+    
+        <script>
+          const track = document.getElementById("carouselTrack");
+          const cards = document.querySelectorAll(".job-card");
+          const cardWidth = cards[0].offsetWidth + 20; // card + margin
+          let position = 0;
+          let visibleCards = 3;
+    
+          function moveCarousel(direction) {
+            const totalCards = cards.length;
+            position += direction;
+    
+            if (position < 0) {
+              position = totalCards - visibleCards;
+            } else if (position > totalCards - visibleCards) {
+              position = 0;
+            }
+    
+            const offset = -position * cardWidth;
+            track.style.transform = `translateX(${offset}px)`;
+    
+          }
+        </script>
+    
+        <script>
+          window.addEventListener("load", () => {
+            document.body.classList.add("loaded");
+          });
+        </script>
     <script src="/js/jobboard.js"></script>
   </body>
 </html>

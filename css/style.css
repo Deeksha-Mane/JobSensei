@@ -85,6 +85,23 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+.translate-btn {
+  color: #dcefff;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: 0.3s ease;
+  position: relative;
+  text-decoration: none;
+}
+
+#google_translate_element {
+  margin-top: 10px;
+  z-index: 1000;
+  background-color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
 
 /* Dropdown */
 .dropdown {

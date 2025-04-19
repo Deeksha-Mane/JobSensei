@@ -19,13 +19,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-...your-integrity-code..."
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+
   </head>
   <body>
     <!-- Navbar -->
@@ -41,6 +35,8 @@
               <a href="#courses">Skills & Courses</a>
               <a href="#career-guidance">Career Guidance</a>
               <a href="#job-alerts">Job Alerts</a>
+              
+
             </div>
           </div>
           <div class="dropdown">
@@ -52,6 +48,10 @@
           </div>
           <a href="/pages/about.html">About Us</a>
           <a href="/pages/contact.html">Contact</a>
+          <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">🌐 Change Language</a>
+        <div id="google_translate_element" style="display: none;"></div>
+
+
           <a href="/pages/login.html" class="navbar-button">Login</a>
         </div>
       </nav>
@@ -86,15 +86,15 @@
       <h3>How It Works</h3>
       <div class="steps">
         <div>
-          <h4>1. Sign Up</h4>
+          <h4>Sign Up</h4>
           <p>Create an account and tell us about your skills.</p>
         </div>
         <div>
-          <h4>2. Analyze</h4>
+          <h4>Analyze</h4>
           <p>Our AI matches you with jobs and courses suited for you.</p>
         </div>
         <div>
-          <h4>3. Grow</h4>
+          <h4>Grow</h4>
           <p>Upskill, apply, and build your dream career.</p>
         </div>
       </div>
@@ -228,7 +228,28 @@
         <i class="fas fa-arrow-up"></i>
       </button>
     </footer>
+   
 
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'en,hi,ta,te,ml,bn,kn,mr,gu,pa',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script>
+document.getElementById("translate-toggle").addEventListener("click", () => {
+  const translateBox = document.getElementById("google_translate_element");
+  const isHidden = translateBox.style.display === "none" || !translateBox.style.display;
+  translateBox.style.display = isHidden ? "block" : "none";
+});
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
     <!-- Firebase SDKs (modular approach) -->
     <script
       type="module"
@@ -285,6 +306,7 @@
 
         const offset = -position * cardWidth;
         track.style.transform = `translateX(${offset}px)`;
+
       }
     </script>
 
