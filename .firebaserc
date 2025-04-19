@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "jobsensei-84540"
-  }
+    "default": "jobsensei-84540",
+    "jobsensei": "jobsensei-84540"
+  },
+  "targets": {},
+  "etags": {}
 }
