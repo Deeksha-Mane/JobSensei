@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Advice Chatbot</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .chat-container {
+        width: 400px;
+        height: 600px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .chat-header {
+        background-color: #4e8cff;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .api-key-container {
+        padding: 10px;
+        background-color: #e9f5ff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .api-key-container input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .toggle-container {
+        display: flex;
+        padding: 5px 10px;
+        background-color: #e9f5ff;
+        border-top: 1px solid #ccc;
+      }
+
+      .toggle-switch {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .toggle-switch input {
+        height: 0;
+        width: 0;
+        visibility: hidden;
+      }
+
+      .toggle-switch label {
+        cursor: pointer;
+        width: 50px;
+        height: 24px;
+        background: #ccc;
+        display: block;
+        border-radius: 24px;
+        position: relative;
+        margin-right: 10px;
+      }
+
+      .toggle-switch label:after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 18px;
+        height: 18px;
+        background: #fff;
+        border-radius: 18px;
+        transition: 0.3s;
+      }
+
+      .toggle-switch input:checked + label {
+        background: #4e8cff;
+      }
+
+      .toggle-switch input:checked + label:after {
+        left: calc(100% - 3px);
+        transform: translateX(-100%);
+      }
+
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .message {
+        max-width: 80%;
+        padding: 10px 15px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        word-wrap: break-word;
+      }
+
+      .user-message {
+        background-color: #e3f2fd;
+        color: #333;
+        align-self: flex-end;
+        border-bottom-right-radius: 5px;
+      }
+
+      .bot-message {
+        background-color: #f1f0f0;
+        color: #333;
+        align-self: flex-start;
+        border-bottom-left-radius: 5px;
+      }
+
+      .chat-input-container {
+        display: flex;
+        padding: 15px;
+        border-top: 1px solid #e0e0e0;
+      }
+
+      .chat-input {
+        flex: 1;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 20px;
+        background-color: #f1f0f0;
+        font-size: 14px;
+        outline: none;
+      }
+
+      .chat-send {
+        background-color: #4e8cff;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        margin-left: 10px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .chat-send:hover {
+        background-color: #3a7be0;
+      }
+
+      .typing-indicator {
+        align-self: flex-start;
+        background-color: #f1f0f0;
+        padding: 12px 20px;
+        border-radius: 20px;
+        border-bottom-left-radius: 5px;
+        margin-bottom: 10px;
+        display: none;
+      }
+
+      .typing-indicator span {
+        height: 8px;
+        width: 8px;
+        background-color: #999;
+        display: inline-block;
+        border-radius: 50%;
+        margin-right: 5px;
+        animation: blink 1.5s infinite;
+      }
+
+      .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+        margin-right: 0;
+      }
+
+      @keyframes blink {
+        0% {
+          opacity: 0.4;
+        }
+        20% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.4;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="chat-container">
+      <div class="chat-header">Career Advice Chatbot- Yuki</div>
+      <div class="api-key-container">
+        <input
+          type="text"
+          id="api-key"
+          placeholder="Enter Gemini API key (optional)"
+        />
+      </div>
+      <div class="toggle-container">
+        <div class="toggle-switch">
+          <input type="checkbox" id="offline-mode" checked />
+          <label for="offline-mode"></label>
+          <span>Offline Mode</span>
+        </div>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot-message">
+          Hello! 👋 I'm your Career Advice Chatbot- Yuki. I can work in offline mode
+          or with Gemini AI. Ask me about career paths, resume tips, interview
+          preparation, or any career-related questions!
+        </div>
+        <div class="typing-indicator" id="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="chat-input-container">
+        <input
+          type="text"
+          class="chat-input"
+          id="chat-input"
+          placeholder="Type a message..."
+          autocomplete="off"
+        />
+        <button class="chat-send" id="chat-send" title="Send">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22 2L11 13"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M22 2L15 22L11 13L2 9L22 2Z"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const chatMessages = document.getElementById("chat-messages");
+        const chatInput = document.getElementById("chat-input");
+        const chatSend = document.getElementById("chat-send");
+        const typingIndicator = document.getElementById("typing-indicator");
+        const apiKeyInput = document.getElementById("api-key");
+        const offlineModeToggle = document.getElementById("offline-mode");
+
+        // Predefined career advice responses
+        const careerAdvice = {
+          // General career questions
+          "career path":
+            "When choosing a career path, consider your interests, skills, values, and long-term goals. Research different industries and roles, talk to professionals, and try internships or volunteer work to gain experience. Remember that your career can evolve over time—many successful professionals change paths multiple times.",
+          "change career":
+            "Changing careers is increasingly common. To make a successful transition: 1) Identify transferable skills from your current role, 2) Research the new field thoroughly, 3) Consider additional education or certifications, 4) Network with professionals in your target field, 5) Start with freelance or part-time work to gain experience, and 6) Update your resume to highlight relevant skills.",
+          "career growth":
+            "To advance in your career: 1) Continuously develop your skills, 2) Seek feedback and act on it, 3) Build a professional network, 4) Take on challenging projects, 5) Find a mentor, 6) Document your achievements, and 7) Don't be afraid to ask for opportunities and promotions when you've demonstrated value.",
+
+          // Resume and application advice
+          resume:
+            "A strong resume should: 1) Be tailored to each job application, 2) Use action verbs and quantify achievements, 3) Focus on relevant experience, 4) Be error-free, 5) Have a clean, consistent format, and 6) Include keywords from the job description. Keep it concise—typically 1-2 pages.",
+          "cover letter":
+            "An effective cover letter should: 1) Address a specific person when possible, 2) Show knowledge of the company, 3) Highlight relevant achievements, 4) Explain why you're interested in the role, 5) Connect your experience to job requirements, and 6) Include a clear call to action. Keep it to one page.",
+          linkedin:
+            "To optimize your LinkedIn profile: 1) Use a professional photo, 2) Write a compelling headline and summary, 3) Detail your experience with achievements, 4) Add relevant skills and get endorsements, 5) Ask for recommendations, 6) Share and engage with content regularly, and 7) Join relevant groups in your industry.",
+
+          // Interview preparation
+          interview:
+            "To prepare for interviews: 1) Research the company thoroughly, 2) Practice answers to common questions, 3) Prepare examples demonstrating your skills, 4) Develop thoughtful questions to ask, 5) Plan your outfit and logistics ahead of time, 6) Bring extra copies of your resume, and 7) Follow up with a thank-you note after the interview.",
+          "interview questions":
+            "Common interview questions include: 'Tell me about yourself,' 'Why do you want this job?', 'What are your strengths and weaknesses?', 'Tell me about a challenge you faced,' 'Where do you see yourself in five years?', and 'Why should we hire you?' Prepare specific examples from your experience for each question.",
+          "salary negotiation":
+            "When negotiating salary: 1) Research industry standards, 2) Know your minimum acceptable offer, 3) Consider the entire compensation package, not just salary, 4) Be confident but professional, 5) Let the employer make the first offer if possible, 6) Practice your negotiation conversation, and 7) Get the final offer in writing.",
+
+          // Skill development
+          skills:
+            "In today's job market, valuable skills include: technical skills (programming, data analysis), communication skills (writing, public speaking), leadership, adaptability, critical thinking, emotional intelligence, project management, and digital literacy. Identify skills in demand in your field and create a development plan.",
+          "online learning":
+            "To enhance your skills through online learning: 1) Use platforms like Coursera, LinkedIn Learning, edX, or Udemy, 2) Look for industry-recognized certifications, 3) Join online communities in your field, 4) Apply what you learn through projects, 5) Share your learning journey on LinkedIn, and 6) Add completed courses to your resume.",
+          networking:
+            "Effective networking strategies include: 1) Attend industry events and conferences, 2) Join professional associations, 3) Engage on LinkedIn, 4) Reach out to alumni from your school, 5) Set up informational interviews, 6) Follow up consistently, and 7) Look for ways to provide value to your contacts, not just ask for favors.",
+
+          // Specific career fields
+          "tech career":
+            "To build a career in tech: 1) Develop fundamental skills (programming, data analysis), 2) Create a portfolio of projects, 3) Contribute to open source, 4) Join tech communities, 5) Consider bootcamps or certifications, 6) Attend hackathons and tech meetups, and 7) Keep learning as technology evolves.",
+          "business career":
+            "Business careers span fields like marketing, finance, operations, HR, and management. Start by identifying which business function matches your strengths and interests. Consider industry credentials like MBA, CPA, or PMP. Develop communication skills, financial literacy, and industry-specific knowledge.",
+          "healthcare career":
+            "Healthcare offers diverse paths including clinical roles (doctors, nurses), technical positions (lab techs, imaging specialists), administrative roles, and research. Most require specific education and credentials. Growth areas include telehealth, health informatics, and geriatric care.",
+
+          // Work-life balance and wellness
+          "work life balance":
+            "To improve work-life balance: 1) Set clear boundaries between work and personal time, 2) Prioritize tasks and learn to say no, 3) Communicate your needs to managers, 4) Use vacation time, 5) Practice self-care, 6) Minimize distractions, and 7) Consider flexible work arrangements if available.",
+          "remote work":
+            "To be successful in remote work: 1) Create a dedicated workspace, 2) Establish a routine, 3) Set clear boundaries, 4) Over-communicate with your team, 5) Use proper tools for collaboration, 6) Take breaks and move regularly, and 7) Proactively connect with colleagues to combat isolation.",
+          burnout:
+            "To prevent or address burnout: 1) Recognize the warning signs (exhaustion, cynicism, reduced performance), 2) Talk to your manager about workload, 3) Take regular breaks during the day, 4) Use vacation time, 5) Practice stress management techniques, 6) Set boundaries on work hours, and 7) Seek professional help if needed.",
+
+          // Default responses
+          help: "I can provide advice on career paths, resume writing, interview preparation, skill development, networking, work-life balance, and more. Just ask me a specific question about your career concerns!",
+          default:
+            "I don't have specific information about that career topic. Try asking about resume tips, interview preparation, career paths, networking, skill development, or work-life balance.",
+        };
+
+        // Function to add a message to the chat
+        function addMessage(message, isUser = false) {
+          const messageDiv = document.createElement("div");
+          messageDiv.classList.add("message");
+          messageDiv.classList.add(isUser ? "user-message" : "bot-message");
+          messageDiv.textContent = message;
+
+          // Insert before typing indicator
+          chatMessages.insertBefore(messageDiv, typingIndicator);
+
+          // Scroll to bottom
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to show typing indicator
+        function showTypingIndicator() {
+          typingIndicator.style.display = "block";
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to hide typing indicator
+        function hideTypingIndicator() {
+          typingIndicator.style.display = "none";
+        }
+
+        // Function to get career advice based on user message
+        function getCareerAdvice(userMessage) {
+          userMessage = userMessage.toLowerCase();
+
+          // Check if we have a direct match in our career advice dictionary
+          for (const key in careerAdvice) {
+            if (userMessage.includes(key)) {
+              return careerAdvice[key];
+            }
+          }
+
+          // Try to find the most relevant advice by checking key terms
+          const careerTerms = [
+            {
+              terms: ["job", "search", "find", "hunting", "application"],
+              response: careerAdvice["resume"],
+            },
+            {
+              terms: ["interview", "hiring", "recruit"],
+              response: careerAdvice["interview"],
+            },
+            {
+              terms: ["resume", "cv", "curriculum"],
+              response: careerAdvice["resume"],
+            },
+            {
+              terms: ["salary", "pay", "compensation", "offer", "negotiate"],
+              response: careerAdvice["salary negotiation"],
+            },
+            {
+              terms: ["learn", "skill", "training", "course", "education"],
+              response: careerAdvice["online learning"],
+            },
+            {
+              terms: ["network", "connect", "contacts", "linkedin"],
+              response: careerAdvice["networking"],
+            },
+            {
+              terms: ["work", "life", "balance", "stress", "time"],
+              response: careerAdvice["work life balance"],
+            },
+            {
+              terms: ["remote", "home", "virtual", "telecommute"],
+              response: careerAdvice["remote work"],
+            },
+            {
+              terms: ["burnout", "stress", "exhaust", "tired"],
+              response: careerAdvice["burnout"],
+            },
+            {
+              terms: ["tech", "software", "developer", "it", "programming"],
+              response: careerAdvice["tech career"],
+            },
+            {
+              terms: ["business", "corporate", "management", "finance"],
+              response: careerAdvice["business career"],
+            },
+            {
+              terms: ["health", "medical", "doctor", "nurse"],
+              response: careerAdvice["healthcare career"],
+            },
+            {
+              terms: ["advice", "suggest", "recommend", "tips"],
+              response: careerAdvice["career path"],
+            },
+          ];
+
+          for (const category of careerTerms) {
+            for (const term of category.terms) {
+              if (userMessage.includes(term)) {
+                return category.response;
+              }
+            }
+          }
+
+          // If no matches found, return default response
+          return careerAdvice.default;
+        }
+
+        // Function to call Gemini API
+        async function callGeminiAPI(userMessage) {
+          try {
+            const apiKey = apiKeyInput.value.trim();
+            if (!apiKey) {
+              return null; // Will fall back to offline mode
+            }
+
+            // Try both API endpoints
+            const endpoints = [
+              "https://generativelanguage.googleapis.com/v1/models/gemini-1.0-pro:generateContent",
+              "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent",
+            ];
+
+            // Add career context to the prompt
+            const enhancedPrompt = `You are a career advice chatbot. The user is asking about: "${userMessage}". Provide helpful, concise career advice. If the question isn't career-related, politely steer the conversation back to career topics.`;
+
+            for (const endpoint of endpoints) {
+              try {
+                // Prepare request
+                const requestBody = {
+                  contents: [
+                    {
+                      parts: [
+                        {
+                          text: enhancedPrompt,
+                        },
+                      ],
+                    },
+                  ],
+                  generationConfig: {
+                    temperature: 0.7,
+                    topK: 40,
+                    topP: 0.95,
+                    maxOutputTokens: 1024,
+                  },
+                };
+
+                const response = await fetch(`${endpoint}?key=${apiKey}`, {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify(requestBody),
+                });
+
+                if (!response.ok) {
+                  continue; // Try next endpoint
+                }
+
+                const data = await response.json();
+
+                // Extract text from response
+                if (data.candidates && data.candidates[0]) {
+                  if (
+                    data.candidates[0].content &&
+                    data.candidates[0].content.parts
+                  ) {
+                    return data.candidates[0].content.parts[0].text;
+                  } else if (data.candidates[0].text) {
+                    return data.candidates[0].text;
+                  }
+                }
+              } catch (endpointError) {
+                // Continue to next endpoint
+              }
+            }
+
+            return null; // If all API attempts fail, use offline mode
+          } catch (error) {
+            console.error("Error calling Gemini API:", error);
+            return null; // Use offline mode
+          }
+        }
+
+        // Function to handle sending a message
+        async function sendMessage() {
+          const message = chatInput.value.trim();
+
+          if (message !== "") {
+            // Add user message
+            addMessage(message, true);
+
+            // Clear input
+            chatInput.value = "";
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Simulate thinking
+            const thinkingTime = 500 + Math.random() * 1000; // Between 0.5-1.5 seconds
+
+            setTimeout(async () => {
+              let botResponse;
+
+              // Check if we're in offline mode or API mode
+              if (offlineModeToggle.checked) {
+                // Use offline mode - pre-defined responses
+                botResponse = getCareerAdvice(message);
+              } else {
+                // Try to use the API
+                try {
+                  botResponse = await callGeminiAPI(message);
+                  // If API call fails, fall back to offline mode
+                  if (!botResponse) {
+                    botResponse = getCareerAdvice(message);
+                    botResponse +=
+                      "\n\n(Response generated in offline mode as the API call was unsuccessful)";
+                  }
+                } catch (error) {
+                  // API error - use offline mode
+                  botResponse = getCareerAdvice(message);
+                  botResponse +=
+                    "\n\n(Response generated in offline mode due to an API error)";
+                }
+              }
+
+              // Hide typing indicator
+              hideTypingIndicator();
+
+              // Add bot response
+              addMessage(botResponse);
+            }, thinkingTime);
+          }
+        }
+
+        // Event listeners
+        chatSend.addEventListener("click", sendMessage);
+
+        chatInput.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
+        });
+
+        // Change the API key input visibility based on offline mode toggle
+        offlineModeToggle.addEventListener("change", function () {
+          apiKeyInput.parentElement.style.display = this.checked
+            ? "none"
+            : "flex";
+        });
+
+        // Initial setting - hide API key input if offline mode is checked
+        if (offlineModeToggle.checked) {
+          apiKeyInput.parentElement.style.display = "none";
+        }
+
+        // Focus input on load
+        chatInput.focus();
+      });
+    </script>
+  </body>
+</html>
