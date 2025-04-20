@@ -29,7 +29,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // YouTube API Key
-const apiKey = "AIzaSyDp4NvidmUg5Tx6eWtJtZsrZmAm49ybL-g";
+const apiKey = "AIzaSyA-mFYtm2uhyEWJ00ORXy6nvEHaPTd7z_8";
 
 let userSkills = [];
 
