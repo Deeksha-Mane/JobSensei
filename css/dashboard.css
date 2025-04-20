@@ -111,7 +111,7 @@ body {
 .card button {
   font-size: 0.95rem;
 }
-#savejob{
+#savejob {
   background-color: #00a6fb;
   border: none;
   border-radius: 5px;
@@ -146,7 +146,6 @@ progress::-webkit-progress-value {
   background-color: #0070df;
   border-radius: 5px;
 }
-
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -184,7 +183,7 @@ progress::-webkit-progress-value {
   display: flex;
   flex-direction: column;
 }
-#recommendations-card{
+#recommendations-card {
   width: 800px;
 }
 .recommendation-item {
@@ -302,4 +301,40 @@ progress::-webkit-progress-value {
 #add-skill-btn:hover,
 #save-skills-btn:hover {
   background-color: #083fa2;
+}
+/* Animation for dashboard cards - bottom to up transition */
+.dashboard-grid .card {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Add staggered delay for each card */
+.dashboard-grid .card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.dashboard-grid .card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.dashboard-grid .card:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+/* The animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add this class to trigger animation after page loads */
+.loaded .dashboard-grid .card {
+  animation-play-state: running;
 }

@@ -1,7 +1,16 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -20,7 +29,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // YouTube API Key
-const apiKey = 'AIzaSyDp4NvidmUg5Tx6eWtJtZsrZmAm49ybL-g';
+const apiKey = "AIzaSyDp4NvidmUg5Tx6eWtJtZsrZmAm49ybL-g";
 
 let userSkills = [];
 
@@ -47,7 +56,9 @@ onAuthStateChanged(auth, async (user) => {
             "<h3>YouTube Recommendations</h3><p>No skills provided for recommendations.</p>";
         }
       } else {
-        document.getElementById("greeting").textContent = `Welcome, ${user.email}!`;
+        document.getElementById(
+          "greeting"
+        ).textContent = `Welcome, ${user.email}!`;
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -73,7 +84,7 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
 async function fetchYouTubeRecommendations(skills) {
   const allRecommendations = {
     Playlists: [],
-    Videos: []
+    Videos: [],
   };
 
   const container = document.getElementById("recommendations-card");
@@ -84,7 +95,9 @@ async function fetchYouTubeRecommendations(skills) {
       let foundPlaylist = false;
 
       const playlistRes = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(skill + ' playlist')}&maxResults=2&type=playlist&key=${apiKey}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+          skill + " playlist"
+        )}&maxResults=2&type=playlist&key=${apiKey}`
       );
       const playlistData = await playlistRes.json();
       console.log("Playlist API Response for", skill, playlistData);
@@ -96,7 +109,9 @@ async function fetchYouTubeRecommendations(skills) {
 
       if (!foundPlaylist) {
         const videoRes = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(skill + ' tutorial')}&maxResults=2&type=video&key=${apiKey}`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+            skill + " tutorial"
+          )}&maxResults=2&type=video&key=${apiKey}`
         );
         const videoData = await videoRes.json();
         console.log("Video API Response for", skill, videoData);
@@ -119,7 +134,8 @@ async function fetchYouTubeRecommendations(skills) {
       allRecommendations.Playlists.length === 0 &&
       allRecommendations.Videos.length === 0
     ) {
-      container.innerHTML += "<p>No YouTube results found. Try adding more common skills.</p>";
+      container.innerHTML +=
+        "<p>No YouTube results found. Try adding more common skills.</p>";
     }
   } catch (error) {
     console.error("Error fetching YouTube data:", error);
@@ -188,7 +204,6 @@ function renderRecommendations(type, items) {
   container.appendChild(section);
 }
 
-
 function renderSkillChips(skills) {
   const skillsList = document.getElementById("skills-list");
   skillsList.innerHTML = "";
@@ -220,17 +235,27 @@ document.getElementById("add-skill-btn").addEventListener("click", () => {
   }
 });
 
-document.getElementById("save-skills-btn").addEventListener("click", async () => {
-  const user = auth.currentUser;
-  if (!user) return;
+document
+  .getElementById("save-skills-btn")
+  .addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (!user) return;
 
-  try {
-    const userDocRef = doc(db, "users", user.uid);
-    await setDoc(userDocRef, { skills: userSkills }, { merge: true });
-    alert("Skills updated!");
-    await fetchYouTubeRecommendations(userSkills);
-  } catch (error) {
-    console.error("Error saving skills:", error);
-    alert("Failed to save skills.");
-  }
-});
+    try {
+      const userDocRef = doc(db, "users", user.uid);
+      await setDoc(userDocRef, { skills: userSkills }, { merge: true });
+      alert("Skills updated!");
+      await fetchYouTubeRecommendations(userSkills);
+    } catch (error) {
+      console.error("Error saving skills:", error);
+      alert("Failed to save skills.");
+    }
+
+    // Add this to ensure animations trigger properly
+    document.addEventListener("DOMContentLoaded", () => {
+      // Slight delay to ensure cards are properly positioned before animation starts
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+      }, 100);
+    });
+  });
