@@ -1,7 +1,16 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // Firebase config
 const firebaseConfig = {
@@ -20,7 +29,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // YouTube API Key
-const apiKey = 'AIzaSyDp4NvidmUg5Tx6eWtJtZsrZmAm49ybL-g';
+const apiKey = "AIzaSyDp4NvidmUg5Tx6eWtJtZsrZmAm49ybL-g";
 
 let userSkills = [];
 
@@ -47,7 +56,9 @@ onAuthStateChanged(auth, async (user) => {
             "<h3>YouTube Recommendations</h3><p>No skills provided for recommendations.</p>";
         }
       } else {
-        document.getElementById("greeting").textContent = `Welcome, ${user.email}!`;
+        document.getElementById(
+          "greeting"
+        ).textContent = `Welcome, ${user.email}!`;
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -73,7 +84,7 @@ document.getElementById("logoutBtn").addEventListener("click", () => {
 async function fetchYouTubeRecommendations(skills) {
   const allRecommendations = {
     Playlists: [],
-    Videos: []
+    Videos: [],
   };
 
   const container = document.getElementById("recommendations-card");
@@ -84,7 +95,9 @@ async function fetchYouTubeRecommendations(skills) {
       let foundPlaylist = false;
 
       const playlistRes = await fetch(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(skill + ' playlist')}&maxResults=2&type=playlist&key=${apiKey}`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+          skill + " playlist"
+        )}&maxResults=2&type=playlist&key=${apiKey}`
       );
       const playlistData = await playlistRes.json();
       console.log("Playlist API Response for", skill, playlistData);
@@ -96,7 +109,9 @@ async function fetchYouTubeRecommendations(skills) {
 
       if (!foundPlaylist) {
         const videoRes = await fetch(
-          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(skill + ' tutorial')}&maxResults=2&type=video&key=${apiKey}`
+          `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(
+            skill + " tutorial"
+          )}&maxResults=2&type=video&key=${apiKey}`
         );
         const videoData = await videoRes.json();
         console.log("Video API Response for", skill, videoData);
@@ -119,7 +134,8 @@ async function fetchYouTubeRecommendations(skills) {
       allRecommendations.Playlists.length === 0 &&
       allRecommendations.Videos.length === 0
     ) {
-      container.innerHTML += "<p>No YouTube results found. Try adding more common skills.</p>";
+      container.innerHTML +=
+        "<p>No YouTube results found. Try adding more common skills.</p>";
     }
   } catch (error) {
     console.error("Error fetching YouTube data:", error);
@@ -188,7 +204,6 @@ function renderRecommendations(type, items) {
   container.appendChild(section);
 }
 
-
 function renderSkillChips(skills) {
   const skillsList = document.getElementById("skills-list");
   skillsList.innerHTML = "";
@@ -220,17 +235,117 @@ document.getElementById("add-skill-btn").addEventListener("click", () => {
   }
 });
 
-document.getElementById("save-skills-btn").addEventListener("click", async () => {
-  const user = auth.currentUser;
-  if (!user) return;
+document
+  .getElementById("save-skills-btn")
+  .addEventListener("click", async () => {
+    const user = auth.currentUser;
+    if (!user) return;
 
-  try {
-    const userDocRef = doc(db, "users", user.uid);
-    await setDoc(userDocRef, { skills: userSkills }, { merge: true });
-    alert("Skills updated!");
-    await fetchYouTubeRecommendations(userSkills);
-  } catch (error) {
-    console.error("Error saving skills:", error);
-    alert("Failed to save skills.");
+    try {
+      const userDocRef = doc(db, "users", user.uid);
+      await setDoc(userDocRef, { skills: userSkills }, { merge: true });
+      alert("Skills updated!");
+      await fetchYouTubeRecommendations(userSkills);
+    } catch (error) {
+      console.error("Error saving skills:", error);
+      alert("Failed to save skills.");
+    }
+
+    // Add this to ensure animations trigger properly
+    document.addEventListener("DOMContentLoaded", () => {
+      // Slight delay to ensure cards are properly positioned before animation starts
+      setTimeout(() => {
+        document.body.classList.add("loaded");
+      }, 100);
+    });
+  });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Get necessary elements
+  const chatIcon = document.getElementById("chatIcon");
+  const chatWindow = document.getElementById("chatWindow");
+  const closeChat = document.getElementById("closeChat");
+  const userMessage = document.getElementById("userMessage");
+  const sendMessage = document.getElementById("sendMessage");
+  const chatMessages = document.getElementById("chatMessages");
+
+  // Function to toggle chat window
+  function toggleChat() {
+    chatWindow.classList.toggle("active");
   }
+
+  // Simple responses for demo
+  const botResponses = {
+    hello: "Hi there! How can I help with your job search?",
+    hi: "Hello! What can I help you with today?",
+    help: "I can help you with your resume, job applications, interview tips, and career advice. What do you need assistance with?",
+    job: "Are you looking for job recommendations? I can help you find positions that match your skills.",
+    resume:
+      "I can provide tips to improve your resume. Would you like some guidance?",
+    interview:
+      "Preparing for an interview? I have some tips that might help you succeed!",
+    default:
+      "I'm here to help with your job search journey. Could you provide more details about what you need?",
+  };
+
+  // Function to add message to chat
+  function addMessage(message, isSent) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = isSent ? "message sent" : "message received";
+
+    const messageContent = document.createElement("div");
+    messageContent.className = "message-content";
+    messageContent.textContent = message;
+
+    messageDiv.appendChild(messageContent);
+    chatMessages.appendChild(messageDiv);
+
+    // Scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Function to get bot response
+  function getBotResponse(message) {
+    const lowerMsg = message.toLowerCase();
+
+    // Check for keywords
+    for (const [key, response] of Object.entries(botResponses)) {
+      if (lowerMsg.includes(key)) {
+        return response;
+      }
+    }
+
+    // If no keyword matches
+    return botResponses.default;
+  }
+
+  // Function to handle send message
+  function handleSendMessage() {
+    const message = userMessage.value.trim();
+    if (message === "") return;
+
+    // Add user message
+    addMessage(message, true);
+
+    // Clear input
+    userMessage.value = "";
+
+    // Simulate typing delay for bot response
+    setTimeout(() => {
+      const botResponse = getBotResponse(message);
+      addMessage(botResponse, false);
+    }, 600);
+  }
+
+  // Event Listeners
+  chatIcon.addEventListener("click", toggleChat);
+  closeChat.addEventListener("click", toggleChat);
+
+  sendMessage.addEventListener("click", handleSendMessage);
+
+  userMessage.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      handleSendMessage();
+    }
+  });
 });

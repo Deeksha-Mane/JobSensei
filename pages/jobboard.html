@@ -29,7 +29,7 @@
         <a href="/pages/dashboard.html">Dashboard</a>
         <a href="/pages/about.html">About Us</a>
         <a href="/pages/contact.html">Contact</a>
-        <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">🌐 Change Language</a>
+        <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">🌐Change Language</a>
         <div id="google_translate_element" style="display: none;"></div>
       </div>
     </nav>
@@ -38,11 +38,7 @@
       <section class="job-board-header">
         <h1>Jobs For You</h1>
         <div class="job-search-filter">
-          <input
-            type="text"
-            id="jobSearch"
-            placeholder="Search job titles..."
-          />
+          <input type="text" id="jobSearch" placeholder="Search job titles..." />
           <select id="locationFilter" name="location" title="location">
             <option value="">All Locations</option>
             <option value="Remote">Remote</option>
@@ -56,11 +52,16 @@
           </select>
         </div>
       </section>
-
-      <section class="job-cards-grid" id="jobCards">
-        <!-- Job cards will go here dynamically -->
-      </section>
+    
+      <section class="job-cards-grid" id="jobCards"></section>
+    
+      <!-- Show More Button -->
+      <div class="show-more-wrapper">
+        <button id="showMoreBtn" class="show-more-btn">Show More</button>
+      </div>
     </main>
+    
+
 
     <!-- Footer
     <footer class="footer">

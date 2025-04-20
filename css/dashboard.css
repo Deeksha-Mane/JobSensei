@@ -111,7 +111,7 @@ body {
 .card button {
   font-size: 0.95rem;
 }
-#savejob{
+#savejob {
   background-color: #00a6fb;
   border: none;
   border-radius: 5px;
@@ -146,7 +146,6 @@ progress::-webkit-progress-value {
   background-color: #0070df;
   border-radius: 5px;
 }
-
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -184,7 +183,7 @@ progress::-webkit-progress-value {
   display: flex;
   flex-direction: column;
 }
-#recommendations-card{
+#recommendations-card {
   width: 800px;
 }
 .recommendation-item {
