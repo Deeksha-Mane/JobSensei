@@ -125,11 +125,12 @@ body {
   }
   
   .navbar {
-    background-color: #34495e;
+    /* background-color: #34495e; */
+    background-image: linear-gradient(#046fa8, #88def1);
     padding: 20px;
     text-align: center;
   }
-  
+   
   .navbar-brand {
     font-size: 28px;
     color: #ecf0f1;
@@ -220,7 +221,8 @@ body {
   }
   
   .start-btn {
-    background-color: #2980b9;
+    /* background-color: #2980b9; */
+    background-image: linear-gradient(#046fa8, #0db2d7);
     color: #fff;
     padding: 15px 40px;
     font-size: 1.2em;
