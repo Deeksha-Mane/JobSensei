@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Career_Catlyst
+=======
 INTRODUCTION📖
 •	JobSensei is an AI-powered career guidance platform designed specifically for students and job seekers in non-metro and underserved regions.
 •	It addresses the lack of personalized career advice, limited job opportunity awareness, and scarce affordable upskilling resources outside urban centers.
@@ -121,3 +124,4 @@ SUMMARY✨
 •	Designed to be accessible, affordable, and easy to use on mobile devices with limited connectivity.
 •	Future enhancements will add resume parsing, smart notifications, mentorship, and direct job application features.
 •	Ultimately, Job Sensei empowers users to confidently navigate their career journeys and improve employability regardless of geography.
+>>>>>>> 3d87078026b03bb0ae7ac4e53fc438993056ed66

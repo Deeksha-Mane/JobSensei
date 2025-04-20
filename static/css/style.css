@@ -1,0 +1,199 @@
+body {
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 40px;
+}
+
+.result-container {
+    max-width: 900px;
+    margin: auto;
+    background-color: #1e1e1e;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.recommendation-card {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.recommendation-card h2,
+.recommendation-card h3,
+.recommendation-card h4 {
+    margin-top: 0;
+    color: #050000;
+}
+
+.match-percentage {
+    margin: 10px 0;
+}
+
+.percentage-bar {
+    background-color: #444;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.percentage-fill {
+    height: 100%;
+    background-color: #007acc;
+    transition: width 0.5s ease-in-out;
+}
+
+span {
+    display: inline-block;
+    margin-top: 5px;
+    color: #bbbbbb;
+}
+
+p {
+    color: #cccccc;
+    margin-top: 10px;
+}
+
+.other-recommendations {
+    margin-top: 40px;
+}
+
+.action-buttons {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.action-buttons .btn {
+    background-color: #007acc;
+    color: white;
+    padding: 12px 25px;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    margin: 10px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+.action-buttons .btn:hover {
+    background-color: #005fa3;
+}
+
+/*Footer Styling*/
+.footer {
+    /* background-color: #0a2647; */
+    background-color: #1F2937;
+    color: #ffffff;
+    padding: 60px 20px 30px;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 40px;
+  }
+  
+  .footer-brand h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .footer-brand p {
+    font-size: 0.95rem;
+    color: #cccccc;
+    max-width: 300px;
+  }
+  
+  .footer-links h4,
+  .footer-contact h4 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links ul li a {
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.3s ease;
+  }
+  
+  .footer-links ul li a:hover {
+    color: #00a6fb;
+  }
+  
+  .footer-contact p {
+    font-size: 0.95rem;
+    color: #cccccc;
+    margin-bottom: 8px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 25px;
+    font-size: 0.85rem;
+    color: #aaaaaa;
+  }
+  
+  .footer-icons {
+    margin-top: 10px;
+  }
+  
+  .footer-icons a {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-right: 12px;
+    transition: 0.3s;
+  }
+  
+  .footer-icons a:hover {
+    color: #00a6fb;
+  }
+  
+  /* Scroll to Top Button */
+  .scroll-top-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #0077b6;
+    border: none;
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    transition: background 0.3s ease;
+    z-index: 1000;
+    display: none;
+  }
+  
+  .scroll-top-btn:hover {
+    background-color: #00a6fb;
+  }
