@@ -38,54 +38,132 @@ document.addEventListener("DOMContentLoaded", () => {
       type: "Full-time",
       tags: ["Java", "Spring Boot", "AWS"],
     },
+    {
+      title: "Senior Backend Engineer",
+      company: "TechForge",
+      location: "Hyderabad",
+      type: "Full-time",
+      tags: ["Node.js", "Express", "MongoDB"],
+
+
+    },
+    {
+      title: "Backend Developer",
+      company: "DataNest",
+      location: "Remote",
+      type: "Contract",
+      tags: ["Python", "Django", "PostgreSQL"],
+    },
+    {
+      title: "Software Engineer - Backend",
+      company: "InnovApp",
+      location: "Mumbai",
+      type: "Full-time",
+      tags: ["Go", "Microservices", "Docker"],
+    },
+    {
+      title: "Backend API Developer",
+      company: "CloudStack",
+      location: "Chennai",
+      type: "Part-time",
+      tags: ["Ruby", "Rails", "AWS"],
+    },
+    {
+      title: "Platform Engineer",
+      company: "StackLoop",
+      location: "Pune",
+      type: "Full-time",
+      tags: ["Java", "Spring Boot", "Kubernetes"],
+    },
+    {
+      title: "Backend Software Engineer",
+      company: "NeoTech Labs",
+      location: "Delhi NCR",
+      type: "Full-time",
+      tags: ["C#", ".NET Core", "Azure"],
+    },
+    {
+      title: "DevOps Engineer",
+      company: "BuildOps",
+      location: "Pune",
+      type: "Full-time",
+      tags: ["Docker", "Kubernetes", "CI/CD"],
+    },
+    {
+      title: "Machine Learning Engineer",
+      company: "AIWorks",
+      location: "Hyderabad",
+      type: "Full-time",
+      tags: ["Python", "Scikit-learn", "AWS SageMaker"],
+    },
+    {
+      title: "Junior Backend Developer",
+      company: "Bitcrunch",
+      location: "Bangalore",
+      type: "Internship",
+      tags: ["Node.js", "Express", "MongoDB"],
+    },
+    {
+      title: "API Integration Specialist",
+      company: "ZapSync",
+      location: "Remote",
+      type: "Part-time",
+      tags: ["REST", "OAuth", "GraphQL"],
+    }    
   ];
+  let filteredJobs = [...jobs];
+  let visibleCount = 6;
 
-  // Function to filter jobs based on user input
-  const filterJobs = () => {
-    const searchValue = document
-      .getElementById("jobSearch")
-      .value.toLowerCase();
-    const locationValue = document.getElementById("locationFilter").value;
-    const typeValue = document.getElementById("typeFilter").value;
+  function renderJobs() {
+    jobCardsContainer.innerHTML = "";
+    const jobsToShow = filteredJobs.slice(0, visibleCount);
 
-    const filteredJobs = jobs.filter((job) => {
-      const matchesSearch = job.title.toLowerCase().includes(searchValue);
-      const matchesLocation = locationValue
-        ? job.location === locationValue
-        : true;
-      const matchesType = typeValue ? job.type === typeValue : true;
-
-      return matchesSearch && matchesLocation && matchesType;
-    });
-
-    renderJobs(filteredJobs);
-  };
-
-  // Render job cards based on filtered job data
-  const renderJobs = (jobList) => {
-    jobCardsContainer.innerHTML = ""; // Clear existing job cards
-    jobList.forEach((job) => {
+    jobsToShow.forEach((job) => {
       const card = document.createElement("div");
       card.className = "job-card";
       card.innerHTML = `
-          <h3 class="job-title">${job.title}</h3>
-          <p class="job-info"><strong>${job.company}</strong> | ${job.location} | ${job.type}</p>
-          <div class="job-tags">
-            ${job.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
-          </div>
-          <button class="apply-btn">Apply Now</button>
-        `;
+        <h3 class="job-title">${job.title}</h3>
+        <p class="job-info"><strong>${job.company}</strong> | ${job.location} | ${job.type}</p>
+        <div class="job-tags">
+          ${job.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
+        </div>
+        <button class="apply-btn">Apply Now</button>
+      `;
       jobCardsContainer.appendChild(card);
     });
-  };
 
-  // Initial render of all jobs
-  renderJobs(jobs);
+    // Show or hide the button
+    if (visibleCount >= filteredJobs.length) {
+      showMoreBtn.style.display = "none";
+    } else {
+      showMoreBtn.style.display = "block";
+    }
+  }
 
-  // Event listeners for filter changes
+  function filterJobs() {
+    const search = document.getElementById("jobSearch").value.toLowerCase();
+    const location = document.getElementById("locationFilter").value;
+    const type = document.getElementById("typeFilter").value;
+
+    filteredJobs = jobs.filter((job) => {
+      const matchSearch = job.title.toLowerCase().includes(search);
+      const matchLocation = location ? job.location === location : true;
+      const matchType = type ? job.type === type : true;
+      return matchSearch && matchLocation && matchType;
+    });
+
+    visibleCount = 4; // Reset count
+    renderJobs();
+  }
+
   document.getElementById("jobSearch").addEventListener("input", filterJobs);
-  document
-    .getElementById("locationFilter")
-    .addEventListener("change", filterJobs);
+  document.getElementById("locationFilter").addEventListener("change", filterJobs);
   document.getElementById("typeFilter").addEventListener("change", filterJobs);
+
+  showMoreBtn.addEventListener("click", () => {
+    visibleCount += 6;
+    renderJobs();
+  });
+
+  renderJobs(); // Initial render
 });
