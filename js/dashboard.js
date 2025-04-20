@@ -259,3 +259,93 @@ document
       }, 100);
     });
   });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Get necessary elements
+  const chatIcon = document.getElementById("chatIcon");
+  const chatWindow = document.getElementById("chatWindow");
+  const closeChat = document.getElementById("closeChat");
+  const userMessage = document.getElementById("userMessage");
+  const sendMessage = document.getElementById("sendMessage");
+  const chatMessages = document.getElementById("chatMessages");
+
+  // Function to toggle chat window
+  function toggleChat() {
+    chatWindow.classList.toggle("active");
+  }
+
+  // Simple responses for demo
+  const botResponses = {
+    hello: "Hi there! How can I help with your job search?",
+    hi: "Hello! What can I help you with today?",
+    help: "I can help you with your resume, job applications, interview tips, and career advice. What do you need assistance with?",
+    job: "Are you looking for job recommendations? I can help you find positions that match your skills.",
+    resume:
+      "I can provide tips to improve your resume. Would you like some guidance?",
+    interview:
+      "Preparing for an interview? I have some tips that might help you succeed!",
+    default:
+      "I'm here to help with your job search journey. Could you provide more details about what you need?",
+  };
+
+  // Function to add message to chat
+  function addMessage(message, isSent) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = isSent ? "message sent" : "message received";
+
+    const messageContent = document.createElement("div");
+    messageContent.className = "message-content";
+    messageContent.textContent = message;
+
+    messageDiv.appendChild(messageContent);
+    chatMessages.appendChild(messageDiv);
+
+    // Scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  // Function to get bot response
+  function getBotResponse(message) {
+    const lowerMsg = message.toLowerCase();
+
+    // Check for keywords
+    for (const [key, response] of Object.entries(botResponses)) {
+      if (lowerMsg.includes(key)) {
+        return response;
+      }
+    }
+
+    // If no keyword matches
+    return botResponses.default;
+  }
+
+  // Function to handle send message
+  function handleSendMessage() {
+    const message = userMessage.value.trim();
+    if (message === "") return;
+
+    // Add user message
+    addMessage(message, true);
+
+    // Clear input
+    userMessage.value = "";
+
+    // Simulate typing delay for bot response
+    setTimeout(() => {
+      const botResponse = getBotResponse(message);
+      addMessage(botResponse, false);
+    }, 600);
+  }
+
+  // Event Listeners
+  chatIcon.addEventListener("click", toggleChat);
+  closeChat.addEventListener("click", toggleChat);
+
+  sendMessage.addEventListener("click", handleSendMessage);
+
+  userMessage.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      handleSendMessage();
+    }
+  });
+});
