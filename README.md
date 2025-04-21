@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# Career_Catlyst
+#JobSensei
 =======
 INTRODUCTION📖
 •	JobSensei is an AI-powered career guidance platform designed specifically for students and job seekers in non-metro and underserved regions.
