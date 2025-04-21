@@ -19,7 +19,6 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap"
       rel="stylesheet"
     />
-
   </head>
   <body>
     <!-- Navbar -->
@@ -35,8 +34,6 @@
               <a href="/pages/login.html">Skills & Courses</a>
               <a href="/pages/login.html">Career Guidance</a>
               <a href="/pages/login.html">Job Alerts</a>
-              
-
             </div>
           </div>
           <div class="dropdown">
@@ -48,10 +45,16 @@
           </div>
           <a href="/pages/about.html">About Us</a>
           <a href="/pages/contact.html">Contact</a>
-          <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">🌐 Change Language</a>
-        <div id="google_translate_element" style="display: none;"></div>
-
-
+          <button id="theme-toggle" class="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+          <a
+            href="javascript:void(0);"
+            id="translate-toggle"
+            class="translate-btn"
+            >🌐 Change Language</a
+          >
+          <div id="google_translate_element" style="display: none"></div>
           <a href="/pages/login.html" class="navbar-button">Login</a>
         </div>
       </nav>
@@ -228,28 +231,34 @@
         <i class="fas fa-arrow-up"></i>
       </button>
     </footer>
-   
 
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en',
-      includedLanguages: 'en,hi,ta,te,ml,bn,kn,mr,gu,pa',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
-  }
-</script>
-<script>
-document.getElementById("translate-toggle").addEventListener("click", () => {
-  const translateBox = document.getElementById("google_translate_element");
-  const isHidden = translateBox.style.display === "none" || !translateBox.style.display;
-  translateBox.style.display = isHidden ? "block" : "none";
-});
-</script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,hi,ta,te,ml,bn,kn,mr,gu,pa",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script>
+      document
+        .getElementById("translate-toggle")
+        .addEventListener("click", () => {
+          const translateBox = document.getElementById(
+            "google_translate_element"
+          );
+          const isHidden =
+            translateBox.style.display === "none" ||
+            !translateBox.style.display;
+          translateBox.style.display = isHidden ? "block" : "none";
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
-
-    
     <!-- Firebase SDKs (modular approach) -->
     <script
       type="module"
@@ -306,7 +315,6 @@ document.getElementById("translate-toggle").addEventListener("click", () => {
 
         const offset = -position * cardWidth;
         track.style.transform = `translateX(${offset}px)`;
-
       }
     </script>
 
@@ -315,5 +323,12 @@ document.getElementById("translate-toggle").addEventListener("click", () => {
         document.body.classList.add("loaded");
       });
     </script>
+
+    <!-- Chatbot Button -->
+    <a href="/pages/chatbot.html" class="chatbot-button" title="Chat with us">
+      <i class="fas fa-robot"></i>
+    </a>
+
+    <script src="/js/index.js"></script>
   </body>
 </html>
