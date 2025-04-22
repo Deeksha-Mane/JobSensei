@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const typingIndicator = document.querySelector(".typing-indicator");
 
   // Predefined API key
-  const API_KEY = "AIzaSyC17-Av24OjQciT6-8Vsgfu1HBdn9Zowx4";
+  const API_KEY = "YOUR API KEY HERE";
 
   // Initial bot message
   const initialMessage = `Hello! 👋 I'm your AI Career Assistant. I can help you with:
