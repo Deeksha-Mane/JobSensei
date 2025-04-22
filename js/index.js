@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Theme switching functionality
+  // Navbar Toggle Functionality
+  function toggleNavbar() {
+    const navbarLinks = document.querySelector(".navbar-links");
+    navbarLinks.classList.toggle("active");
+  }
+
+  // Theme Switching Functionality
   const themeToggle = document.getElementById("theme-toggle");
   const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -9,18 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
     (prefersDarkScheme.matches ? "dark" : "light");
 
   // Apply the saved theme
-  document.body.classList.toggle("dark-theme", currentTheme === "dark");
+  document.documentElement.setAttribute("data-theme", currentTheme);
   updateThemeIcon(currentTheme);
 
   // Theme toggle button click handler
   themeToggle.addEventListener("click", () => {
-    const isDark = document.body.classList.toggle("dark-theme");
-    const newTheme = isDark ? "dark" : "light";
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-    // Save theme preference
+    document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
     updateThemeIcon(newTheme);
-    updateThemeStyles(newTheme);
   });
 
   // Update theme icon based on current theme
@@ -28,52 +33,88 @@ document.addEventListener("DOMContentLoaded", () => {
     if (themeToggle) {
       themeToggle.innerHTML =
         theme === "dark"
-          ? '<i class="fas fa-sun"></i>'
-          : '<i class="fas fa-moon"></i>';
+          ? '<i class="fas fa-sun" aria-hidden="true"></i>'
+          : '<i class="fas fa-moon" aria-hidden="true"></i>';
     }
   }
 
-  // Update all theme-dependent styles
-  function updateThemeStyles(theme) {
-    const root = document.documentElement;
+  // Carousel Functionality
+  const track = document.getElementById("carouselTrack");
+  const cards = document.querySelectorAll(".job-card");
+  const cardWidth = cards[0].offsetWidth + 20; // card + margin
+  let position = 0;
+  let visibleCards = 3;
 
-    if (theme === "dark") {
-      root.style.setProperty("--bg-primary", "#0A0F1E");
-      root.style.setProperty("--bg-secondary", "#121826");
-      root.style.setProperty("--text-primary", "#4A90E2");
-      root.style.setProperty("--text-secondary", "#B8C2CC");
-      root.style.setProperty("--accent-color", "#ffffff");
-      root.style.setProperty("--card-bg", "#1A2238");
-      root.style.setProperty("--border-color", "rgba(74, 144, 226, 0.1)");
-      root.style.setProperty("--navbar-bg", "#1A2238");
-      root.style.setProperty("--navbar-text", "#4A90E2");
-      root.style.setProperty("--button-text", "#ffffff");
-      root.style.setProperty("--button-bg", "#4A90E2");
+  function moveCarousel(direction) {
+    const totalCards = cards.length;
+    position += direction;
+
+    if (position < 0) {
+      position = totalCards - visibleCards;
+    } else if (position > totalCards - visibleCards) {
+      position = 0;
+    }
+
+    const offset = -position * cardWidth;
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  // Scroll to Top Functionality
+  const scrollTopBtn = document.createElement("button");
+  scrollTopBtn.className = "scroll-top-btn";
+  scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
+  scrollTopBtn.title = "Scroll to top";
+  document.body.appendChild(scrollTopBtn);
+
+  window.onscroll = function () {
+    if (
+      document.body.scrollTop > 300 ||
+      document.documentElement.scrollTop > 300
+    ) {
+      scrollTopBtn.style.display = "block";
     } else {
-      root.style.setProperty("--bg-primary", "#f8f9fa");
-      root.style.setProperty("--bg-secondary", "#ffffff");
-      root.style.setProperty("--text-primary", "#0b5ed7");
-      root.style.setProperty("--text-secondary", "#34495e");
-      root.style.setProperty("--accent-color", "#0b5ed7");
-      root.style.setProperty("--card-bg", "#ffffff");
-      root.style.setProperty("--border-color", "#dee2e6");
-      root.style.setProperty("--navbar-bg", "#ffffff");
-      root.style.setProperty("--navbar-text", "#0b5ed7");
-      root.style.setProperty("--button-text", "#ffffff");
-      root.style.setProperty("--button-bg", "#0b5ed7");
+      scrollTopBtn.style.display = "none";
     }
-  }
+  };
 
-  // Listen for system theme changes
-  prefersDarkScheme.addEventListener("change", (e) => {
-    if (!localStorage.getItem("theme")) {
-      const newTheme = e.matches ? "dark" : "light";
-      document.body.classList.toggle("dark-theme", newTheme === "dark");
-      updateThemeIcon(newTheme);
-      updateThemeStyles(newTheme);
-    }
+  scrollTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Chatbot Button
+  const chatbotBtn = document.createElement("a");
+  chatbotBtn.href = "../pages/chatbot.html";
+  chatbotBtn.className = "chatbot-button";
+  chatbotBtn.title = "Chat with AI Career Assistant";
+  chatbotBtn.innerHTML = '<i class="fas fa-robot" aria-hidden="true"></i>';
+  document.body.appendChild(chatbotBtn);
+
+  // Language Translation Toggle
+  const translateToggle = document.getElementById("translate-toggle");
+  const translateBox = document.getElementById("google_translate_element");
+
+  translateToggle.addEventListener("click", () => {
+    const isHidden =
+      translateBox.style.display === "none" || !translateBox.style.display;
+    translateBox.style.display = isHidden ? "block" : "none";
   });
 
   // Initialize theme styles
-  updateThemeStyles(currentTheme);
+  updateThemeIcon(currentTheme);
+
+  // Responsive adjustments
+  function adjustCarousel() {
+    const width = window.innerWidth;
+    if (width <= 768) {
+      visibleCards = 1;
+    } else if (width <= 1024) {
+      visibleCards = 2;
+    } else {
+      visibleCards = 3;
+    }
+    moveCarousel(0); // Reset position
+  }
+
+  window.addEventListener("resize", adjustCarousel);
+  adjustCarousel(); // Initial adjustment
 });

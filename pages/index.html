@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Firebase Project</title>
-    <link rel="icon" href="/assets/images/Jobsensei.png" type="image/x-icon" />
-    <link rel="stylesheet" href="/css/style.css" />
+    <title>JobSensei - Smart Career Navigator</title>
+    <link
+      rel="icon"
+      href="../assets/images/Jobsensei.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,32 +30,38 @@
       <nav class="navbar">
         <a href="#home" class="navbar-brand">
           <img
-            src="/assets/images/logo.svg"
+            src="../assets/images/logo.svg"
             alt="JobSensei Logo"
             class="logo-img"
           />
           JobSensei
         </a>
-        <button class="navbar-toggler" onclick="toggleNavbar()">☰</button>
+        <button
+          class="navbar-toggler"
+          onclick="toggleNavbar()"
+          title="Toggle navigation menu"
+        >
+          ☰
+        </button>
         <div class="navbar-links">
           <div class="dropdown">
             <a href="#" class="dropdown-toggle">Career Guide</a>
             <div class="dropdown-menu">
-              <a href="/pages/login.html">Job Recommendations</a>
-              <a href="/pages/login.html">Skills & Courses</a>
-              <a href="/pages/login.html">Career Guidance</a>
-              <a href="/pages/login.html">Job Alerts</a>
+              <a href="../pages/login.html">Job Recommendations</a>
+              <a href="../pages/login.html">Skills & Courses</a>
+              <a href="../pages/login.html">Career Guidance</a>
+              <a href="../pages/login.html">Job Alerts</a>
             </div>
           </div>
           <div class="dropdown">
             <a href="#" class="dropdown-toggle">Profile</a>
             <div class="dropdown-menu">
-              <a href="/pages/login.html">Update Profile</a>
+              <a href="../pages/login.html">Update Profile</a>
               <a href="#mentorship">Mentorship</a>
             </div>
           </div>
-          <a href="/pages/about.html">About Us</a>
-          <a href="/pages/contact.html">Contact</a>
+          <a href="../pages/about.html">About Us</a>
+          <a href="../pages/contact.html">Contact</a>
           <button id="theme-toggle" class="theme-toggle">
             <i class="fas fa-moon"></i>
           </button>
@@ -62,7 +72,7 @@
             >🌐 Change Language</a
           >
           <div id="google_translate_element" style="display: none"></div>
-          <a href="/pages/login.html" class="navbar-button">Login</a>
+          <a href="../pages/login.html" class="navbar-button">Login</a>
         </div>
       </nav>
     </header>
@@ -75,7 +85,7 @@
           Empowering students with skill-based job recommendations and tailored
           learning paths using AI.
         </p>
-        <a href="/pages/signup.html" class="btn">Get Started</a>
+        <a href="../pages/signup.html" class="btn">Get Started</a>
       </div>
 
       <div class="right">
@@ -125,7 +135,7 @@
             <p><strong>Company:</strong> CodeCraft</p>
             <p><strong>Location:</strong> Mumbai, India</p>
             <p><strong>Type:</strong> Full-Time</p>
-            <button onclick="window.location.href='/pages/login.html'">
+            <button onclick="window.location.href='../pages/login.html'">
               View Details
             </button>
           </div>
@@ -135,7 +145,7 @@
             <p><strong>Company:</strong> TechNest</p>
             <p><strong>Location:</strong> Bengaluru, India</p>
             <p><strong>Type:</strong> Full-Time</p>
-            <button onclick="window.location.href='/pages/login.html'">
+            <button onclick="window.location.href='../pages/login.html'">
               View Details
             </button>
           </div>
@@ -145,7 +155,7 @@
             <p><strong>Company:</strong> DesignLab</p>
             <p><strong>Location:</strong> Pune, India</p>
             <p><strong>Type:</strong> Internship</p>
-            <button onclick="window.location.href='/pages/login.html'">
+            <button onclick="window.location.href='../pages/login.html'">
               View Details
             </button>
           </div>
@@ -155,7 +165,7 @@
             <p><strong>Company:</strong> DataWiz</p>
             <p><strong>Location:</strong> Remote</p>
             <p><strong>Type:</strong> Contract</p>
-            <button onclick="window.location.href='/pages/login.html'">
+            <button onclick="window.location.href='../pages/login.html'">
               View Details
             </button>
           </div>
@@ -165,7 +175,7 @@
             <p><strong>Company:</strong> Stratify</p>
             <p><strong>Location:</strong> Hyderabad, India</p>
             <p><strong>Type:</strong> Full-Time</p>
-            <button onclick="window.location.href='/pages/login.html'">
+            <button onclick="window.location.href='../pages/login.html'">
               View Details
             </button>
           </div>
@@ -175,7 +185,7 @@
             <p><strong>Company:</strong> CloudX</p>
             <p><strong>Location:</strong> Chennai, India</p>
             <p><strong>Type:</strong> Part-Time</p>
-            <button onclick="window.location.href='/pages/login.html'">
+            <button onclick="window.location.href='../pages/login.html'">
               View Details
             </button>
           </div>
@@ -190,8 +200,8 @@
     <!-- CTA -->
     <section class="cta">
       <h3>Ready to level up?</h3>
-      <a href="login.html" class="btn">Login</a>
-      <a href="signup.html" class="btn">Sign Up</a>
+      <a href="../pages/login.html" class="btn">Login</a>
+      <a href="../pages/signup.html" class="btn">Sign Up</a>
     </section>
 
     <!--Footer-->
@@ -199,143 +209,49 @@
       <div class="footer-container">
         <div class="footer-brand">
           <h2>JobSensei</h2>
-          <p>Your smart career navigator for Tier-2/3 cities.</p>
-          <p>
-            Empowering students with skill-based job recommendations and
-            tailored learning paths using AI.
-          </p>
+          <p>Your AI-powered career companion</p>
         </div>
-
         <div class="footer-links">
           <h4>Quick Links</h4>
           <ul>
-            <li><a href="/pages/index.html">Home</a></li>
-            <li><a href="/pages/about.html">About Us</a></li>
-            <li><a href="/pages/contact.html">Contact</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="../pages/about.html">About Us</a></li>
+            <li><a href="../pages/contact.html">Contact</a></li>
+            <li><a href="../pages/login.html">Login</a></li>
           </ul>
         </div>
-
         <div class="footer-contact">
-          <h4>Contact</h4>
-          <p><i class="fas fa-envelope"></i> support@jobsensei.dev</p>
-          <p><i class="fas fa-phone"></i> +91-9876543210</p>
-          <div class="footer-icons">
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:support@jobsensei.dev"
-              ><i class="fas fa-envelope"></i
-            ></a>
-          </div>
+          <h4>Contact Us</h4>
+          <p>Email: support@jobsensei.com</p>
+          <p>Phone: +91 1234567890</p>
         </div>
       </div>
-
       <div class="footer-bottom">
-        <p>&copy; 2025 JobSensei. All rights reserved.</p>
+        <p>&copy; 2024 JobSensei. All rights reserved.</p>
+        <div class="footer-icons">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
-
-      <!-- Scroll to top -->
-      <button onclick="scrollToTop()" class="scroll-top-btn" title="Go to top">
-        <i class="fas fa-arrow-up"></i>
-      </button>
     </footer>
 
+    <!-- Scripts -->
+    <script src="../js/app.js"></script>
+    <script src="../js/carousel.js"></script>
+    <script src="../js/translate.js"></script>
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
-          {
-            pageLanguage: "en",
-            includedLanguages: "en,hi,ta,te,ml,bn,kn,mr,gu,pa",
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-          },
+          { pageLanguage: "en" },
           "google_translate_element"
         );
       }
     </script>
-    <script>
-      document
-        .getElementById("translate-toggle")
-        .addEventListener("click", () => {
-          const translateBox = document.getElementById(
-            "google_translate_element"
-          );
-          const isHidden =
-            translateBox.style.display === "none" ||
-            !translateBox.style.display;
-          translateBox.style.display = isHidden ? "block" : "none";
-        });
-    </script>
-    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-    <!-- Firebase SDKs (modular approach) -->
     <script
-      type="module"
-      src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     ></script>
-    <script
-      type="module"
-      src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"
-    ></script>
-    <script
-      type="module"
-      src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"
-    ></script>
-
-    <!-- Your app.js script -->
-    <script type="module" src="/js/app.js"></script>
-
-    <script>
-      // Show/hide button
-      window.onscroll = function () {
-        const btn = document.querySelector(".scroll-top-btn");
-        if (
-          document.body.scrollTop > 300 ||
-          document.documentElement.scrollTop > 300
-        ) {
-          btn.style.display = "block";
-        } else {
-          btn.style.display = "none";
-        }
-      };
-
-      // Scroll to top
-      function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    </script>
-
-    <script>
-      const track = document.getElementById("carouselTrack");
-      const cards = document.querySelectorAll(".job-card");
-      const cardWidth = cards[0].offsetWidth + 20; // card + margin
-      let position = 0;
-      let visibleCards = 3;
-
-      function moveCarousel(direction) {
-        const totalCards = cards.length;
-        position += direction;
-
-        if (position < 0) {
-          position = totalCards - visibleCards;
-        } else if (position > totalCards - visibleCards) {
-          position = 0;
-        }
-
-        const offset = -position * cardWidth;
-        track.style.transform = `translateX(${offset}px)`;
-      }
-    </script>
-
-    <script>
-      window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
-      });
-    </script>
-
-    <!-- Chatbot Button -->
-    <a href="/pages/chatbot.html" class="chatbot-button" title="Chat with us">
-      <i class="fas fa-robot"></i>
-    </a>
-
-    <script src="/js/index.js"></script>
   </body>
 </html>
