@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentee Dashboard - JobSensei</title>
+    <link rel="stylesheet" href="../css/mentee-dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="profile-section">
+          <img
+            src="../images/default-profile.png"
+            alt="Profile"
+            class="profile-img"
+          />
+          <h2 class="mentee-name">Loading...</h2>
+          <p class="mentee-title">Loading...</p>
+          <p class="mentee-bio">Loading...</p>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active">
+              <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-user-tie"></i> My Mentor</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-tasks"></i> Goals</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-calendar"></i> Sessions</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-book"></i> Resources</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+          </ul>
+        </nav>
+        <button class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="dashboard-header">
+          <h1>Mentee Dashboard</h1>
+          <div class="header-actions">
+            <button class="notification-btn" title="Notifications">
+              <i class="fas fa-bell"></i>
+            </button>
+            <button class="help-btn" title="Help">
+              <i class="fas fa-question-circle"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Goals Section -->
+        <section class="goals-section">
+          <h2>My Goals</h2>
+          <div class="goals-list">
+            <div class="goal-card">
+              <div class="goal-header">
+                <h3 class="goal-title">Complete Resume Review</h3>
+                <span class="goal-status status-in-progress">In Progress</span>
+              </div>
+              <div class="goal-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 60%"></div>
+                </div>
+              </div>
+              <div class="goal-details">
+                <span>Due: May 15, 2024</span>
+                <span>60% Complete</span>
+              </div>
+            </div>
+            <div class="goal-card">
+              <div class="goal-header">
+                <h3 class="goal-title">Interview Preparation</h3>
+                <span class="goal-status status-completed">Completed</span>
+              </div>
+              <div class="goal-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 100%"></div>
+                </div>
+              </div>
+              <div class="goal-details">
+                <span>Completed: April 20, 2024</span>
+                <span>100% Complete</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mentor Section -->
+        <section class="mentor-section">
+          <h2>My Mentor</h2>
+          <div class="mentor-card">
+            <div class="mentor-info">
+              <img src="../images/default-profile.png" alt="Mentor Profile" />
+            </div>
+            <div class="mentor-details">
+              <h3>Loading...</h3>
+              <p>Senior Software Engineer</p>
+              <p>5+ years of experience</p>
+            </div>
+            <div class="mentor-actions">
+              <button class="message-btn">
+                <i class="fas fa-envelope"></i> Message
+              </button>
+              <button class="schedule-btn">
+                <i class="fas fa-calendar-plus"></i> Schedule
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="resources-section">
+          <h2>Learning Resources</h2>
+          <div class="resources-grid">
+            <div class="resource-card">
+              <i class="fas fa-file-alt"></i>
+              <h3>Resume Guide</h3>
+              <p>Learn how to create an effective resume</p>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-video"></i>
+              <h3>Interview Tips</h3>
+              <p>Watch our interview preparation videos</p>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-book"></i>
+              <h3>Career Guide</h3>
+              <p>Explore different career paths</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../js/mentee-dashboard.js"></script>
+  </body>
+</html>

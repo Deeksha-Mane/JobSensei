@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentor Dashboard - JobSensei</title>
+    <link rel="stylesheet" href="../css/mentor-dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="profile-section">
+          <img
+            src="../images/default-profile.png"
+            alt="Profile"
+            class="profile-img"
+          />
+          <h2 class="mentor-name">Loading...</h2>
+          <p class="mentor-title">Loading...</p>
+          <p class="mentor-bio">Loading...</p>
+        </div>
+        <nav class="sidebar-nav">
+          <ul>
+            <li class="active">
+              <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-users"></i> Mentees</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-calendar"></i> Sessions</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-book"></i> Resources</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+          </ul>
+        </nav>
+        <button class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="dashboard-header">
+          <h1>Mentor Dashboard</h1>
+          <div class="header-actions">
+            <button class="notification-btn" title="Notifications">
+              <i class="fas fa-bell"></i>
+            </button>
+            <button class="help-btn" title="Help">
+              <i class="fas fa-question-circle"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Stats Grid -->
+        <section class="stats-grid">
+          <div class="stat-card">
+            <i class="fas fa-users"></i>
+            <div class="stat-info">
+              <h3>Active Mentees</h3>
+              <p class="active-mentees">0</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-calendar-check"></i>
+            <div class="stat-info">
+              <h3>Upcoming Sessions</h3>
+              <p class="upcoming-sessions">0</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-star"></i>
+            <div class="stat-info">
+              <h3>Average Rating</h3>
+              <p class="average-rating">0.0</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-clock"></i>
+            <div class="stat-info">
+              <h3>Total Hours</h3>
+              <p class="total-hours">0</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Mentees Section -->
+        <section class="mentees-section">
+          <h2>Your Mentees</h2>
+          <div class="mentees-list">
+            <!-- Mentee cards will be dynamically added here -->
+          </div>
+        </section>
+
+        <!-- Connection Requests -->
+        <section class="requests-section">
+          <h2>Connection Requests</h2>
+          <div class="requests-list">
+            <!-- Request cards will be dynamically added here -->
+          </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section class="resources-section">
+          <h2>Resources</h2>
+          <div class="resources-grid">
+            <div class="resource-card">
+              <i class="fas fa-file-alt"></i>
+              <h3>Mentoring Guide</h3>
+              <p>Best practices for effective mentoring</p>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-video"></i>
+              <h3>Training Videos</h3>
+              <p>Watch our mentoring tutorials</p>
+            </div>
+            <div class="resource-card">
+              <i class="fas fa-book"></i>
+              <h3>Documentation</h3>
+              <p>Platform guides and documentation</p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../js/mentor-dashboard.js"></script>
+  </body>
+</html>
