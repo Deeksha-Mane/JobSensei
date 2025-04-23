@@ -21,8 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
     if (user) {
       // User is signed in
       loadMenteeData(user.uid);
-      loadMentorData(user.uid);
+      checkMentorStatus();
       loadGoals(user.uid);
+      loadAvailableMentors();
     } else {
       // User is signed out
       window.location.href = "../pages/login.html";
@@ -154,4 +155,220 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error signing out:", error);
       });
   });
+
+  // Add these functions after the existing code
+  function requestMentor(mentorId) {
+    const menteeId = auth.currentUser.uid;
+
+    // Create a request document
+    db.collection("mentorRequests")
+      .add({
+        menteeId: menteeId,
+        mentorId: mentorId,
+        status: "pending",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        // Update mentee's status
+        db.collection("mentees").doc(menteeId).update({
+          mentorStatus: "pending",
+          requestedMentorId: mentorId,
+        });
+
+        // Show success message
+        showNotification("Mentor request sent successfully!", "success");
+      })
+      .catch((error) => {
+        console.error("Error sending mentor request:", error);
+        showNotification("Failed to send mentor request", "error");
+      });
+  }
+
+  function checkMentorStatus() {
+    const menteeId = auth.currentUser.uid;
+
+    db.collection("mentees")
+      .doc(menteeId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          updateMentorStatusUI(data.mentorStatus);
+
+          if (data.mentorStatus === "accepted" && data.mentorId) {
+            loadMentorData(menteeId);
+          }
+        }
+      })
+      .catch((error) => {
+        console.error("Error checking mentor status:", error);
+      });
+  }
+
+  function updateMentorStatusUI(status) {
+    const mentorCard = document.querySelector(".mentor-card");
+    const mentorStatus = document.querySelector(".mentor-status");
+
+    if (!mentorStatus) {
+      const statusElement = document.createElement("div");
+      statusElement.className = "mentor-status";
+      mentorCard.insertBefore(statusElement, mentorCard.firstChild);
+    }
+
+    const statusElement = document.querySelector(".mentor-status");
+
+    switch (status) {
+      case "pending":
+        statusElement.innerHTML = `
+                <div class="status-pending">
+                    <i class="fas fa-clock"></i>
+                    <span>Waiting for mentor's response...</span>
+                </div>
+            `;
+        break;
+      case "accepted":
+        statusElement.innerHTML = `
+                <div class="status-accepted">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Mentor assigned!</span>
+                </div>
+            `;
+        break;
+      case "rejected":
+        statusElement.innerHTML = `
+                <div class="status-rejected">
+                    <i class="fas fa-times-circle"></i>
+                    <span>Request rejected</span>
+                </div>
+            `;
+        break;
+      default:
+        statusElement.innerHTML = `
+                <div class="status-none">
+                    <i class="fas fa-user-plus"></i>
+                    <span>No mentor assigned</span>
+                </div>
+            `;
+    }
+  }
+
+  function showNotification(message, type) {
+    const notification = document.createElement("div");
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas ${
+          type === "success" ? "fa-check-circle" : "fa-exclamation-circle"
+        }"></i>
+        <span>${message}</span>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+
+  // Add these functions after the existing code
+  function loadAvailableMentors() {
+    db.collection("mentors")
+      .get()
+      .then((querySnapshot) => {
+        const mentorsGrid = document.querySelector(".mentors-grid");
+        mentorsGrid.innerHTML = "";
+
+        querySnapshot.forEach((doc) => {
+          const mentorData = doc.data();
+          const mentorCard = createMentorCard(mentorData, doc.id);
+          mentorsGrid.appendChild(mentorCard);
+        });
+      })
+      .catch((error) => {
+        console.error("Error loading mentors:", error);
+      });
+  }
+
+  function createMentorCard(mentorData, mentorId) {
+    const card = document.createElement("div");
+    card.className = "mentor-card";
+
+    // Check if there's a pending request for this mentor
+    const hasPendingRequest = checkPendingRequest(mentorId);
+
+    card.innerHTML = `
+        <div class="mentor-header">
+            <img src="${
+              mentorData.profileImage || "../images/default-profile.png"
+            }" alt="Mentor Profile" class="mentor-img">
+            <div class="mentor-info">
+                <h3>${mentorData.name}</h3>
+                <p>${mentorData.title}</p>
+            </div>
+        </div>
+        <div class="mentor-stats">
+            <div class="stat-item">
+                <span>${mentorData.menteeCount || 0}</span>
+                <p>Mentees</p>
+            </div>
+            <div class="stat-item">
+                <span>${mentorData.experience || "0"}+</span>
+                <p>Years Exp</p>
+            </div>
+            <div class="stat-item">
+                <span>${mentorData.rating || "0.0"}</span>
+                <p>Rating</p>
+            </div>
+        </div>
+        <div class="mentor-bio">
+            ${mentorData.bio || "No bio available"}
+        </div>
+        <div class="mentor-skills">
+            ${(mentorData.skills || [])
+              .map(
+                (skill) => `
+                <span class="skill-tag">${skill}</span>
+            `
+              )
+              .join("")}
+        </div>
+        <button class="request-btn ${hasPendingRequest ? "pending" : ""}" 
+                data-mentor-id="${mentorId}"
+                ${hasPendingRequest ? "disabled" : ""}>
+            <i class="fas ${
+              hasPendingRequest ? "fa-clock" : "fa-user-plus"
+            }"></i>
+            ${hasPendingRequest ? "Request Pending" : "Request Mentor"}
+        </button>
+    `;
+
+    // Add click event listener to the request button
+    const requestBtn = card.querySelector(".request-btn");
+    if (!hasPendingRequest) {
+      requestBtn.addEventListener("click", () => {
+        requestMentor(mentorId);
+        requestBtn.classList.add("pending");
+        requestBtn.disabled = true;
+        requestBtn.innerHTML = '<i class="fas fa-clock"></i> Request Pending';
+      });
+    }
+
+    return card;
+  }
+
+  function checkPendingRequest(mentorId) {
+    const menteeId = auth.currentUser.uid;
+    return db
+      .collection("mentorRequests")
+      .where("menteeId", "==", menteeId)
+      .where("mentorId", "==", mentorId)
+      .where("status", "==", "pending")
+      .get()
+      .then((querySnapshot) => {
+        return !querySnapshot.empty;
+      })
+      .catch((error) => {
+        console.error("Error checking pending request:", error);
+        return false;
+      });
+  }
 });
