@@ -5,10 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatSend = document.querySelector(".chat-send");
   const typingIndicator = document.querySelector(".typing-indicator");
 
-  // Predefined API key
-  const API_KEY = "YOUR API KEY HERE";
-
-  // Initial bot message
+  // WARNING: Exposing API keys in frontend code is insecure.
+  const API_KEY = "AIzaSyBaZ5P70MsLntvVhXLyXrXLE-_huEOFdp0";
+  const API_url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
   const initialMessage = `Hello! 👋 I'm your AI Career Assistant. I can help you with:
     • Career guidance and advice
     • Resume and cover letter tips
@@ -20,48 +19,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addBotMessage(initialMessage);
 
-  // Function to add user message
   function addUserMessage(message) {
     const messageDiv = document.createElement("div");
     messageDiv.className = "message user-message";
     messageDiv.innerHTML = `
-            <div class="message-content">
-                <div class="message-text">${message}</div>
-            </div>
-        `;
+      <div class="message-content">
+        <div class="message-text">${message}</div>
+      </div>
+    `;
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Function to add bot message
   function addBotMessage(message) {
     const messageDiv = document.createElement("div");
     messageDiv.className = "message bot-message";
     messageDiv.innerHTML = `
-            <div class="message-content">
-                <div class="message-text">${message}</div>
-            </div>
-        `;
+      <div class="message-content">
+        <div class="message-text">${message}</div>
+      </div>
+    `;
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Function to show typing indicator
   function showTypingIndicator() {
     typingIndicator.style.display = "flex";
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
-  // Function to hide typing indicator
   function hideTypingIndicator() {
     typingIndicator.style.display = "none";
   }
 
-  // Function to handle API call
   async function getBotResponse(userMessage) {
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`,
+        API_url,
         {
           method: "POST",
           headers: {
@@ -78,12 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 ],
               },
             ],
-            generationConfig: {
-              temperature: 0.7,
-              maxOutputTokens: 500,
-              topP: 0.8,
-              topK: 40,
-            },
           }),
         }
       );
@@ -97,26 +85,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const data = await response.json();
-      console.log("API Response:", data); // Debug log
+      console.log("API Response:", data);
 
-      if (
-        data.candidates &&
-        data.candidates[0] &&
-        data.candidates[0].content &&
-        data.candidates[0].content.parts[0]
-      ) {
-        return data.candidates[0].content.parts[0].text;
-      } else {
-        console.error("Invalid response format:", data);
-        throw new Error("Invalid response format from Gemini API");
-      }
+      const reply =
+        data.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "Sorry, I didn’t get that.";
+
+      return reply;
     } catch (error) {
       console.error("Error:", error);
       return `Error: ${error.message}. Please try again later or contact support if the issue persists.`;
     }
   }
 
-  // Event listener for send button
   chatSend.addEventListener("click", async () => {
     const message = chatInput.value.trim();
     if (message) {
@@ -131,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Event listener for Enter key
   chatInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") {
       chatSend.click();
