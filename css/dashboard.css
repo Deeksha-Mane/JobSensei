@@ -9,14 +9,14 @@
 body {
   display: flex;
   min-height: 100vh;
-  background-color: #f4f7fb;
-  color: #333;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
 }
 
 /* Sidebar */
 .sidebar {
   width: 250px;
-  background: linear-gradient(135deg, #0077b6, #00a6fb);
+  background: linear-gradient(135deg, #1a2238);
   color: #fff;
   height: 100vh;
   padding: 2rem 1rem;
@@ -104,7 +104,7 @@ body {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #111827;
+  color: white;
 }
 
 .card p,
@@ -301,4 +301,103 @@ progress::-webkit-progress-value {
 #add-skill-btn:hover,
 #save-skills-btn:hover {
   background-color: #083fa2;
+}
+
+/* Theme Variables */
+:root {
+  /* Light Theme (Default) */
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --text-primary: #0b5ed7;
+  --text-secondary: #34495e;
+  --accent-color: #0b5ed7;
+  --card-bg: #ffffff;
+  --border-color: #dee2e6;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #0b5ed7;
+  --button-text: #ffffff;
+  --button-bg: #0b5ed7;
+  --header-bg: #ffffff;
+  --header-text: #0b5ed7;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --bg-primary: #0a0f1e;
+  --bg-secondary: #121826;
+  --text-primary: #4a90e2;
+  --text-secondary: #e0e0e0;
+  --accent-color: #4a90e2;
+  --card-bg: #1a2238;
+  --border-color: #2a3348;
+  --sidebar-bg: #121826;
+  --sidebar-text: #4a90e2;
+  --button-text: #ffffff;
+  --button-bg: #4a90e2;
+  --header-bg: #121826;
+  --header-text: #4a90e2;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.theme-toggle:hover {
+  background: rgba(74, 144, 226, 0.1);
+  transform: scale(1.1);
+}
+
+/* Update existing styles to use theme variables */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+}
+
+.sidebar {
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+}
+
+.header {
+  background-color: var(black);
+  color: var(--header-text);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+input,
+textarea,
+select {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
 }
