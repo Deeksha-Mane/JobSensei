@@ -4,20 +4,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - JobSensei</title>
+    <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   </head>
   <body>
     <!-- Sidebar -->
     <aside class="sidebar">
       <h2>JobSensei</h2>
-      <a href="/pages/homepage.html">Home</a>
-      <a href="/pages/dashboard.html" class="active">Dashboard</a>
-      <a href="/pages/profile.html">My Profile</a>
-      <a href="/pages/jobboard.html">Jobs For You</a>
-      <a href="/templates/index.html">AI Career Guide</a>
-      <a href="/pages/resumeintro.html">Resume Builder</a>
-      <a href="/pages/chatbot.html">Ask Yuki Bot</a>
-      <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">Change Language</a>
+      <a href="/pages/homepage.html"><i class="fas fa-home"></i> Home</a>
+      <a href="/pages/dashboard.html" class="active"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="/pages/profile.html"><i class="fas fa-user"></i> My Profile</a>
+      <a href="/pages/jobboard.html"><i class="fas fa-briefcase"></i> Jobs For You</a>
+      <a href="/templates/index.html"><i class="fas fa-robot"></i> AI Career Guide</a>
+      <a href="/pages/resumeintro.html"><i class="fas fa-file-alt"></i> Resume Builder</a>
+      <a href="/pages/chatbot.html"><i class="fas fa-comments"></i> Ask Yuki Bot</a>
+      <a href="/pages/connect.html"><i class="fas fa-users"></i> Connect</a>
+      <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">
+        <i class="fas fa-language"></i> Change Language
+      </a>
       <div id="google_translate_element" style="display: none;"></div>
     </aside>
 
@@ -27,12 +32,12 @@
         <!-- Greeting message placeholder (display user's name here) -->
         <h2 id="greeting">Welcome, loading...</h2>
         <!-- Theme Toggle Button -->
-        <button id="theme-toggle" class="theme-toggle">
+        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
           <i class="fas fa-moon"></i>
         </button>
         <!-- Logout button -->
         <button class="logout-btn" id="logoutBtn" onclick="logout()">
-          Logout
+          <i class="fas fa-sign-out-alt"></i> Logout
         </button>
       </div>
 

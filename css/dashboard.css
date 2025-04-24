@@ -29,6 +29,8 @@ body {
   text-align: center;
   margin-bottom: 2rem;
   font-size: 1.5rem;
+  color: var(--brand-color);
+  font-weight: bold;
 }
 
 .sidebar a {
@@ -51,6 +53,8 @@ body {
   margin-left: 250px;
   padding: 2rem;
   flex-grow: 1;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
 }
 
 .header {
@@ -62,7 +66,7 @@ body {
 
 .header h2 {
   font-size: 1.8rem;
-  color: #0b5ed7;
+  color: var(--brand-color);
 }
 
 .logout-btn {
@@ -104,13 +108,14 @@ body {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: white;
+  color: var(--text-primary);
 }
 
-.card p,
-.card button {
+.card p {
   font-size: 0.95rem;
+  color: var(--text-secondary);
 }
+
 #savejob {
   background-color: #00a6fb;
   border: none;
@@ -126,7 +131,7 @@ body {
 .big-number {
   font-size: 32px;
   font-weight: bold;
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 10px;
 }
 
@@ -176,7 +181,7 @@ progress::-webkit-progress-value {
 .recommendation-section h4 {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
-  color: #0949b0;
+  color: var(--text-primary);
 }
 
 .item-wrapper {
@@ -210,7 +215,7 @@ progress::-webkit-progress-value {
 
 .recommendation-item p {
   font-size: 0.95rem;
-  color: #333;
+  color: var(--text-secondary);
   margin: 0;
   font-weight: 500;
   line-height: 1.3;
@@ -256,17 +261,17 @@ progress::-webkit-progress-value {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .skill-chip {
-  background-color: #e0ecff;
-  color: #0949b0;
-  padding: 0.4rem 0.8rem;
+  background-color: var(--bg-secondary);
+  padding: 0.5rem 1rem;
   border-radius: 20px;
   display: flex;
   align-items: center;
-  font-size: 0.9rem;
+  gap: 0.5rem;
+  color: var(--text-primary);
 }
 
 .skill-chip button {
@@ -308,34 +313,36 @@ progress::-webkit-progress-value {
   /* Light Theme (Default) */
   --bg-primary: #f8f9fa;
   --bg-secondary: #ffffff;
-  --text-primary: #0b5ed7;
-  --text-secondary: #34495e;
+  --text-primary: #2d2d2d;
+  --text-secondary: #4a4a4a;
   --accent-color: #0b5ed7;
+  --brand-color: #0b5ed7; /* Bright blue for JobSensei */
   --card-bg: #ffffff;
   --border-color: #dee2e6;
-  --sidebar-bg: #ffffff;
-  --sidebar-text: #0b5ed7;
+  --sidebar-bg: #1a2238;
+  --sidebar-text: #ffffff;
   --button-text: #ffffff;
   --button-bg: #0b5ed7;
   --header-bg: #ffffff;
-  --header-text: #0b5ed7;
+  --header-text: #2d2d2d;
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
   --bg-primary: #0a0f1e;
   --bg-secondary: #121826;
-  --text-primary: #4a90e2;
+  --text-primary: #ffffff;
   --text-secondary: #e0e0e0;
   --accent-color: #4a90e2;
+  --brand-color: #4a90e2; /* Bright blue for JobSensei */
   --card-bg: #1a2238;
   --border-color: #2a3348;
   --sidebar-bg: #121826;
-  --sidebar-text: #4a90e2;
+  --sidebar-text: #ffffff;
   --button-text: #ffffff;
   --button-bg: #4a90e2;
   --header-bg: #121826;
-  --header-text: #4a90e2;
+  --header-text: #ffffff;
 }
 
 /* Theme Toggle Button */
@@ -400,4 +407,11 @@ select {
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
+}
+
+/* JobSensei brand elements */
+.navbar-brand {
+  color: var(--brand-color);
+  font-weight: bold;
+  font-size: 1.5rem;
 }

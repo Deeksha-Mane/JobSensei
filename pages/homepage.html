@@ -21,9 +21,18 @@
     />
 
     <!-- Firebase SDK (latest) -->
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"
+    ></script>
+    <script
+      type="module"
+      src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"
+    ></script>
   </head>
 
   <body>
@@ -51,9 +60,16 @@
           </div>
           <a href="/pages/about.html">About Us</a>
           <a href="/pages/contact.html">Contact</a>
-          <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">🌐 Change Language</a>
-          <div id="google_translate_element" style="display: none;"></div>
-          <button class="logout-btn" id="logoutBtn" onclick="logOut()">Logout</button>
+          <a
+            href="javascript:void(0);"
+            id="translate-toggle"
+            class="translate-btn"
+            >🌐 Change Language</a
+          >
+          <div id="google_translate_element" style="display: none"></div>
+          <button class="logout-btn" id="logoutBtn" onclick="logOut()">
+            Logout
+          </button>
         </div>
       </nav>
     </header>
@@ -130,7 +146,9 @@
           <div class="footer-icons">
             <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
             <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:support@jobsensei.dev"><i class="fas fa-envelope"></i></a>
+            <a href="mailto:support@jobsensei.dev"
+              ><i class="fas fa-envelope"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -150,21 +168,27 @@
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(
           {
-            pageLanguage: 'en',
-            includedLanguages: 'en,hi,ta,te,ml,bn,kn,mr,gu,pa',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            pageLanguage: "en",
+            includedLanguages: "en,hi,ta,te,ml,bn,kn,mr,gu,pa",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
           },
-          'google_translate_element'
+          "google_translate_element"
         );
       }
     </script>
     <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script>
-      document.getElementById("translate-toggle").addEventListener("click", () => {
-        const translateBox = document.getElementById("google_translate_element");
-        const isHidden = translateBox.style.display === "none" || !translateBox.style.display;
-        translateBox.style.display = isHidden ? "block" : "none";
-      });
+      document
+        .getElementById("translate-toggle")
+        .addEventListener("click", () => {
+          const translateBox = document.getElementById(
+            "google_translate_element"
+          );
+          const isHidden =
+            translateBox.style.display === "none" ||
+            !translateBox.style.display;
+          translateBox.style.display = isHidden ? "block" : "none";
+        });
     </script>
 
     <!-- Custom Scripts -->
@@ -214,13 +238,17 @@
     <script>
       function logOut() {
         // Ensure Firebase is initialized in /js/app.js
-        firebase.auth().signOut().then(() => {
-          console.log("✅ User logged out successfully!");
-          alert("Logged out!");
-          window.location.href = "login.html";
-        }).catch((error) => {
-          console.error("Error during logout:", error);
-        });
+        firebase
+          .auth()
+          .signOut()
+          .then(() => {
+            console.log("✅ User logged out successfully!");
+            alert("Logged out!");
+            window.location.href = "login.html";
+          })
+          .catch((error) => {
+            console.error("Error during logout:", error);
+          });
       }
     </script>
 

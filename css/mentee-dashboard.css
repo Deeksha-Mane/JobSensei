@@ -575,3 +575,30 @@ body {
 .request-btn.pending:hover {
   background: #ffa000;
 }
+
+.mentor-card .request-btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mentor-card .request-btn:hover {
+  background-color: #45a049;
+}
+
+.mentor-card .request-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.mentor-card .request-btn.pending {
+  background-color: #ff9800;
+}

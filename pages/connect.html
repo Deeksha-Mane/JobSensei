@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connect - JobSensei</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/connect.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>JobSensei</h2>
+      <a href="/pages/homepage.html">Home</a>
+      <a href="/pages/dashboard.html">Dashboard</a>
+      <a href="/pages/profile.html">My Profile</a>
+      <a href="/pages/jobboard.html">Jobs For You</a>
+      <a href="/templates/index.html">AI Career Guide</a>
+      <a href="/pages/resumeintro.html">Resume Builder</a>
+      <a href="/pages/chatbot.html">Ask Yuki Bot</a>
+      <a href="/pages/connect.html" class="active">Connect</a>
+      <a href="javascript:void(0);" id="translate-toggle" class="translate-btn"
+        >Change Language</a
+      >
+      <div id="google_translate_element" style="display: none"></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="header">
+        <h2>Connect with Professionals</h2>
+        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="logout-btn" id="logoutBtn" onclick="logout()">
+          Logout
+        </button>
+      </div>
+
+      <div class="connect-container">
+        <div class="connect-options">
+          <div class="card mentor-option">
+            <div class="option-icon">
+              <i class="fas fa-user-tie"></i>
+            </div>
+            <h3>Join as Mentor</h3>
+            <p>Share your expertise and help others grow in their careers</p>
+            <ul class="benefits-list">
+              <li>
+                <i class="fas fa-check"></i> Build your professional network
+              </li>
+              <li>
+                <i class="fas fa-check"></i> Enhance your leadership skills
+              </li>
+              <li><i class="fas fa-check"></i> Give back to the community</li>
+            </ul>
+            <button
+              class="btn-primary"
+              onclick="window.location.href='mentor-register.html'"
+            >
+              Join as Mentor
+            </button>
+          </div>
+
+          <div class="card mentee-option">
+            <div class="option-icon">
+              <i class="fas fa-user-graduate"></i>
+            </div>
+            <h3>Join as Mentee</h3>
+            <p>Get guidance from experienced professionals</p>
+            <ul class="benefits-list">
+              <li><i class="fas fa-check"></i> Personalized career guidance</li>
+              <li><i class="fas fa-check"></i> Industry insights and advice</li>
+              <li><i class="fas fa-check"></i> Professional development</li>
+            </ul>
+            <button
+              class="btn-primary"
+              onclick="window.location.href='mentee-register.html'"
+            >
+              Join as Mentee
+            </button>
+          </div>
+        </div>
+
+        <div class="already-member">
+          <p>Already a member? <a href="login.html">Sign in</a></p>
+        </div>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: "en",
+            includedLanguages: "en,hi,ta,te,ml,bn,kn,mr,gu,pa",
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+          },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script>
+      document
+        .getElementById("translate-toggle")
+        .addEventListener("click", () => {
+          const translateBox = document.getElementById(
+            "google_translate_element"
+          );
+          const isHidden =
+            translateBox.style.display === "none" ||
+            !translateBox.style.display;
+          translateBox.style.display = isHidden ? "block" : "none";
+        });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  </body>
+</html>

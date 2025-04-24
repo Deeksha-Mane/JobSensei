@@ -291,66 +291,31 @@ document.addEventListener("DOMContentLoaded", function () {
   function createMentorCard(mentorData, mentorId) {
     const card = document.createElement("div");
     card.className = "mentor-card";
-
-    // Check if there's a pending request for this mentor
-    const hasPendingRequest = checkPendingRequest(mentorId);
-
     card.innerHTML = `
-        <div class="mentor-header">
-            <img src="${
-              mentorData.profileImage || "../images/default-profile.png"
-            }" alt="Mentor Profile" class="mentor-img">
-            <div class="mentor-info">
-                <h3>${mentorData.name}</h3>
-                <p>${mentorData.title}</p>
-            </div>
-        </div>
-        <div class="mentor-stats">
-            <div class="stat-item">
-                <span>${mentorData.menteeCount || 0}</span>
-                <p>Mentees</p>
-            </div>
-            <div class="stat-item">
-                <span>${mentorData.experience || "0"}+</span>
-                <p>Years Exp</p>
-            </div>
-            <div class="stat-item">
-                <span>${mentorData.rating || "0.0"}</span>
-                <p>Rating</p>
-            </div>
-        </div>
-        <div class="mentor-bio">
-            ${mentorData.bio || "No bio available"}
-        </div>
-        <div class="mentor-skills">
-            ${(mentorData.skills || [])
-              .map(
-                (skill) => `
-                <span class="skill-tag">${skill}</span>
-            `
-              )
-              .join("")}
-        </div>
-        <button class="request-btn ${hasPendingRequest ? "pending" : ""}" 
-                data-mentor-id="${mentorId}"
-                ${hasPendingRequest ? "disabled" : ""}>
-            <i class="fas ${
-              hasPendingRequest ? "fa-clock" : "fa-user-plus"
-            }"></i>
-            ${hasPendingRequest ? "Request Pending" : "Request Mentor"}
+      <div class="mentor-info">
+        <img src="${
+          mentorData.profileImage || "../images/default-profile.png"
+        }" alt="Mentor Profile" />
+      </div>
+      <div class="mentor-details">
+        <h3>${mentorData.name}</h3>
+        <p>${mentorData.title}</p>
+        <p>${mentorData.experience}</p>
+        <p>${mentorData.bio}</p>
+      </div>
+      <div class="mentor-actions">
+        <button class="request-btn" data-mentor-id="${mentorId}">
+          <i class="fas fa-user-plus"></i> Request Mentor
         </button>
+      </div>
     `;
 
-    // Add click event listener to the request button
+    // Add click handler for request button
     const requestBtn = card.querySelector(".request-btn");
-    if (!hasPendingRequest) {
-      requestBtn.addEventListener("click", () => {
-        requestMentor(mentorId);
-        requestBtn.classList.add("pending");
-        requestBtn.disabled = true;
-        requestBtn.innerHTML = '<i class="fas fa-clock"></i> Request Pending';
-      });
-    }
+    requestBtn.addEventListener("click", function () {
+      const mentorId = this.getAttribute("data-mentor-id");
+      requestMentor(mentorId);
+    });
 
     return card;
   }
