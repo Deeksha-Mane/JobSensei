@@ -198,13 +198,14 @@ progress::-webkit-progress-value {
   margin-bottom: 1rem;
   border-radius: 8px;
   padding: 0.5rem;
-  background-color: #f8faff;
-  transition: background-color 0.3s ease;
+  background-color: var(--bg-secondary);
+  transition: all 0.3s ease;
   cursor: pointer;
+  color: var(--text-primary);
 }
 
 .recommendation-item:hover {
-  background-color: #eaf0fb;
+  background-color: var(--bg-primary);
 }
 
 .recommendation-item img {
@@ -244,14 +245,14 @@ progress::-webkit-progress-value {
 }
 /* Highlighted Top Recommendation */
 .recommendation-item.best-pick {
-  border: 2px solid #00b894;
-  background-color: #e0fff4;
-  box-shadow: 0 0 10px rgba(0, 184, 148, 0.5);
+  border: 2px solid var(--accent-color);
+  background-color: var(--bg-secondary);
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
 }
 
 .recommendation-item.best-pick::before {
   content: "⭐ Top Pick";
-  color: #00b894;
+  color: var(--accent-color);
   font-weight: bold;
   margin-right: 10px;
 }
@@ -414,4 +415,18 @@ select {
   color: var(--brand-color);
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+[data-theme="dark"] .recommendation-item {
+  background-color: var(--card-bg);
+}
+
+[data-theme="dark"] .recommendation-item:hover {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .recommendation-item.best-pick {
+  background-color: var(--card-bg);
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
 }

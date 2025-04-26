@@ -1,0 +1,96 @@
+/* Theme Variables */
+:root {
+  /* Light Theme (Default) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #121826;
+  --text-primary: #121826;
+  --text-secondary: #2a3348;
+  --accent-color: #0b5ed7;
+  --brand-color: #0b5ed7;
+  --card-bg: #ffffff;
+  --border-color: #dee2e6;
+  --navbar-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-text: #121826;
+  --button-text: #ffffff;
+  --button-bg: #0b5ed7;
+  --header-bg: #ffffff;
+  --header-text: #121826;
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+  --bg-primary: #0a0f1e;
+  --bg-secondary: #121826;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --accent-color: #4a90e2;
+  --brand-color: #4a90e2;
+  --card-bg: #1a2238;
+  --border-color: #2a3348;
+  --navbar-bg: #121826;
+  --input-bg: #1a2238;
+  --input-text: #ffffff;
+  --button-text: #ffffff;
+  --button-bg: #4a90e2;
+  --header-bg: #121826;
+  --header-text: #ffffff;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(74, 144, 226, 0.2);
+  transform: scale(1.05);
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+  background-color: rgba(18, 24, 38, 0.1);
+}
+
+/* Common Theme-based Styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.navbar {
+  background-color: var(--navbar-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+input, textarea, select {
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--border-color);
+}
+
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+} 

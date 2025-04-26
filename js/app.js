@@ -94,6 +94,14 @@ document.getElementById("userForm").addEventListener("submit", function (e) {
 
   addUser(name, email, skills);
 });
+document.addEventListener("DOMContentLoaded", function() {
+  // Your existing code here
+  const someElement = document.getElementById("someId");
+  if (someElement) {
+    someElement.addEventListener("click", someFunction);
+  }
+});
+  
 
 // Theme Toggle Functionality
 const themeToggle = document.getElementById("theme-toggle");
