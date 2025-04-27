@@ -1,7 +1,7 @@
 // login.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"; // import doc, getDoc properly
 
 // Theme Toggle Implementation
 document.addEventListener('DOMContentLoaded', function() {
@@ -12,10 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const currentTheme = html.getAttribute('data-theme');
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         
-        // Change theme
         html.setAttribute('data-theme', newTheme);
         
-        // Update icon
         const icon = themeToggleBtn.querySelector('i');
         if (newTheme === 'dark') {
             icon.classList.remove('fa-moon');
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Add click event listener
     themeToggleBtn.addEventListener('click', toggleTheme);
 });
 
@@ -50,22 +47,20 @@ const db = getFirestore(app);
 const loginForm = document.getElementById("loginForm");
 
 // Check if user is already logged in
-auth.onAuthStateChanged((user) => {
+onAuthStateChanged(auth, async (user) => {  // changed this also slightly
     if (user) {
-        // Check if user is a mentor or mentee
-        db.collection("mentors")
-            .doc(user.uid)
-            .get()
-            .then((doc) => {
-                if (doc.exists) {
-                    window.location.href = "../pages/mentor-dashboard.html";
-                } else {
-                    window.location.href = "../pages/mentee-dashboard.html";
-                }
-            })
-            .catch((error) => {
-                console.error("Error checking user type:", error);
-            });
+        try {
+            const userRef = doc(db, "mentors", user.uid);
+            const userSnap = await getDoc(userRef);
+
+            if (userSnap.exists()) {
+                window.location.href = "../pages/mentor-dashboard.html";
+            } else {
+                window.location.href = "../pages/mentee-dashboard.html";
+            }
+        } catch (error) {
+            console.error("Error checking user type:", error);
+        }
     }
 });
 
@@ -75,17 +70,18 @@ loginForm.addEventListener("submit", async (e) => {
     const password = document.getElementById("password").value;
     const errorMessage = document.getElementById("error-message");
 
-    // Show loading state
     const submitBtn = document.querySelector(".login-btn");
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Logging in...';
 
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        // Check if user is a mentor or mentee
+        
         const user = auth.currentUser;
-        const doc = await db.collection("mentors").doc(user.uid).get();
-        if (doc.exists) {
+        const userRef = doc(db, "mentors", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
             window.location.href = "../pages/mentor-dashboard.html";
         } else {
             window.location.href = "../pages/mentee-dashboard.html";
@@ -95,7 +91,6 @@ loginForm.addEventListener("submit", async (e) => {
         errorMessage.textContent = error.message;
         errorMessage.style.display = "block";
 
-        // Reset button state
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login';
     }

@@ -5,22 +5,13 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body.loaded {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+ 
 body {
   font-family: "Poppins", sans-serif;
   background: var(--bg-primary);
   color: var(--text-secondary);
   scroll-behavior: smooth;
   line-height: 1.6;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out,
-    background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Navbar */
@@ -34,6 +25,7 @@ body {
   top: 0;
   z-index: 999;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
 }
 
 .navbar-brand {
@@ -43,6 +35,9 @@ body {
   font-size: 2rem;
   font-weight: 700;
   color: var(--navbar-text);
+  background: linear-gradient(rgb(4, 99, 162), rgb(139, 201, 255));;
+  -webkit-background-clip: text;
+  color: transparent;
   letter-spacing: 1px;
   text-decoration: none;
 }
@@ -60,6 +55,7 @@ body {
 .navbar-links {
   display: flex;
   gap: 32px;
+  text-decoration: none;
 }
 
 .navbar-links a {
@@ -80,14 +76,12 @@ body {
   bottom: -4px;
   background-color: var(--accent-color);
   transition: width 0.3s ease;
+  text-decoration: none;
 }
 
 .navbar-links a:hover::after {
   width: 100%;
-}
-
-.navbar-links a:hover {
-  color: #ffffff;
+  text-decoration: none;
 }
 
 .navbar-toggler {
@@ -169,10 +163,13 @@ body {
 
 .hero h2 {
   color: var(--text-primary);
+  background: linear-gradient(rgb(16, 134, 212), rgb(69, 143, 208));
+  -webkit-background-clip: text;
+  color: transparent;
   font-size: 2.8rem;
   font-weight: 600;
   margin-bottom: 20px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .box {
@@ -226,20 +223,19 @@ body {
 
 .hero .btn {
   text-decoration: none;
-  background-color: var(--button-bg);
-  color: var(--button-text);
+  color: white;
   padding: 14px 34px;
   border-radius: 50px;
   font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 8px 20px rgba(74, 144, 226, 0.2);
+  background: linear-gradient(rgb(9, 119, 192), rgb(57, 159, 248));
 }
 
 .hero .btn:hover {
   transform: scale(1.05);
-  background: var(--accent-color);
-  color: var(--button-text);
+  background: linear-gradient(rgb(6, 91, 148), rgb(21, 115, 197));
 }
 
 .how-it-works {
@@ -251,6 +247,9 @@ body {
 
 .how-it-works h3 {
   color: var(--text-primary);
+  background: linear-gradient(rgb(16, 134, 212), rgb(69, 143, 208));
+  -webkit-background-clip: text;
+  color: transparent;
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 60px;
@@ -276,6 +275,8 @@ body {
 .steps div:hover {
   transform: translateY(-10px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
+  /* background: linear-gradient(rgb(60, 148, 236), rgba(102, 210, 235, 0.895)); */
+  transition: transform 0.6s ease, box-shadow 0.3s ease,background 0.7s ease,color 0.1 ease;
 }
 
 .steps h4 {
@@ -299,6 +300,9 @@ body {
 
 .featured-jobs-section h2 {
   color: var(--text-primary);
+  background: linear-gradient(rgb(16, 134, 212), rgb(69, 143, 208));
+  -webkit-background-clip: text;
+  color: transparent;
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 40px;
@@ -360,11 +364,12 @@ body {
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  background: linear-gradient(135deg, #127bde, #5eb2ee);
   transition: background 0.3s ease;
 }
 
 .job-card button:hover {
-  background: var(--accent-color);
+  background: linear-gradient(135deg, #0c569b, #1684d2);
 }
 
 /* Navigation Arrows */
@@ -382,11 +387,12 @@ body {
   cursor: pointer;
   z-index: 10;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #127bde, #5eb2ee);
   transition: background 0.3s ease;
 }
 
 .carousel-btn:hover {
-  background: #2563eb;
+  background: linear-gradient(135deg, #0c569b, #1684d2);
 }
 
 .carousel-btn.left {
@@ -463,11 +469,12 @@ body {
   border-radius: 50px;
   font-weight: 600;
   margin: 10px;
+  background: linear-gradient(135deg, #127bde, #5eb2ee);
   transition: all 0.3s ease;
 }
 
 .cta .btn:hover {
-  background-color: var(--accent-color);
+  background: linear-gradient(135deg, #0b4d8b, #1480cd);
 }
 
 /*Footer Styling*/
@@ -560,8 +567,8 @@ body {
 /* Scroll to Top Button */
 .scroll-top-btn {
   position: fixed;
-  bottom: 25px;
-  right: 25px;
+  bottom: 100px;
+  right: 40px;
   background-color: var(--button-bg);
   border: none;
   color: var(--button-text);
@@ -573,10 +580,11 @@ body {
   transition: background 0.3s ease;
   z-index: 1000;
   display: none;
+  opacity: 0.6;
 }
 
 .scroll-top-btn:hover {
-  background-color: var(--accent-color);
+  background-color: #1e7adc;
 }
 
 /* Responsive Footer */
@@ -646,7 +654,7 @@ body {
   right: 30px;
   width: 60px;
   height: 60px;
-  background-color: var(--button-bg);
+  background: linear-gradient(135deg, #1074d2, #73c3fc);
   border-radius: 50%;
   display: flex;
   justify-content: center;

@@ -118,3 +118,26 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", adjustCarousel);
   adjustCarousel(); // Initial adjustment
 });
+
+let autoSlideInterval;
+
+// Start Auto Slide
+function startAutoSlide() {
+  autoSlideInterval = setInterval(() => {
+    moveCarousel(1); // Move to next slide every 3 seconds
+  }, 3000);
+}
+
+// Stop Auto Slide
+function stopAutoSlide() {
+  clearInterval(autoSlideInterval);
+}
+
+// Start auto-slide when page loads
+startAutoSlide();
+
+// Optional: Pause auto-slide on mouse hover over carousel
+if (track) {
+  track.addEventListener('mouseenter', stopAutoSlide);
+  track.addEventListener('mouseleave', startAutoSlide);
+}

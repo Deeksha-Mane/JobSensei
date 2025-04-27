@@ -63,11 +63,7 @@
           </div>
           <a href="../pages/about.html">About Us</a>
           <a href="../pages/contact.html">Contact</a>
-          <button
-            id="theme-toggle"
-            class="theme-toggle"
-            title="Toggle theme"
-          >
+          <button id="theme-toggle" class="theme-toggle" title="Toggle theme">
             <i class="fas fa-sun"></i>
           </button>
           <a
@@ -258,5 +254,66 @@
       type="text/javascript"
       src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Carousel Functionality
+        const track = document.getElementById("carouselTrack");
+        const cards = document.querySelectorAll(".job-card");
+
+        if (!track || cards.length === 0) return; // Safe-check
+
+        let cardWidth = cards[0].offsetWidth + 20; // Adjust margin if needed
+        let position = 0;
+        let visibleCards = 3;
+        let autoSlideInterval;
+
+        function moveCarousel(direction) {
+          const totalCards = cards.length;
+          position += direction;
+
+          if (position < 0) {
+            position = totalCards - visibleCards;
+          } else if (position > totalCards - visibleCards) {
+            position = 0;
+          }
+
+          const offset = -position * cardWidth;
+          track.style.transform = `translateX(${offset}px)`;
+        }
+
+        function adjustCarousel() {
+          const width = window.innerWidth;
+          if (width <= 768) {
+            visibleCards = 1;
+          } else if (width <= 1024) {
+            visibleCards = 2;
+          } else {
+            visibleCards = 3;
+          }
+          position = 0; // Reset position when resizing
+          cardWidth = cards[0].offsetWidth + 20; // Recalculate width
+          moveCarousel(0);
+        }
+
+        function startAutoSlide() {
+          autoSlideInterval = setInterval(() => {
+            moveCarousel(1);
+          }, 3000); // Every 3 seconds
+        }
+
+        function stopAutoSlide() {
+          clearInterval(autoSlideInterval);
+        }
+
+        window.addEventListener("resize", adjustCarousel);
+        adjustCarousel(); // Initial call
+        startAutoSlide(); // Start sliding!
+
+        // Pause sliding when hovering the carousel
+        track.addEventListener("mouseenter", stopAutoSlide);
+        track.addEventListener("mouseleave", startAutoSlide);
+      });
+    </script>
   </body>
 </html>
