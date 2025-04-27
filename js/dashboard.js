@@ -1,21 +1,21 @@
 // Theme Toggle Functionality
 document.addEventListener("DOMContentLoaded", function () {
   const themeToggle = document.getElementById("theme-toggle");
-  const body = document.body;
+  const html = document.documentElement;
 
   // Check for saved theme preference
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme) {
-    body.setAttribute("data-theme", savedTheme);
+    html.setAttribute("data-theme", savedTheme);
     updateThemeIcon(savedTheme);
   }
 
   // Theme toggle click handler
   themeToggle.addEventListener("click", function () {
-    const currentTheme = body.getAttribute("data-theme");
+    const currentTheme = html.getAttribute("data-theme");
     const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-    body.setAttribute("data-theme", newTheme);
+    html.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
     updateThemeIcon(newTheme);
   });

@@ -312,37 +312,37 @@ progress::-webkit-progress-value {
 /* Theme Variables */
 :root {
   /* Light Theme (Default) */
-  --bg-primary: #f8f9fa;
-  --bg-secondary: #ffffff;
-  --text-primary: #2d2d2d;
-  --text-secondary: #4a4a4a;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #121826;
+  --text-secondary: #2a3348;
   --accent-color: #0b5ed7;
-  --brand-color: #0b5ed7; /* Bright blue for JobSensei */
+  --brand-color: #0b5ed7;
   --card-bg: #ffffff;
   --border-color: #dee2e6;
-  --sidebar-bg: #1a2238;
-  --sidebar-text: #ffffff;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #121826;
   --button-text: #ffffff;
   --button-bg: #0b5ed7;
   --header-bg: #ffffff;
-  --header-text: #2d2d2d;
+  --header-text: #121826;
 }
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --bg-primary: #0a0f1e;
-  --bg-secondary: #121826;
+  --bg-primary: #121826;
+  --bg-secondary: #1a2238;
   --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --accent-color: #4a90e2;
-  --brand-color: #4a90e2; /* Bright blue for JobSensei */
+  --text-secondary: #ffffff;
+  --accent-color: #1a2238;
+  --brand-color: #ffffff;
   --card-bg: #1a2238;
-  --border-color: #2a3348;
-  --sidebar-bg: #121826;
+  --border-color: #121826;
+  --sidebar-bg: #1a2238;
   --sidebar-text: #ffffff;
   --button-text: #ffffff;
-  --button-bg: #4a90e2;
-  --header-bg: #121826;
+  --button-bg: #1a2238;
+  --header-bg: #1a2238;
   --header-text: #ffffff;
 }
 
@@ -385,6 +385,10 @@ body {
 
 .card {
   background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
   border: 1px solid var(--border-color);
 }
 
@@ -429,4 +433,53 @@ select {
   background-color: var(--card-bg);
   border: 2px solid var(--accent-color);
   box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
+
+/* Update card styles */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+/* Update recommendation items */
+.recommendation-item {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+}
+
+.recommendation-item:hover {
+  background-color: var(--bg-secondary);
+}
+
+/* Update skill chips */
+.skill-chip {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+/* Update buttons */
+#add-skill-btn,
+#save-skills-btn,
+.logout-btn {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+#add-skill-btn:hover,
+#save-skills-btn:hover,
+.logout-btn:hover {
+  background-color: var(--accent-color);
+}
+
+/* Update progress bar */
+progress::-webkit-progress-bar {
+  background-color: var(--bg-secondary);
+}
+
+progress::-webkit-progress-value {
+  background-color: var(--accent-color);
 }
