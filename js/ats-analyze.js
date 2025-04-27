@@ -72,11 +72,29 @@ function displayATSResult(atsScore) {
 
     let feedback = 'Your resume looks good!';
     
-    if (atsScore < 60) {
-        feedback = 'Consider improving your resume by adding more relevant skills and experience.';
-    } else if (atsScore < 80) {
-        feedback = 'Good job! Focus on highlighting key skills for the position you are applying for.';
-    }
+    if (atsScore <= 10) {
+        feedback = 'Your resume needs significant work. It lacks essential skills and relevant keywords. Focus on adding key skills and job-specific experiences to improve your chances with ATS.';
+    } else if (atsScore <= 20) {
+        feedback = 'Your resume is not yet optimized for ATS. Consider adding more relevant skills, qualifications, and job-specific keywords. Tailor your resume to the job description for better results.';
+    } else if (atsScore <= 30) {
+        feedback = 'Your resume is still missing key elements needed to pass through ATS. You need to focus on relevant job skills, achievements, and keywords that match the job description more closely.';
+    } else if (atsScore <= 40) {
+        feedback = 'Your resume needs improvements. Make sure to include relevant skills, experiences, and keywords that are directly related to the job. Start focusing on keyword optimization.';
+    } else if (atsScore <= 50) {
+        feedback = 'Consider making your resume more ATS-friendly. Add more relevant job-specific keywords and focus on clearly highlighting your skills and achievements.';
+    } else if (atsScore <= 60) {
+        feedback = 'Good start! However, your resume can still be improved by adding more relevant skills and job-specific experiences. Focus on tailoring it to the specific job description.';
+    } else if (atsScore <= 70) {
+        feedback = 'Good job! Your resume is fairly optimized, but consider adding more job-specific keywords and quantifiable achievements to increase its ATS score and better match job requirements.';
+    } else if (atsScore <= 80) {
+        feedback = 'Nice work! Your resume looks solid. Focus on highlighting more relevant skills, achievements, and experiences that match the job description to make it more ATS-friendly.';
+    } else if (atsScore <= 90) {
+        feedback = 'Great job! Your resume is highly optimized for ATS. Try adding a few more quantifiable achievements and additional relevant keywords to ensure maximum compatibility.';
+    } else if (atsScore <= 95) {
+        feedback = 'Excellent! Your resume is very well optimized for ATS. Consider reviewing the formatting and adding even more specific keywords to make sure you’re perfectly aligned with the job.';
+    } else if (atsScore <= 100) {
+        feedback = 'Perfect! Your resume is ATS-ready. It’s clear, concise, and optimized with the right keywords and skills. Keep up the great work!';
+    }    
 
     feedbackElement.innerText = feedback;
     document.getElementById('atsResult').style.display = 'block'; // Show the result div
