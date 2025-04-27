@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATS Resume Analyzer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/ats-analyze.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>ATS Resume Analyzer</h1>
+        <p>
+          Upload your resume to get feedback and ATS (Applicant Tracking System)
+          score. Improve your chances of landing the job!
+        </p>
+      </div>
+
+      <div class="upload-section">
+        <h2>Upload Your Resume</h2>
+        <input
+          type="file"
+          id="resumeFile"
+          accept="application/pdf"
+          title="Resume File"
+        />
+        <button id="analyzeBtn">Analyze Resume</button>
+      </div>
+
+      <div id="atsResult" class="result">
+        <h3>ATS Score: <span id="atsScore">Not Available</span></h3>
+        <p id="feedback">Feedback: Not Available</p>
+      </div>
+
+      <div class="info">
+        <h2>How to Improve Your Resume for ATS</h2>
+        <ul>
+          <li>Use relevant keywords that match job descriptions.</li>
+          <li>Avoid using images, graphics, or complicated layouts.</li>
+          <li>
+            Use standard resume sections: Experience, Education, Skills, etc.
+          </li>
+          <li>
+            Make your resume machine-readable, with clear headings and simple
+            formatting.
+          </li>
+          <li>Optimize the document’s file type (PDF is most recommended).</li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="/js/ats-analyze.js"></script>
+  </body>
+</html>

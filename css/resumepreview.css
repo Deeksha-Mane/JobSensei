@@ -54,7 +54,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-.download-btn {
+.download-btn, #ats {
   display: block;
   margin: 30px auto 0;
   padding: 12px 25px;
@@ -67,6 +67,6 @@ h1 {
   transition: background 0.3s ease;
 }
 
-.download-btn:hover {
-  background: #3a7bd5;
+.download-btn:hover, #ats:hover {
+  background: rgb(5, 56, 159);
 }
