@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Step 7: Certifications & Achievements | Resume Builder</title>
+    <link rel="stylesheet" href="../css/resumestep7.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-container">
+        <h1>Step 7: Certifications & Achievements</h1>
+        <form id="certifications-form">
+          <!-- Certifications Section -->
+          <div class="section">
+            <h2>Certifications</h2>
+            <div id="certifications-container">
+              <!-- Certification entries will be added here -->
+            </div>
+            <button type="button" id="add-certification" class="btn-add">
+              Add Certification
+            </button>
+          </div>
+
+          <!-- Achievements Section -->
+          <div class="section">
+            <h2>Achievements</h2>
+            <div id="achievements-container">
+              <!-- Achievement entries will be added here -->
+            </div>
+            <button type="button" id="add-achievement" class="btn-add">
+              Add Achievement
+            </button>
+          </div>
+
+          <div class="button-group">
+            <button type="submit" class="btn-next">Next</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <template id="certification-template">
+      <div class="certification-entry">
+        <div class="form-group">
+          <label>Certification Name</label>
+          <input
+            type="text"
+            class="certification-name"
+            placeholder="e.g., AWS Certified Solutions Architect"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Issuing Organization</label>
+          <input
+            type="text"
+            class="issuing-org"
+            placeholder="e.g., Amazon Web Services"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Issue Date</label>
+          <input type="month" class="issue-date" required />
+        </div>
+        <div class="form-group">
+          <label>Expiration Date (if applicable)</label>
+          <input type="month" class="expiration-date" />
+          <label class="checkbox-label">
+            <input type="checkbox" class="no-expiration" /> No expiration
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Credential ID/URL</label>
+          <input
+            type="text"
+            class="credential-id"
+            placeholder="Credential ID or verification URL"
+          />
+        </div>
+        <button type="button" class="btn-remove">Remove Certification</button>
+      </div>
+    </template>
+
+    <template id="achievement-template">
+      <div class="achievement-entry">
+        <div class="form-group">
+          <label>Achievement Title</label>
+          <input
+            type="text"
+            class="achievement-title"
+            placeholder="e.g., Employee of the Year 2023"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label>Date Received</label>
+          <input type="month" class="achievement-date" required />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea
+            class="achievement-description"
+            rows="3"
+            placeholder="Describe the achievement and its significance"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label>Issuing Organization</label>
+          <input
+            type="text"
+            class="issuing-org"
+            placeholder="Organization that recognized the achievement"
+          />
+        </div>
+        <button type="button" class="btn-remove">Remove Achievement</button>
+      </div>
+    </template>
+
+    <script src="../js/resumestep7.js"></script>
+  </body>
+</html>

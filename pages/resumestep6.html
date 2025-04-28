@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Step 6: Volunteer Experience | Resume Builder</title>
+    <link rel="stylesheet" href="../css/resumestep6.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="progress-steps">
+          <span class="step-label">Personal Info</span>
+          <span class="step-label">Summary</span>
+          <span class="step-label">Experience</span>
+          <span class="step-label">Education</span>
+          <span class="step-label">Skills</span>
+          <span class="step-label active">Volunteer</span>
+          <span class="step-label">Certifications</span>
+        </div>
+      </div>
+
+      <div class="form-container">
+        <h1>Step 6: Volunteer Experience</h1>
+        <p class="section-description">
+          Add your volunteer work to showcase your community involvement and
+          leadership skills.
+        </p>
+
+        <form id="volunteer-form">
+          <div id="volunteer-container">
+            <div class="volunteer-entry">
+              <div class="volunteer-header">
+                <h3>Volunteer Experience #1</h3>
+                <button
+                  type="button"
+                  class="btn-remove"
+                  onclick="this.closest('.volunteer-entry').remove()"
+                >
+                  Remove
+                </button>
+              </div>
+
+              <div class="form-group">
+                <label for="organization-1">Organization Name</label>
+                <input
+                  type="text"
+                  name="organization"
+                  id="organization-1"
+                  required
+                  placeholder="Enter organization name"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="role-1">Role/Position</label>
+                <input
+                  type="text"
+                  name="role"
+                  id="role-1"
+                  required
+                  placeholder="Enter your role/position"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="description-1">Description</label>
+                <textarea
+                  name="description"
+                  id="description-1"
+                  required
+                  placeholder="Describe your responsibilities and achievements"
+                  rows="4"
+                ></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="start-date-1">Start Date</label>
+                  <input
+                    type="month"
+                    name="start-date"
+                    id="start-date-1"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="end-date-1">End Date</label>
+                  <input type="month" name="end-date" id="end-date-1" />
+                  <label class="checkbox-label">
+                    <input type="checkbox" name="ongoing" id="ongoing-1" />
+                    Ongoing
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="skills-1">Skills Gained</label>
+                <input
+                  type="text"
+                  name="skills"
+                  id="skills-1"
+                  placeholder="e.g., Leadership, Event Planning, Communication"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div id="volunteer-validation" class="validation-message"></div>
+
+          <button type="button" onclick="addVolunteerEntry()" class="btn-add">
+            + Add Another Volunteer Experience
+          </button>
+
+          <div class="button-group">
+            <button
+              type="button"
+              class="btn-back"
+              onclick="window.location.href='resumestep5.html'"
+            >
+              <span class="arrow">←</span> Back
+            </button>
+            <button type="submit" class="btn-next">
+              Continue <span class="arrow">→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../js/resumestep6.js"></script>
+  </body>
+</html>
