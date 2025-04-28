@@ -54,9 +54,9 @@ onAuthStateChanged(auth, async (user) => {  // changed this also slightly
             const userSnap = await getDoc(userRef);
 
             if (userSnap.exists()) {
-                window.location.href = "../pages/mentor-dashboard.html";
+                window.location.href = "../pages/dashboard.html";
             } else {
-                window.location.href = "../pages/mentee-dashboard.html";
+                window.location.href = "../pages/dashboard.html";
             }
         } catch (error) {
             console.error("Error checking user type:", error);
@@ -82,9 +82,9 @@ loginForm.addEventListener("submit", async (e) => {
         const userSnap = await getDoc(userRef);
 
         if (userSnap.exists()) {
-            window.location.href = "../pages/mentor-dashboard.html";
+            window.location.href = "../pages/dashboard.html";
         } else {
-            window.location.href = "../pages/mentee-dashboard.html";
+            window.location.href = "../pages/dashboard.html";
         }
     } catch (error) {
         console.error("Login error:", error);
