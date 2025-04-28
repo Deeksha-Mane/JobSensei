@@ -8,16 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // WARNING: Exposing API keys in frontend code is insecure.
   const API_KEY = "AIzaSyBaZ5P70MsLntvVhXLyXrXLE-_huEOFdp0";
   const API_url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
-  const initialMessage = `Hello! 👋 I'm your AI Career Assistant. I can help you with:
-    • Career guidance and advice
-    • Resume and cover letter tips
-    • Interview preparation
-    • Job search strategies
-    • Professional development
+  // const initialMessage = `Hello! 👋 I'm your AI Career Assistant. I can help you with:
+  //   • Career guidance and advice
+  //   • Resume and cover letter tips
+  //   • Interview preparation
+  //   • Job search strategies
+  //   • Professional development
     
-    How can I assist you today?`;
+  //   How can I assist you today?`;
 
-  addBotMessage(initialMessage);
+  // addBotMessage(initialMessage);
 
   function addUserMessage(message) {
     const messageDiv = document.createElement("div");
@@ -42,15 +42,29 @@ document.addEventListener("DOMContentLoaded", () => {
     chatMessages.appendChild(messageDiv);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
+  let typingIndicatorElement = null; 
 
   function showTypingIndicator() {
-    typingIndicator.style.display = "flex";
+    typingIndicatorElement = document.createElement("div");
+    typingIndicatorElement.className = "typing-indicator";
+    typingIndicatorElement.innerHTML = `
+      <div class="typing-avatar">
+        <img src="../assets/images/google-gemini-icon.png" alt="Loading..." />
+      </div>
+    `;
+    const chatMessages = document.querySelector(".chat-messages");
+    chatMessages.appendChild(typingIndicatorElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
-
+  
+  
   function hideTypingIndicator() {
-    typingIndicator.style.display = "none";
+    if (typingIndicatorElement) {
+      typingIndicatorElement.remove();
+      typingIndicatorElement = null;
+    }
   }
+  
 
   async function getBotResponse(userMessage) {
     try {
@@ -86,11 +100,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await response.json();
       console.log("API Response:", data);
+      const rawReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I didn’t get that.";
 
-      const reply =
-        data.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Sorry, I didn’t get that.";
-
+      // Clean the reply: remove * and - symbols
+      const cleanedReply = rawReply.replace(/[*-]\s?/g, '').trim();
+      
+      // Shorten reply if very long
+      const finalReply = cleanedReply.length > 300 ? cleanedReply.slice(0, 300) + "..." : cleanedReply;
+      
+      return finalReply;
+      
       return reply;
     } catch (error) {
       console.error("Error:", error);
