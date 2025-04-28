@@ -31,7 +31,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
   const name = document.getElementById("name").value.trim();
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
-  const location = document.getElementById("location").value.trim(); // 🆕 Added line
+  const location = document.getElementById("location").value.trim();
   const skills = document
     .getElementById("skills")
     .value.split(",")
