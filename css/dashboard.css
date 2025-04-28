@@ -483,3 +483,38 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   background-color: var(--accent-color);
 }
+
+/* Save button styling */
+.save-course-btn {
+  background-color: #0b5ed7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 8px;
+}
+
+.save-course-btn:hover {
+  background-color: #083fa2;
+}
+
+.save-course-btn.saved {
+  background-color: #28a745;
+}
+
+/* Fix recommendation item layout */
+.recommendation-item {
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-items: center; */
+}
+
+.recommendation-item a {
+  /* flex-grow: 1; */
+  display: flex;
+  /* align-items: center; */
+  text-decoration: none;
+  color: inherit;
+}
