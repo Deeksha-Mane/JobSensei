@@ -3,7 +3,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const chatMessages = document.querySelector(".chat-messages");
   const chatInput = document.querySelector(".chat-input");
   const chatSend = document.querySelector(".chat-send");
-  const typingIndicator = document.querySelector(".typing-indicator");
+  const themeToggle = document.getElementById("theme-toggle");
+  
+  // Check for saved user preference and apply theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+
+  // Theme toggle functionality
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    // Update toggle icon
+    if (document.body.classList.contains('dark-mode')) {
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      localStorage.setItem('theme', 'light');
+    }
+    
+    // Add a little animation to the icon
+    themeToggle.querySelector('i').style.animation = 'spin 0.5s ease';
+    setTimeout(() => {
+      themeToggle.querySelector('i').style.animation = '';
+    }, 500);
+  });
 
   // WARNING: Exposing API keys in frontend code is insecure.
   const API_KEY = "AIzaSyBaZ5P70MsLntvVhXLyXrXLE-_huEOFdp0";
@@ -16,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-
   function addUserMessage(message) {
     const messageDiv = document.createElement("div");
     messageDiv.className = "message user-message";
@@ -27,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
     chatMessages.appendChild(messageDiv);
     smoothScrollToBottom();
-
   }
 
   let typingIndicatorElement = null;
@@ -39,10 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="typing-avatar">
         <img src="../assets/images/google-gemini-icon.png" alt="Loading..." />
       </div>
+
     `;
     chatMessages.appendChild(typingIndicatorElement);
     smoothScrollToBottom();
-
   }
 
   function hideTypingIndicator() {
@@ -79,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const data = await response.json();
       console.log("API Response:", data);
-      const rawReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I didn’t get that.";
+      const rawReply = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I didn't get that.";
 
       const cleanedReply = rawReply.replace(/[*-]\s?/g, '').trim();
       return cleanedReply;
@@ -89,68 +114,72 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ✨ NEW FUNCTION: Typewriter Effect for Bot Typing
-  function typeBotMessage(text) {
-    return new Promise((resolve) => {
-      const messageDiv = document.createElement("div");
-      messageDiv.className = "message bot-message";
-  
-      const messageContentDiv = document.createElement("div");
-      messageContentDiv.className = "message-content";
-  
-      const messageTextDiv = document.createElement("div");
-      messageTextDiv.className = "message-text";
-  
-      messageContentDiv.appendChild(messageTextDiv);
-      messageDiv.appendChild(messageContentDiv);
-      chatMessages.appendChild(messageDiv);
-      smoothScrollToBottom(); // <-- Smooth scroll to bottom
-  
-      let index = 0;
-      let dotCount = 0;
-      const isLongText = text.length > 200; 
-  
-      function typeNextChar() {
-        if (index < text.length) {
-          messageTextDiv.textContent += text.charAt(index);
-          index++;
-          smoothScrollToBottom(); // <-- Smooth scroll again after each character
-  
-          let typingSpeed = Math.random() * (60 - 20) + 20;
-  
-          const currentChar = text.charAt(index - 1);
-          if (/[.,!?]/.test(currentChar)) {
-            typingSpeed += 100;
-          }
-  
-          setTimeout(typeNextChar, typingSpeed);
-        } else if (isLongText) {
-          animateDots(messageTextDiv, resolve);
-        } else {
-          resolve();
+ // Modify this function in chatbot.js
+function typeBotMessage(text) {
+  return new Promise((resolve) => {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "message bot-message";
+
+    const messageContentDiv = document.createElement("div");
+    messageContentDiv.className = "message-content";
+
+    const messageTextDiv = document.createElement("div");
+    messageTextDiv.className = "message-text";
+
+    messageContentDiv.appendChild(messageTextDiv);
+    messageDiv.appendChild(messageContentDiv);
+    chatMessages.appendChild(messageDiv);
+    smoothScrollToBottom();
+
+    let index = 0;
+    // Remove the isLongText check since we don't want dots animation at all
+
+    function typeNextChar() {
+      if (index < text.length) {
+        messageTextDiv.textContent += text.charAt(index);
+        index++;
+        smoothScrollToBottom();
+
+        let typingSpeed = Math.random() * (60 - 20) + 20;
+
+        const currentChar = text.charAt(index - 1);
+        if (/[.,!?]/.test(currentChar)) {
+          typingSpeed += 100;
         }
-      }
-  
-      typeNextChar();
-    });
-  }
-  
-  function animateDots(messageTextDiv, resolve) {
-    let dotText = '';
-    let count = 0;
-    const maxDots = 3;
-    const interval = setInterval(() => {
-      count = (count + 1) % (maxDots + 1);
-      dotText = '.'.repeat(count);
-      messageTextDiv.textContent += dotText;
-      smoothScrollToBottom(); // <-- Even smooth scroll with dots
-  
-      if (count === 0) {
-        clearInterval(interval);
+
+        setTimeout(typeNextChar, typingSpeed);
+      } else {
+        // Simply resolve the promise when typing is complete, no dots animation
         resolve();
       }
-    }, 400);
-  }
+    }
+
+    typeNextChar();
+  });
+}
+
+// You can either remove this function or leave it unused
+// function animateDots(messageTextDiv, resolve) {
+//   // This function is no longer needed
+//   resolve();
+// }
+  
+  // function animateDots(messageTextDiv, resolve) {
+  //   let dotText = '';
+  //   let count = 0;
+  //   const maxDots = 3;
+  //   const interval = setInterval(() => {
+  //     count = (count + 1) % (maxDots + 1);
+  //     dotText = '.'.repeat(count);
+  //     messageTextDiv.textContent += dotText;
+  //     smoothScrollToBottom();
+  
+  //     if (count === 0) {
+  //       clearInterval(interval);
+  //       resolve();
+  //     }
+  //   }, 400);
+  // }
   
   function smoothScrollToBottom() {
     chatMessages.scrollTo({
@@ -158,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth"
     });
   }
+
   async function handleSendMessage() {
     const message = chatInput.value.trim();
     if (message) {
@@ -196,6 +226,11 @@ document.addEventListener("DOMContentLoaded", () => {
     chatSend.innerHTML = '<i class="fas fa-paper-plane"></i>'; // Restore paper plane icon
   }
   
+  // Add welcome animation when page loads
+  setTimeout(() => {
+    document.querySelector('.bot-message').style.animation = 'slideIn 0.6s ease forwards';
+  }, 300);
+  
   chatSend.addEventListener("click", handleSendMessage);
 
   chatInput.addEventListener("keypress", (e) => {
@@ -203,4 +238,9 @@ document.addEventListener("DOMContentLoaded", () => {
       handleSendMessage();
     }
   });
+  
+  // Add focus to input when page loads
+  setTimeout(() => {
+    chatInput.focus();
+  }, 800);
 });
