@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
           ${job.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}
         </div>
         <button class="apply-btn">Apply Now</button>
+        <button class="save-btn">Save Job</button>
       `;
       jobCardsContainer.appendChild(card);
     });
