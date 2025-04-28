@@ -239,6 +239,12 @@ function renderRecommendations(type, items) {
   container.appendChild(section);
 }
 
+
+
+
+
+
+
 function renderSkillChips(skills) {
   const skillsList = document.getElementById("skills-list");
   skillsList.innerHTML = "";
@@ -384,3 +390,373 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Add this to your existing dashboard.js file, right after your existing functions
+
+// Function to add save buttons to recommendation items
+function addSaveButtonsToRecommendations() {
+  // Get all recommendation items
+  const recommendationItems = document.querySelectorAll('.recommendation-item');
+  
+  recommendationItems.forEach(item => {
+    // Check if this item already has a save button
+    if (item.querySelector('.save-course-btn')) {
+      return; // Skip if button already exists
+    }
+    
+    // Get the link element and extract information
+    const linkElement = item.querySelector('a');
+    if (!linkElement) return;
+    
+    const url = linkElement.href;
+    const title = linkElement.querySelector('p')?.textContent || 'Unknown Course';
+    const thumbnail = linkElement.querySelector('img')?.src || '';
+    
+    // Extract ID and kind from URL
+    let id, kind;
+    if (url.includes('playlist')) {
+      // It's a playlist
+      id = url.split('list=')[1];
+      kind = 'youtube#playlist';
+    } else if (url.includes('watch')) {
+      // It's a video
+      id = url.split('v=')[1];
+      kind = 'youtube#video';
+    } else {
+      // Unknown format
+      return;
+    }
+    
+    // Create save button
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'save-course-btn';
+    saveBtn.innerHTML = '<i class="fas fa-bookmark"></i> Save';
+    saveBtn.dataset.id = id;
+    saveBtn.dataset.kind = kind;
+    saveBtn.dataset.title = title;
+    saveBtn.dataset.thumbnail = thumbnail;
+    saveBtn.dataset.url = url;
+    
+    // Add event listener
+    saveBtn.addEventListener('click', saveCourse);
+    
+    // Add the button to the item
+    item.appendChild(saveBtn);
+  });
+  
+  // Check if any courses are already saved
+  updateSaveButtonsState();
+}
+
+// Function to save a course
+async function saveCourse(event) {
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please log in to save courses");
+    return;
+  }
+
+  const button = event.currentTarget;
+  const courseData = {
+    id: button.dataset.id,
+    kind: button.dataset.kind,
+    title: button.dataset.title,
+    thumbnail: button.dataset.thumbnail,
+    url: button.dataset.url,
+    savedAt: new Date().toISOString()
+  };
+
+  try {
+    // Get the user's saved courses collection
+    const userCoursesRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userCoursesRef);
+    
+    if (userDoc.exists()) {
+      // Check if the user already has saved courses
+      let userData = userDoc.data();
+      let savedCourses = userData.savedCourses || [];
+      
+      // Check if course is already saved
+      const courseIndex = savedCourses.findIndex(course => course.id === courseData.id);
+      
+      if (courseIndex !== -1) {
+        // Course already saved, remove it (toggle functionality)
+        savedCourses.splice(courseIndex, 1);
+        button.classList.remove('saved');
+        button.innerHTML = '<i class="fas fa-bookmark"></i> Save';
+        alert("Course removed from saved courses!");
+      } else {
+        // Course not saved, add it
+        savedCourses.push(courseData);
+        button.classList.add('saved');
+        button.innerHTML = '<i class="fas fa-check"></i> Saved';
+        alert("Course saved successfully!");
+      }
+      
+      // Update the user document with the new saved courses array
+      await setDoc(userCoursesRef, { savedCourses: savedCourses }, { merge: true });
+    } else {
+      // User document doesn't exist yet, create it with the saved course
+      await setDoc(userCoursesRef, { 
+        savedCourses: [courseData]
+      });
+      button.classList.add('saved');
+      button.innerHTML = '<i class="fas fa-check"></i> Saved';
+      alert("Course saved successfully!");
+    }
+  } catch (error) {
+    console.error("Error saving course:", error);
+    alert("Failed to save course. Please try again.");
+  }
+}
+
+// Function to update save buttons based on currently saved courses
+async function updateSaveButtonsState() {
+  const user = auth.currentUser;
+  if (!user) return;
+
+  try {
+    const userCoursesRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userCoursesRef);
+    
+    if (userDoc.exists() && userDoc.data().savedCourses) {
+      const savedCourses = userDoc.data().savedCourses;
+      const saveButtons = document.querySelectorAll('.save-course-btn');
+      
+      saveButtons.forEach(button => {
+        const courseId = button.dataset.id;
+        if (!courseId) return;
+        
+        const isSaved = savedCourses.some(course => course.id === courseId);
+        
+        if (isSaved) {
+          button.classList.add('saved');
+          button.innerHTML = '<i class="fas fa-check"></i> Saved';
+        }
+      });
+    }
+  } catch (error) {
+    console.error("Error checking saved courses:", error);
+  }
+}
+
+// Update the existing render recommendations function
+const originalRenderRecommendations = renderRecommendations;
+renderRecommendations = function(type, items) {
+  originalRenderRecommendations(type, items);
+  
+  // Add save buttons after rendering
+  setTimeout(() => {
+    addSaveButtonsToRecommendations();
+  }, 300);
+};
+
+// Add this at the end of your dashboard.js file
+document.getElementById("savejob").addEventListener("click", () => {
+  // Create temporary saved courses page if it doesn't exist yet
+  showSavedCourses();
+});
+
+// Function to show saved courses in a modal/popup if the page doesn't exist yet
+function showSavedCourses() {
+  // Get current user
+  const user = auth.currentUser;
+  if (!user) {
+    alert("Please log in to view saved courses");
+    return;
+  }
+  
+  // Create modal
+  const modal = document.createElement('div');
+  modal.className = 'saved-courses-modal';
+  modal.innerHTML = `
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Your Saved Courses</h2>
+        <button class="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Loading saved courses...</p>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Add close functionality
+  modal.querySelector('.close-modal').addEventListener('click', () => {
+    document.body.removeChild(modal);
+  });
+  
+  // Add styles
+  const style = document.createElement('style');
+  style.textContent = `
+    .saved-courses-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background-color: var(--bg-primary);
+      border-radius: 8px;
+      width: 80%;
+      max-width: 800px;
+      max-height: 80%;
+      overflow-y: auto;
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .modal-body {
+      padding: 1rem;
+    }
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+    .saved-course-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background-color: var(--bg-secondary);
+      border-radius: 8px;
+    }
+    .course-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .course-info img {
+      width: 100px;
+      height: auto;
+      border-radius: 4px;
+    }
+    .course-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .view-btn, .remove-btn {
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .view-btn {
+      background-color: #0b5ed7;
+      color: white;
+    }
+    .remove-btn {
+      background-color: #dc3545;
+      color: white;
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Load saved courses
+  loadSavedCoursesIntoModal(modal.querySelector('.modal-body'));
+}
+
+// Function to load saved courses into modal
+async function loadSavedCoursesIntoModal(container) {
+  const user = auth.currentUser;
+  if (!user) return;
+  
+  try {
+    const userDocRef = doc(db, "users", user.uid);
+    const userDoc = await getDoc(userDocRef);
+    
+    if (userDoc.exists() && userDoc.data().savedCourses) {
+      const savedCourses = userDoc.data().savedCourses;
+      
+      if (savedCourses.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 2rem;">
+            <p>You haven't saved any courses yet.</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = '';
+        
+        savedCourses.forEach(course => {
+          const courseItem = document.createElement('div');
+          courseItem.className = 'saved-course-item';
+          
+          courseItem.innerHTML = `
+            <div class="course-info">
+              <img src="${course.thumbnail}" alt="${course.title}">
+              <div>
+                <h4>${course.title}</h4>
+                <p>${course.kind.includes('playlist') ? 'Playlist' : 'Video'}</p>
+              </div>
+            </div>
+            <div class="course-actions">
+              <a href="${course.url}" target="_blank" class="view-btn">View</a>
+              <button class="remove-btn" data-id="${course.id}">Remove</button>
+            </div>
+          `;
+          
+          container.appendChild(courseItem);
+          
+          // Add remove functionality
+          courseItem.querySelector('.remove-btn').addEventListener('click', async () => {
+            if (confirm('Are you sure you want to remove this course?')) {
+              try {
+                await updateDoc(userDocRef, {
+                  savedCourses: arrayRemove(course)
+                });
+                
+                container.removeChild(courseItem);
+                
+                if (container.children.length === 0) {
+                  container.innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                      <p>You haven't saved any courses yet.</p>
+                    </div>
+                  `;
+                }
+                
+                // Update save buttons in recommendations
+                updateSaveButtonsState();
+              } catch (error) {
+                console.error('Error removing course:', error);
+                alert('Failed to remove course.');
+              }
+            }
+          });
+        });
+      }
+    } else {
+      container.innerHTML = `
+        <div style="text-align: center; padding: 2rem;">
+          <p>You haven't saved any courses yet.</p>
+        </div>
+      `;
+    }
+  } catch (error) {
+    console.error('Error loading saved courses:', error);
+    container.innerHTML = `
+      <div style="text-align: center; padding: 2rem;">
+        <p>Error loading saved courses. Please try again.</p>
+      </div>
+    `;
+  }
+}
+
+// Make sure to import arrayRemove from Firestore
+import { arrayRemove } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
