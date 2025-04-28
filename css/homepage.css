@@ -2,24 +2,24 @@
 
 /* Theme Variables */
 :root {
-  --bg-primary: #121816;
-  --bg-secondary: #1a2238;
+  --bg-primary: #1a2238;
+  --bg-secondary: #232c47;
   --text-primary: #ffffff;
-  --text-secondary: #e0e0e0;
-  --accent-color: #00a6fb;
-  --brand-color: #00a6fb;
+  --text-secondary: #ffffff;
+  --accent-color: #ffffff;
+  --brand-color: #ffffff;
   --card-bg: #1a2238;
-  --border-color: #2a3a4a;
-  --navbar-bg: #121816;
+  --border-color: #ffffff;
+  --navbar-bg: #121826;
   --navbar-text: #ffffff;
   --button-text: #ffffff;
-  --button-bg: #00a6fb;
-  --header-bg: #121816;
+  --button-bg: #232c47;
+  --header-bg: #121826;
   --header-text: #ffffff;
-  --hover-color: #0070df;
-  --footer-bg: #121816;
-  --progress-bg: #e6ecf1;
-  --progress-value: #0070df;
+  --hover-color: #232c47;
+  --footer-bg: #121826;
+  --progress-bg: #232c47;
+  --progress-value: #ffffff;
 }
 
 * {
@@ -32,7 +32,7 @@
 body {
   font-family: "Poppins", sans-serif;
   background: var(--bg-primary);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   scroll-behavior: smooth;
   line-height: 1.6;
 }
@@ -161,7 +161,7 @@ body {
 /* Hero */
 .hero {
   text-align: center;
-  background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
+  background: var(--bg-primary);
   color: var(--text-primary);
   padding: 120px 20px 100px;
   height: 100vh;
@@ -249,7 +249,7 @@ body {
 .how-it-works {
   padding: 100px 20px;
   text-align: center;
-  background-color: var(--bg-primary);
+  background-color: var(--bg-secondary);
 }
 
 .how-it-works h3 {
@@ -274,6 +274,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   border: 1px solid var(--border-color);
+  color: var(--text-primary);
 }
 
 .steps div:hover {
@@ -456,4 +457,26 @@ progress::-webkit-progress-bar {
 progress::-webkit-progress-value {
   background-color: var(--progress-value);
   border-radius: 5px;
+}
+
+.card h3,
+.card p,
+.box,
+.box h5,
+.title h3,
+.footer-links ul li a,
+.footer-brand p,
+.footer-brand h2,
+.footer-contact p,
+.footer-links h4,
+.footer-contact h4,
+.footer-bottom,
+.footer-icons a {
+  color: var(--text-primary) !important;
+}
+
+.navbar,
+.header {
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
 }
