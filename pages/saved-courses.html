@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Saved Courses - JobSensei</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/dashboard.css" />
+    <link rel="stylesheet" href="/css/saved-courses.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>JobSensei</h2>
+      <a href="/pages/homepage.html"><i class="fas fa-home"></i> Home</a>
+      <a href="/pages/dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+      <a href="/pages/profile.html"><i class="fas fa-user"></i> My Profile</a>
+      <a href="/pages/jobboard.html"><i class="fas fa-briefcase"></i> Jobs For You</a>
+      <a href="/templates/index.html"><i class="fas fa-robot"></i> AI Career Guide</a>
+      <a href="/pages/resumeintro.html"><i class="fas fa-file-alt"></i> Resume Builder</a>
+      <a href="/pages/chatbot.html"><i class="fas fa-comments"></i> Ask Yuki Bot</a>
+      <a href="/pages/connect.html"><i class="fas fa-users"></i> Connect</a>
+      <a href="javascript:void(0);" id="translate-toggle" class="translate-btn">
+        <i class="fas fa-language"></i> Change Language
+      </a>
+      <div id="google_translate_element" style="display: none;"></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="header">
+        <h2>Saved Courses</h2>
+        <!-- Theme Toggle Button -->
+        <button id="theme-toggle" class="theme-toggle" title="Toggle Theme">
+          <i class="fas fa-moon"></i>
+        </button>
+        <!-- Logout button -->
+        <button class="logout-btn" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+
+      <!-- Saved Courses Container -->
+      <div class="card">
+        <h3>Your Saved Learning Resources</h3>
+        <div id="saved-courses-container">
+          <p class="loading-message">Loading your saved courses...</p>
+        </div>
+      </div>
+    </main>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,ta,te,ml,bn,kn,mr,gu,pa',
+          layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        }, 'google_translate_element');
+      }
+    </script>
+    <script>
+    document.getElementById("translate-toggle").addEventListener("click", () => {
+      const translateBox = document.getElementById("google_translate_element");
+      const isHidden = translateBox.style.display === "none" || !translateBox.style.display;
+      translateBox.style.display = isHidden ? "block" : "none";
+    });
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <!-- Firebase SDKs (modular approach) -->
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js"></script>
+    
+    <!-- Saved Courses JavaScript -->
+    <script type="module" src="/js/saved-courses.js"></script>
+  </body>
+</html>
