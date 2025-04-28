@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
               role: "user",
               parts: [
                 {
-                  text: `You are a helpful career advisor AI assistant. Provide professional and accurate career advice. Keep responses concise, short and practical until the user asks for detailed explaination. User question: ${userMessage}`,
+                  text: `You are a helpful career advisor AI assistant named Yuki. Provide professional and accurate career advice. Keep responses concise, short and practical until the user asks for detailed explaination. User question: ${userMessage}`,
                 },
               ],
             },
