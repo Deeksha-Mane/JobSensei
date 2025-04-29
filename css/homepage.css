@@ -22,17 +22,18 @@
   --progress-value: #ffffff;
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-
+ 
 body {
   font-family: "Poppins", sans-serif;
   background: var(--bg-primary);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   scroll-behavior: smooth;
   line-height: 1.6;
 }
@@ -42,7 +43,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px 30px; /* Reduce horizontal padding slightly */
   background-color: var(--navbar-bg);
   position: sticky;
   top: 0;
@@ -51,15 +52,36 @@ body {
 }
 
 .navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--brand-color);
+  color: var(--navbar-text);
+  background: linear-gradient(rgb(4, 99, 162), rgb(139, 201, 255));;
+  -webkit-background-clip: text;
+  color: transparent;
   letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.1);
 }
 
 .navbar-links {
   display: flex;
-  gap: 32px;
+  gap: 15px; /* Further reduce gap between items */
+  margin-left: auto; /* Push links to the right side */
+  padding-right: 20px; /* Space before the login button */
+  align-items: center;
+  text-decoration: none;
 }
 
 .navbar-links a {
@@ -69,8 +91,12 @@ body {
   transition: 0.3s ease;
   position: relative;
   text-decoration: none;
+  padding: 8px 8px; /* Tighter padding */
+  display: inline-block;
+  height: 40px;
+  line-height: 24px;
+  box-sizing: border-box;
 }
-
 .navbar-links a::after {
   content: "";
   position: absolute;
@@ -80,17 +106,12 @@ body {
   bottom: -4px;
   background-color: var(--accent-color);
   transition: width 0.3s ease;
+  /* Removed incorrect text-decoration property from pseudo-element */
 }
 
 .navbar-links a:hover::after {
   width: 100%;
-}
-
-.navbar-links a:hover {
-  color: var(--text-primary);
-  background-color: var(--hover-color);
-  border-radius: 4px;
-  padding: 5px 10px;
+  /* Removed incorrect text-decoration property from hover state */
 }
 
 .navbar-toggler {
@@ -103,6 +124,39 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.navbar-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar-button:hover {
+  background-color: #0950b8; /* Darker shade of primary button color */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--button-text); /* Explicitly maintain text color on hover */
+}
+
+.translate-btn {
+  margin-left: 5px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+#google_translate_element {
+  margin-top: 10px;
+  z-index: 1000;
+  background-color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
 
 /* Dropdown */
 .dropdown {
@@ -122,9 +176,10 @@ body {
   background: var(--card-bg);
   border-radius: 12px;
   overflow: hidden;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
   border: 1px solid var(--border-color);
+  z-index: 1000;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -134,13 +189,22 @@ body {
 .dropdown-menu a {
   display: block;
   padding: 12px 18px;
-  color: #ffffff;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: background 0.2s ease;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
 }
 
 .dropdown-menu a:hover {
   background-color: var(--hover-color);
+  color: var(--text-primary);
 }
 
 .logout-btn {
@@ -155,7 +219,10 @@ body {
 }
 
 .logout-btn:hover {
-  background-color: var(--hover-color);
+  background-color: #0950b8; /* Darker shade of primary button color */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--button-text); /* Explicitly maintain text color on hover */
 }
 
 /* Hero */

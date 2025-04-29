@@ -1,47 +1,39 @@
-// Theme Toggle Implementation
-document.addEventListener('DOMContentLoaded', function() {
-    const themeToggleBtn = document.getElementById('theme-toggle');
+// Theme Toggle Functionality
+document.addEventListener("DOMContentLoaded", function() {
+    const themeToggle = document.getElementById("theme-toggle");
+    if (!themeToggle) return; // Exit if element not found
     
-    function toggleTheme() {
-        const html = document.documentElement;
-        const currentTheme = html.getAttribute('data-theme');
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-        
-        // Change theme
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        // Update icon
-        const icon = themeToggleBtn.querySelector('i');
-        if (newTheme === 'dark') {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        }
+    const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  
+    // Check for saved theme preference or use system preference
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else if (currentTheme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    } else if (prefersDarkScheme.matches) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
     }
-
-    // Set initial theme from localStorage or default to dark
-    function initializeTheme() {
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        const html = document.documentElement;
-        html.setAttribute('data-theme', savedTheme);
-        
-        // Set initial icon
-        const icon = themeToggleBtn.querySelector('i');
-        if (savedTheme === 'dark') {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        }
-    }
-
-    // Initialize theme
-    if (themeToggleBtn) {
-        initializeTheme();
-        themeToggleBtn.addEventListener('click', toggleTheme);
-    }
-}); 
+  
+    // Theme toggle button click handler
+    themeToggle.addEventListener("click", function() {
+      console.log("Theme toggle clicked");
+      if (document.documentElement.getAttribute("data-theme") === "dark") {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        console.log("Switched to light theme");
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        localStorage.setItem("theme", "dark");
+        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        console.log("Switched to dark theme");
+      }
+    });
+  });
