@@ -75,45 +75,87 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
-      <div class="left">
-        <h2>Smart Career Navigator for Tier-2/3 Cities</h2>
-        <p>
-          Empowering students with skill-based job recommendations and tailored
-          learning paths using AI.
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-sparkles"></i>
+          <span>AI-Powered Career Platform</span>
+        </div>
+        
+        <h1 class="hero-title">
+          Your Career Journey<br/>
+          <span class="gradient-text">Starts Here</span>
+        </h1>
+        
+        <p class="hero-description">
+          Discover personalized job opportunities and skill development paths 
+          tailored for students in Tier-2/3 cities.
         </p>
-        <a href="/pages/dashboard.html" class="btn">My Dashboard</a>
-      </div>
-
-      <div class="right">
-        <div class="box">
-          <div class="title">
-            <i class="fa-solid fa-lightbulb"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-            <h3>AI-powered Skill Analysis</h3>
+        
+        <div class="hero-buttons">
+          <a href="/pages/dashboard.html" class="btn-primary">
+            Get Started Free
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#how-it-works" class="btn-secondary">
+            <i class="fas fa-play-circle"></i>
+            See How It Works
+          </a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value">10K+</span>
+            <span class="stat-label">Active Users</span>
           </div>
-          <h5>
-            Our AI analyses your skills and matches you with relevant job
-            opportunities in your region.
-          </h5>
+          <div class="stat-item">
+            <span class="stat-value">500+</span>
+            <span class="stat-label">Job Placements</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">95%</span>
+            <span class="stat-label">Success Rate</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-visual">
+        <div class="visual-card card-1">
+          <i class="fas fa-briefcase"></i>
+          <h4>Smart Job Matching</h4>
+          <p>AI finds the perfect roles for you</p>
+        </div>
+        <div class="visual-card card-2">
+          <i class="fas fa-graduation-cap"></i>
+          <h4>Skill Development</h4>
+          <p>Learn what employers need</p>
+        </div>
+        <div class="visual-card card-3">
+          <i class="fas fa-chart-line"></i>
+          <h4>Career Growth</h4>
+          <p>Track your progress</p>
         </div>
       </div>
     </section>
 
     <!-- How It Works -->
-    <section class="how-it-works">
+    <section class="how-it-works" id="how-it-works">
       <h3>How It Works</h3>
       <div class="steps">
         <div>
+          <i class="fas fa-user-plus" style="font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px;"></i>
           <h4>Sign Up</h4>
-          <p>Create an account and tell us about your skills.</p>
+          <p>Create an account and tell us about your skills, interests, and career goals.</p>
         </div>
         <div>
+          <i class="fas fa-brain" style="font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px;"></i>
           <h4>Analyze</h4>
-          <p>Our AI matches you with jobs and courses suited for you.</p>
+          <p>Our AI matches you with jobs and courses perfectly suited for your profile.</p>
         </div>
         <div>
+          <i class="fas fa-rocket" style="font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px;"></i>
           <h4>Grow</h4>
-          <p>Upskill, apply, and build your dream career.</p>
+          <p>Upskill, apply for opportunities, and build your dream career with confidence.</p>
         </div>
       </div>
     </section>
@@ -255,5 +297,6 @@
     <!-- Main App Logic -->
     <script type="module" src="/js/app.js"></script>
     <script type="module" src="/js/homepage.js"></script>
+    <script src="/js/homepage-enhanced.js"></script>
   </body>
 </html>

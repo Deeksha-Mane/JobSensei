@@ -49,7 +49,7 @@ import {
 
 // Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyBX15nrkN6mqZW09HOtneFVj6O0krWuw4I",
+  apiKey: "",
   authDomain: "jobsensei-84540.firebaseapp.com",
   projectId: "jobsensei-84540",
   storageBucket: "jobsensei-84540.appspot.com",
@@ -63,8 +63,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// YouTube API Key
-const apiKey = "AIzaSyA-mFYtm2uhyEWJ00ORXy6nvEHaPTd7z_8";
+// YouTube API Key - DISABLED FOR SECURITY
+// TODO: Add your YouTube API key here or enable it in Google Cloud Console
+const apiKey = "YOUR_YOUTUBE_API_KEY_HERE";
 
 let userSkills = [];
 
