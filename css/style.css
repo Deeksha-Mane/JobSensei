@@ -19,13 +19,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 50px;
+  padding: 20px 30px; /* Reduce horizontal padding slightly */
   background-color: var(--navbar-bg);
   position: sticky;
   top: 0;
   z-index: 999;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  text-decoration: none;
 }
 
 .navbar-brand {
@@ -54,7 +53,10 @@ body {
 
 .navbar-links {
   display: flex;
-  gap: 32px;
+  gap: 15px; /* Further reduce gap between items */
+  margin-left: auto; /* Push links to the right side */
+  padding-right: 20px; /* Space before the login button */
+  align-items: center;
   text-decoration: none;
 }
 
@@ -65,8 +67,12 @@ body {
   transition: 0.3s ease;
   position: relative;
   text-decoration: none;
+  padding: 8px 8px; /* Tighter padding */
+  display: inline-block;
+  height: 40px;
+  line-height: 24px;
+  box-sizing: border-box;
 }
-
 .navbar-links a::after {
   content: "";
   position: absolute;
@@ -76,12 +82,12 @@ body {
   bottom: -4px;
   background-color: var(--accent-color);
   transition: width 0.3s ease;
-  text-decoration: none;
+  /* Removed incorrect text-decoration property from pseudo-element */
 }
 
 .navbar-links a:hover::after {
   width: 100%;
-  text-decoration: none;
+  /* Removed incorrect text-decoration property from hover state */
 }
 
 .navbar-toggler {
@@ -94,12 +100,28 @@ body {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.navbar-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar-button:hover {
+  background-color: #0950b8; /* Darker shade of primary button color */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--button-text); /* Explicitly maintain text color on hover */
+}
+
 .translate-btn {
-  color: #dcefff;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: 0.3s ease;
-  position: relative;
+  margin-left: 5px;
+  margin-right: 10px;
   text-decoration: none;
 }
 
@@ -111,7 +133,6 @@ body {
   border-radius: 6px;
 }
 
-/* Dropdown */
 .dropdown {
   position: relative;
 }
@@ -126,11 +147,13 @@ body {
   position: absolute;
   top: 110%;
   left: 0;
-  background: #0a2647;
+  background: var(--card-bg);
   border-radius: 12px;
   overflow: hidden;
-  min-width: 160px;
+  min-width: 200px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  z-index: 1000;
 }
 
 .dropdown:hover .dropdown-menu {
@@ -140,13 +163,22 @@ body {
 .dropdown-menu a {
   display: block;
   padding: 12px 18px;
-  color: #ffffff;
+  color: var(--text-secondary);
   text-decoration: none;
   transition: background 0.2s ease;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
 }
 
 .dropdown-menu a:hover {
-  background-color: #144272;
+  background-color: var(--hover-color);
+  color: var(--text-primary);
 }
 
 /* Hero */
@@ -689,6 +721,7 @@ body {
   --navbar-text: #0b5ed7;
   --button-text: #ffffff;
   --button-bg: #0b5ed7;
+  --hover-color: #0950b8; /* Add hover color variable */
 }
 
 /* Dark Theme */
@@ -704,6 +737,7 @@ body {
   --navbar-text: #4a90e2;
   --button-text: #ffffff;
   --button-bg: #4a90e2;
+  --hover-color: #3a73b8; /* Add hover color variable for dark mode */
 }
 
 /* Theme toggle button in navbar */
@@ -765,7 +799,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 button {

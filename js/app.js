@@ -17,7 +17,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyBX15nrkN6mqZW09HOtneFVj6O0krWuw4I",
   authDomain: "jobsensei-84540.firebaseapp.com",
   projectId: "jobsensei-84540",
-  storageBucket: "jobsensei-84540.appspot.com", // corrected .app to .com
+  storageBucket: "jobsensei-84540.appspot.com",
   messagingSenderId: "293854344933",
   appId: "1:293854344933:web:227ce709e4dfdf7bc2460c",
   measurementId: "G-VHGEZ3Y68H",
@@ -85,53 +85,22 @@ async function getAllUsers() {
 
 // =================== FORM HANDLING ===================
 
-document.getElementById("userForm").addEventListener("submit", function (e) {
-  e.preventDefault();
-
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const skills = document.getElementById("skills").value.split(",");
-
-  addUser(name, email, skills);
-});
 document.addEventListener("DOMContentLoaded", function() {
-  // Your existing code here
-  const someElement = document.getElementById("someId");
-  if (someElement) {
-    someElement.addEventListener("click", someFunction);
+  const userForm = document.getElementById("userForm");
+  if (userForm) {
+    userForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const skills = document.getElementById("skills").value.split(",");
+
+      addUser(name, email, skills);
+    });
   }
-});
   
-
-// Theme Toggle Functionality
-const themeToggle = document.getElementById("theme-toggle");
-const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
-
-// Check for saved theme preference or use system preference
-const currentTheme = localStorage.getItem("theme");
-if (currentTheme === "dark") {
-  document.documentElement.setAttribute("data-theme", "dark");
-  themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-} else if (currentTheme === "light") {
-  document.documentElement.setAttribute("data-theme", "light");
-  themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-} else if (prefersDarkScheme.matches) {
-  document.documentElement.setAttribute("data-theme", "dark");
-  themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-} else {
-  document.documentElement.setAttribute("data-theme", "light");
-  themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-}
-
-// Theme toggle button click handler
-themeToggle.addEventListener("click", () => {
-  if (document.documentElement.getAttribute("data-theme") === "dark") {
-    document.documentElement.setAttribute("data-theme", "light");
-    localStorage.setItem("theme", "light");
-    themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-  } else {
-    document.documentElement.setAttribute("data-theme", "dark");
-    localStorage.setItem("theme", "dark");
-    themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-  }
+  // Any other app-specific initialization can go here
 });
+
+// Export functions that might be used elsewhere
+export { signUp, logIn, addUser, getAllUsers };

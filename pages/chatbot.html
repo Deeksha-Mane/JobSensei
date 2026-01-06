@@ -5,46 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI Career Assistant</title>
     <link rel="stylesheet" href="../css/chatbot.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     />
   </head>
   <body class="loaded">
     <div class="chatbot-container">
       <div class="chat-container">
-        <div class="chat-header">
-          <div class="header-content">
-            <i class="fas fa-robot"></i>
-            <span>AI Career Assistant</span>
-          </div>
-        </div>
+    <!-- Enhanced Header HTML -->
+<div class="chat-header">
+  <div class="header-content">
+    <div class="header-bot-icon">
+      <!-- <span class="icon-circle">
+      </span> -->
+      <i class="fa-brands fa-android"></i>
+    </div>
+    <span>Hi there, YUKI here!</span>
+  </div>
+  <button class="theme-toggle" id="theme-toggle" title="Toggle dark/light mode">
+    <i class="fas fa-moon"></i>
+  </button>
+</div>
         <div class="chat-messages" id="chat-messages">
           <div class="message bot-message">
+            <div class="bot-avatar">
+              <img src="../assets/images/google-gemini-icon.png" alt="Yuki" />
+            </div>
             <div class="message-content">
               <div class="message-text">
-                Hello! 👋 I'm Yuki! Your AI Career Assistant. I can help you with:
-                <!-- <ul>
-                  <li>Career path guidance</li>
-                  <li>Resume and cover letter tips</li>
-                  <li>Interview preparation</li>
-                  <li>Skill development</li>
-                  <li>Networking strategies</li>
-                  <li>Work-life balance</li>
-                </ul> -->
-                What would you like to know about?
+                Hello! 👋 I'm Yuki! Your AI Career Assistant. I can help you with career path guidance, resume tips, interview preparation, skill development, networking strategies, and work-life balance. What would you like to know about?
               </div>
             </div>
           </div>
-          <!-- <div class="typing-indicator">
-            <img src="../assets/images/google-gemini-icon.png" alt="Loading" class="typing-icon" />
-            <div class="dots">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </div> -->
-          
         </div>
         <div class="chat-input-container">
           <div class="input-wrapper">

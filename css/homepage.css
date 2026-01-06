@@ -2,6 +2,7 @@
 
 /* ===== THEME VARIABLES ===== */
 :root {
+<<<<<<< HEAD
   /* Dark Mode (Default) */
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
@@ -30,12 +31,36 @@ body.light-mode {
 }
 
 /* ===== RESET & BASE ===== */
+=======
+  --bg-primary: #1a2238;
+  --bg-secondary: #232c47;
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+  --accent-color: #ffffff;
+  --brand-color: #ffffff;
+  --card-bg: #1a2238;
+  --border-color: #ffffff;
+  --navbar-bg: #121826;
+  --navbar-text: #ffffff;
+  --button-text: #ffffff;
+  --button-bg: #232c47;
+  --header-bg: #121826;
+  --header-text: #ffffff;
+  --hover-color: #232c47;
+  --footer-bg: #121826;
+  --progress-bg: #232c47;
+  --progress-value: #ffffff;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+ 
 body {
   font-family: "Inter", sans-serif;
   background: var(--bg-primary);
@@ -77,9 +102,14 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+<<<<<<< HEAD
   padding: 1.5rem 5%;
   background: var(--bg-primary);
   backdrop-filter: blur(10px);
+=======
+  padding: 20px 30px; /* Reduce horizontal padding slightly */
+  background-color: var(--navbar-bg);
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
   position: sticky;
   top: 0;
   z-index: 999;
@@ -88,6 +118,7 @@ body {
 }
 
 .navbar-brand {
+<<<<<<< HEAD
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--accent);
@@ -97,17 +128,49 @@ body {
 
 .navbar-brand:hover {
   transform: scale(1.05);
+=======
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--navbar-text);
+  background: linear-gradient(rgb(4, 99, 162), rgb(139, 201, 255));;
+  -webkit-background-clip: text;
+  color: transparent;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.1);
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 }
 
 .navbar-links {
   display: flex;
+<<<<<<< HEAD
   gap: 2rem;
   align-items: center;
+=======
+  gap: 15px; /* Further reduce gap between items */
+  margin-left: auto; /* Push links to the right side */
+  padding-right: 20px; /* Space before the login button */
+  align-items: center;
+  text-decoration: none;
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 }
 
 .navbar-links a {
   color: var(--text-secondary);
   text-decoration: none;
+<<<<<<< HEAD
   font-weight: 500;
   font-size: 0.95rem;
   padding: 0.5rem 1rem;
@@ -118,6 +181,29 @@ body {
 .navbar-links a:hover {
   color: var(--text-primary);
   background: var(--accent-light);
+=======
+  padding: 8px 8px; /* Tighter padding */
+  display: inline-block;
+  height: 40px;
+  line-height: 24px;
+  box-sizing: border-box;
+}
+.navbar-links a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+  /* Removed incorrect text-decoration property from pseudo-element */
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+  /* Removed incorrect text-decoration property from hover state */
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 }
 
 .navbar-toggler {
@@ -130,6 +216,39 @@ body {
   font-size: 1.25rem;
   cursor: pointer;
 }
+
+.navbar-button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.navbar-button:hover {
+  background-color: #0950b8; /* Darker shade of primary button color */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--button-text); /* Explicitly maintain text color on hover */
+}
+
+.translate-btn {
+  margin-left: 5px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+#google_translate_element {
+  margin-top: 10px;
+  z-index: 1000;
+  background-color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
 
 /* Dropdown */
 .dropdown {
@@ -154,6 +273,13 @@ body {
   box-shadow: 0 10px 40px var(--shadow);
   border: 1px solid var(--card-border);
   overflow: hidden;
+<<<<<<< HEAD
+=======
+  min-width: 200px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  z-index: 1000;
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 }
 
 .dropdown:hover .dropdown-menu {
@@ -163,6 +289,7 @@ body {
 
 .dropdown-menu a {
   display: block;
+<<<<<<< HEAD
   padding: 0.75rem 1.25rem;
   color: var(--text-secondary);
   transition: all 0.2s ease;
@@ -170,6 +297,24 @@ body {
 
 .dropdown-menu a:hover {
   background: var(--accent-light);
+=======
+  padding: 12px 18px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background 0.2s ease;
+  margin: 0;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--hover-color);
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
   color: var(--text-primary);
 }
 
@@ -185,13 +330,28 @@ body {
 }
 
 .logout-btn:hover {
+<<<<<<< HEAD
   background: var(--accent-hover);
   transform: translateY(-2px);
+=======
+  background-color: #0950b8; /* Darker shade of primary button color */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: var(--button-text); /* Explicitly maintain text color on hover */
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 }
 
 /* ===== HERO SECTION ===== */
 .hero {
+<<<<<<< HEAD
   min-height: 90vh;
+=======
+  text-align: center;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  padding: 120px 20px 100px;
+  height: 100vh;
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -375,6 +535,10 @@ body {
 .how-it-works {
   padding: 6rem 5%;
   text-align: center;
+<<<<<<< HEAD
+=======
+  background-color: var(--bg-secondary);
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 }
 
 .how-it-works h3 {
@@ -394,11 +558,21 @@ body {
 
 .steps div {
   background: var(--card-bg);
+<<<<<<< HEAD
   backdrop-filter: blur(20px);
   border: 1px solid var(--card-border);
   border-radius: 1.5rem;
   padding: 3rem 2rem;
   transition: all 0.3s ease;
+=======
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 280px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+>>>>>>> 85175f9d536bc58e5d6db59a1975a7384ab4a728
 }
 
 .steps div:hover {
@@ -736,4 +910,26 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-hover);
+}
+
+.card h3,
+.card p,
+.box,
+.box h5,
+.title h3,
+.footer-links ul li a,
+.footer-brand p,
+.footer-brand h2,
+.footer-contact p,
+.footer-links h4,
+.footer-contact h4,
+.footer-bottom,
+.footer-icons a {
+  color: var(--text-primary) !important;
+}
+
+.navbar,
+.header {
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
 }

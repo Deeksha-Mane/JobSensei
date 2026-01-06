@@ -1,0 +1,203 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f7f9fc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Container */
+.container {
+  max-width: 750px;
+  margin: 50px auto;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
+}
+
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  margin-bottom: 35px;
+  color: #2c3e50;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #34495e;
+}
+
+/* Input Styling */
+input[type="text"],
+input[type="url"],
+input[type="month"],
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ccd6dd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="url"]:focus,
+input[type="month"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+/* Date Range */
+.date-range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.date-range input[type="month"] {
+  flex: 1;
+  min-width: 200px;
+}
+
+.date-range span {
+  color: #666;
+}
+
+/* Checkbox Label */
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Add Project Button */
+.btn-add {
+  background-color: #2ecc71;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.btn-add:hover {
+  background-color: #27ae60;
+  transform: scale(1.05);
+}
+
+/* Remove Project Button */
+.btn-remove {
+  background-color: #e74c3c;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-bottom: 20px;
+}
+
+.btn-remove:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+/* Project Entry */
+.project-entry {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #e9ecef;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Next Button */
+.btn-next {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-next:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 768px) {
+  .container {
+    margin: 30px 20px;
+    padding: 30px 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .date-range input[type="month"] {
+    min-width: 100%;
+  }
+
+  input[type="text"],
+  input[type="url"],
+  input[type="month"],
+  select,
+  textarea,
+  .btn-add,
+  .btn-remove,
+  .btn-next {
+    font-size: 14px;
+  }
+}
